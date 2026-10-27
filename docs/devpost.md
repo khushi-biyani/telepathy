@@ -25,9 +25,11 @@ Same model (NVIDIA Nemotron Nano 4B), same GPU (NVIDIA Tesla T4), same questions
 
 Against a usual multi-agent system, Telepathy was **2.9× to 40× faster** and wrote **60% to 98% fewer tokens**, with the **same or better accuracy** on every test. On coding it also beat a single agent clearly (7 problems solved that the single agent missed, none the other way; p = 0.016). On simple school maths a single agent did best, which shows a team does not always pay off; Telepathy makes a team about as cheap as one agent.
 
+**About the setup:** we deliberately ran everything on a small model, NVIDIA Nemotron Nano 4B, on a single NVIDIA Tesla T4, an older entry-level GPU with 16 GB, because that is what we could run end to end for every test. That is why the accuracy scores are modest for all three ways of working. A bigger model clearly helps: the usual 4-agent flow on NVIDIA Nemotron 3 Super through Nebius Token Factory scored 91.3% on the same 150 maths questions, against 69.3% on Nano 4B. With a bigger Nemotron model, accuracy would likely go up for Telepathy too. The speed and token savings come from not writing and rereading notes, so we expect them to carry over, but we have not yet tested Telepathy on a bigger model.
+
 ## How we built it
 - **Telepathy engine (Python, PyTorch, Hugging Face Transformers):** each silent agent feeds the model's last internal state back in as its next input for 10 steps, building up the shared KV cache; the next agent starts from that cache. This follows the published LatentMAS method (Apache-2.0); we implemented it for NVIDIA Nemotron Nano and built the measurement, safety and website around it.
-- **Nebius Token Factory:** the usual multi-agent flow runs on NVIDIA Nemotron 3 Super through Token Factory, for the team-size measurements and live on the website, with per-run, per-visitor and total spending limits. Visitors can only run the site's own questions, never free text.
+- **Nebius Token Factory:** we measured the usual multi-agent flow at 2, 4, 6 and 8 agents on NVIDIA Nemotron 3 Super through Token Factory. Our server can also run the usual flow live for website visitors, with per-run, per-visitor and total spending limits, and only on the site's own questions, never free text.
 - **Safety layer:** outside content such as web pages is marked untrusted by code, never by the model. Only one agent may read it, and it must hand off in plain text that is scanned for planted instructions, so nothing untrusted travels silently. Each memory belongs to one run only.
 - **Benchmarks:** GSM8K (maths), MBPP+ (coding, graded by running the official tests), MedQA (medical exam) and real web research with Tavily search. Every run is greedy and repeatable, saved one row per question, and resumable.
 - **Website:** React, Vite, TypeScript and Tailwind, replaying real recordings, with a FastAPI server for the live Nebius lane.
@@ -44,12 +46,12 @@ Against a usual multi-agent system, Telepathy was **2.9× to 40× faster** and w
 - Measuring our own claims, including the ones that did not hold, made the project stronger.
 
 ## What's next
-Run Telepathy on bigger NVIDIA Nemotron models, measure it at more team sizes, and add the LatentMAS realignment step.
+Run Telepathy on bigger NVIDIA Nemotron models and faster GPUs, where we expect higher accuracy for every method; measure it at more team sizes; and add the LatentMAS realignment step.
 
 ## Built with
 NVIDIA Nemotron (Nano 4B, 3 Super), Nebius Token Factory, Tavily, Python, PyTorch, Hugging Face Transformers, FastAPI, React, Vite, TypeScript, Tailwind CSS, Kaggle (NVIDIA Tesla T4).
 
 ## Links
 - Live demo: [DEMO URL]
-- Code: [REPO URL]
+- Code: https://github.com/khushi-biyani/telepathy
 - Video: [VIDEO URL]

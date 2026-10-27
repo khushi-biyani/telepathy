@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="880" viewBox="0 0 1500 880" font-family="Helvetica, Arial, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="850" viewBox="0 0 1500 850" font-family="Helvetica, Arial, sans-serif">
 <defs><marker id="h" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#495057"/></marker><marker id="hv" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6741d9"/></marker><marker id="hm" markerWidth="5" markerHeight="5" refX="4" refY="2.5" viewBox="0 0 12 12" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#e8a200"/></marker></defs>
-<rect x="0" y="0" width="1500" height="880" rx="0" fill="#ffffff" stroke="#ffffff" stroke-width="1.6"/>
+<rect x="0" y="0" width="1500" height="850" rx="0" fill="#ffffff" stroke="#ffffff" stroke-width="1.6"/>
 <text x="40" y="48" font-size="30" fill="#1e1e1e" font-weight="600" text-anchor="start">Inside the model: how one agent hands its memory to the next</text>
 <text x="40" y="80" font-size="16" fill="#495057" font-weight="400" text-anchor="start">What our code does at every hand-off (telepathy/latent.py and telepathy/engine.py). All agents are the same model, loaded once on one GPU.</text>
 <rect x="40" y="110" width="885" height="560" rx="16" fill="#fbfbfc" stroke="#495057" stroke-width="1.6" stroke-dasharray="7 5"/>
@@ -110,9 +110,8 @@
 <text x="1045" y="572" font-size="15" fill="#1e1e1e" font-weight="600" text-anchor="start">the Solver Agent reads its job on top of the</text>
 <text x="1045" y="596" font-size="15" fill="#1e1e1e" font-weight="600" text-anchor="start">full cache and is the only one that writes:</text>
 <text x="1045" y="625" font-size="15" fill="#1e1e1e" font-weight="600" text-anchor="start">the answer, word by word.</text>
-<rect x="40" y="700" width="1420" height="150" rx="14" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.6"/>
+<rect x="40" y="700" width="1420" height="122" rx="14" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.6"/>
 <text x="60" y="732" font-size="17" fill="#1e1e1e" font-weight="600" text-anchor="start">Good to know</text>
 <text x="60" y="762" font-size="15" fill="#1e1e1e" font-weight="400" text-anchor="start">•  Each memory is tagged with the run that made it and can never be reused by another run.</text>
 <text x="60" y="790" font-size="15" fill="#1e1e1e" font-weight="400" text-anchor="start">•  An agent that reads web pages hands off in plain, checked text instead, so nothing from the web travels hidden in the memory.</text>
-<text x="60" y="818" font-size="15" fill="#1e1e1e" font-weight="400" text-anchor="start">•  Method credit: LatentMAS (Apache-2.0). Where LatentMAS uses an alignment matrix before feeding a state back, we simply rescale it to word size.</text>
 </svg>
