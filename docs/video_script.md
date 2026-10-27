@@ -8,7 +8,7 @@ Four beats: **the hook** (the cost of agents writing notes, then what we built) 
 
 ### 1 · The hook: 0:00 to 0:30  *(Quality of the idea, Potential impact)*
 
-**SCREEN:** Three plain title cards, one after another, white text on dark: "2 agents · 416 tokens read per question" → "4 agents · 2,661" → "8 agents · 12,019".
+**SCREEN:** Three title cards, one after another (about 3 seconds each): `docs/video_cards/01-two-agents.png` (416) → `02-four-agents.png` (2,661) → `03-eight-agents.png` (12,019).
 
 **VO:**
 > Multi-agent AI is everywhere: one agent plans, one checks, one improves, one answers. But they work by writing notes to each other, and every agent rereads everything written before it. We measured it on Nebius Token Factory: going from two agents to eight, the reading grew almost thirty times, with no gain in accuracy.
@@ -41,7 +41,7 @@ Four beats: **the hook** (the cost of agents writing notes, then what we built) 
 
 ### 3 · Proof: 1:20 to 2:10  *(Potential impact)*
 
-**SCREEN:** "Results". Hover the coding bars: accuracy, time and tokens appear.
+**SCREEN:** Title card `docs/video_cards/04-results.png` for about 4 seconds, with no voice-over. Then "Results": hover the coding bars, and accuracy, time and tokens appear.
 
 **VO:**
 > We tested one agent alone, the usual multi-agent system, and Telepathy, on the same questions: school maths, coding graded by running real tests, a medical exam, and web research. Against the usual system, Telepathy was 2.9 to 40 times faster, wrote 60 to 98 percent fewer tokens, and was as accurate or better. On coding it also solved seven problems the single agent missed, and missed none.
@@ -74,7 +74,7 @@ Four beats: **the hook** (the cost of agents writing notes, then what we built) 
 
 ### Close: 2:50 to 2:58
 
-**SCREEN:** The website's top section, then the repo link on screen.
+**SCREEN:** Closing card `docs/video_cards/05-close.png`.
 
 **VO:**
 > Telepathy: agents that think together, without writing it all out.
@@ -84,7 +84,7 @@ Four beats: **the hook** (the cost of agents writing notes, then what we built) 
 ## Recording checklist
 
 - [ ] Record from the **published demo link**, not localhost, once the site is live.
-- [ ] **Beat 1:** make the three title cards (text only, no screenshots) and put the real numbers on them: 416, 2,661 and 12,019.
+- [ ] **Cards:** the five title cards are ready in `docs/video_cards/` (1920 × 1080 PNGs). Drop them into your editor on the timeline where the script says so; they need no editing.
 - [ ] **Beat 2:** wait for the animation to start from the beginning, so you capture the whole run (about 14 seconds), then the result box.
 - [ ] **Beat 3:** hover the coding bars, then open "Raw results" and click the egg-farm question; for the research shot, pick the Eiffel Tower and Burj Khalifa question in "Pick a question".
 - [ ] **Beat 4:** have `docs/architecture.svg` and `docs/inside_the_model.svg` open in full-screen tabs.
