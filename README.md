@@ -290,7 +290,7 @@ Interactive sessions stop when idle, and a reset wipes `/kaggle/working`. Use **
 
 ## 8. Credits
 
-- **LatentMAS** for the latent collaboration method ([paper](https://arxiv.org/abs/2511.20639), [code](https://github.com/Gen-Verse/LatentMAS), Apache-2.0).
+- **LatentMAS** for the latent collaboration method ([paper](https://arxiv.org/abs/2511.20639), Apache-2.0).
 - **NVIDIA Nemotron** models: Nemotron Nano 4B (Telepathy) and Nemotron 3 Super (Nebius Token Factory).
 - **Nebius Token Factory** for model hosting, and **Tavily** for web search.
 - Test sets: [**GSM8K**](https://huggingface.co/datasets/openai/gsm8k), [**MBPP+**](https://huggingface.co/datasets/evalplus/mbppplus) ([EvalPlus](https://github.com/evalplus/evalplus)), [**MedQA**](https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options) and [**ARC**](https://huggingface.co/datasets/allenai/ai2_arc).
