@@ -100,6 +100,20 @@ These are the raw numbers from everything we tested. For each question, the file
 
 ## 4. How it is built
 
+### Built with Nebius Token Factory and Tavily
+
+**Nebius Token Factory** made it practical to measure the problem at full scale:
+
+- **Measuring the problem:** it ran the usual multi-agent flow with teams of 2, 4, 6 and 8 agents on NVIDIA Nemotron 3 Super. That showed reading grows about 29× from 2 to 8 agents, the finding this project starts from.
+- **A big-model comparison:** the same 150 maths questions on Nemotron 3 Super scored 91%, which shows how much a bigger model helps.
+- **Cheap enough to measure properly:** about 1,800 model calls, with 2 million tokens read and 0.5 million written, cost **$1.45 in total**.
+- **A live demo option:** our server can run the usual flow live for website visitors, with spending limits.
+
+**Tavily** made the research demo real:
+
+- **Real web pages:** for the research questions, Tavily searched the live web and returned real pages, for example the heights of the Eiffel Tower and the Burj Khalifa. The agents worked from those pages, not made-up text.
+- **Repeatable:** we saved the pages Tavily returned ([`server/fixtures/`](server/fixtures)), so the research questions replay without a key and anyone can check what the agents read.
+
 ```
 telepathy/
 ├── telepathy/              the engine
