@@ -76,27 +76,32 @@ Everything below uses **one model** (NVIDIA Nemotron Nano 4B) on **one GPU** (NV
 <summary><b>Things that did not work</b></summary>
 
 - **Readable "subtitles" of the silent thinking.** We tried to show a readable summary of what each silent agent passes on and check it was faithful. Our check could not tell real subtitles from fake ones, so we do not claim them.
-- **Research with a step-by-step writer.** On generated read-then-calculate questions, the small model did badly whichever way the agents talked, and telling the writer to work step by step did not help ([`bench/research_bench.py`](bench/research_bench.py)).
-- **Our first team-size run** reused saved answers and looked almost free. We found it, fixed it (benchmarks never use the answer cache) and re-ran. The bad files are kept as `*.INVALID-cached-answers`.
 </details>
 
-### All results and raw files
+### Raw data
 
-Every number in this README comes from a file in the repo, saved one row per question. Results on the small model ran on an NVIDIA Tesla T4 on Kaggle; results on the big model ran on Nebius Token Factory.
+Every number in this README comes from a file in this repo, with one row per question, so anyone can check it.
 
-| Result | Numbers | Files |
+**Main results** (the tables above)
+
+| What | Files |
+|---|---|
+| Maths, coding and medical exam: all three ways | [`test_rerun/`](bench/results/kaggle_run/saved/test_rerun), [`teams/`](bench/results/kaggle_teams/saved/teams) |
+| Web research: 3 real questions | [`kaggle_research/`](bench/results/kaggle_research/saved/gallery) |
+| Team size: 2 to 8 agents on Nebius | [`team_size_summary.md`](bench/results/team_size_summary.md) |
+
+**Other experiments we ran**
+
+| What we tried | What happened | Files |
 |---|---|---|
-| **Main tests**: maths, coding, medical exam (the table above) | see the table above | [`kaggle_run/saved/test_rerun/`](bench/results/kaggle_run/saved/test_rerun), [`kaggle_teams/saved/teams/`](bench/results/kaggle_teams/saved/teams) |
-| **Web research**: 3 questions with real Tavily pages | multi-agent 2 of 3, 230.7 s · Telepathy 2 of 3, 80.5 s | [`kaggle_research/saved/gallery/`](bench/results/kaggle_research/saved/gallery) |
-| **The same 150 maths questions on a big model**: usual 4-agent flow, NVIDIA Nemotron 3 Super on Nebius | 91.3% right (137 of 150), 8.3 s, 1,279 tokens written | [`test/gsm8k_tokenfactory_text.jsonl`](bench/results/test/gsm8k_tokenfactory_text.jsonl) |
-| **Team size**: usual flow with 2, 4, 6 and 8 agents on Nebius, 50 maths questions | reading grows from 416 to 12,019 tokens; accuracy 92–96% (section 1) | [`team_size_summary.md`](bench/results/team_size_summary.md), [`test/`](bench/results/test) |
-| **Choosing the silent-step count**: 50 practice maths questions (questions 0–49, never used for the reported results) | 5 steps 74% · 10 steps 70% · 20 steps 68% · multi-agent 70%; differences within noise | [`gate_summary.md`](bench/results/gate_summary.md) |
-| **Self-test**: does the silent thinking carry information? | normal 35, no thinking 37, wrong question 32 (of 50): within luck, so the silent thinking alone does not raise accuracy | [`mismatch/`](bench/results/mismatch) |
-| **Research test**: 20 generated read-then-calculate questions, 5 versions | strict grading: 1–2 of 20 right in every version; inconclusive | [`kaggle_run/saved/research/`](bench/results/kaggle_run/saved/research) |
-| **Recorded examples behind the website**: 18 questions in maths, logic, coding, science and research | usual flow 12 of 18 right, Telepathy 14 of 18; typically 6.3× faster | [`gallery/`](bench/results/gallery), [`dashboard/public/gallery/index.json`](dashboard/public/gallery/index.json) |
-| **Retired examples**: our first 3 research demos used made-up pages | usual flow 3 of 3, Telepathy 0 of 3; replaced with real web research | [`retired_gallery/`](bench/results/retired_gallery) |
+| The usual multi-agent flow on a **much bigger model** (Nemotron 3 Super on Nebius), same 150 maths questions | Usual multi-agent flow: 91% right, against 69% on the small model\* | [file](bench/results/test/gsm8k_tokenfactory_text.jsonl) |
+| How long each agent should think silently (5, 10 or 20 steps), on 50 practice questions | All about the same (68–74%), so we used 10 | [`gate_summary.md`](bench/results/gate_summary.md) |
+| Does the silent thinking itself make answers better? | No clear difference, so we claim speed and cost, not smarter answers | [`mismatch/`](bench/results/mismatch) |
+| A harder research test: 20 made-up questions | The small model got almost all wrong either way, so the test showed nothing | [`research/`](bench/results/kaggle_run/saved/research) |
+| The 18 example questions behind the website | Usual flow 12 right, Telepathy 14 right, typically 6× faster | [`gallery/`](bench/results/gallery) |
+| Our first research demos used made-up web pages | The usual flow got all 3 right and Telepathy none, so we replaced them with real web research | [`retired_gallery/`](bench/results/retired_gallery) |
 
-<sub>The big-model run is the usual flow only: Telepathy needs the model's memory, which an API cannot give. Its seconds are not comparable with the T4 runs.</sub>
+<sub>\* A bigger model helps a lot. Telepathy itself could not run on Nebius, because it needs the model's internal memory, which an online API does not give; so Telepathy on a bigger model is still to be measured.</sub>
 
 ## 4. How it works
 
