@@ -79,9 +79,9 @@ Everything below uses **one model** (NVIDIA Nemotron Nano 4B) on **one GPU** (NV
 
 ### Raw data
 
-Every number in this README comes from a file in this repo, with one row per question, so anyone can check it.
+These are the raw numbers from everything we tested. For each question, the files record the answer, whether it was right, the time taken and the tokens used, so anyone can check our results.
 
-**Main results** (the tables above)
+**Main tests**
 
 | What | Files |
 |---|---|
