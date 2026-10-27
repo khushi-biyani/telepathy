@@ -6,6 +6,7 @@ const NAMES = ["Planner Agent", "Critic Agent", "Refiner Agent", "Solver Agent"]
 const ROLE = ["makes a plan", "checks it", "improves it", "writes the answer"];
 const X = [6, 194, 382, 570], W = 104;
 import REC from "../data/animation_recording.json";
+import { asset } from "../asset";
 
 // Real recording: this question, run on the small model (Nemotron Nano 4B) on a Kaggle T4, in both modes.
 // Every note, second and word count below is what that run produced (file: /gallery/<id>.json).
@@ -271,7 +272,7 @@ export function AgentTalk({ m }: { m: Measured | null }) {
             <div className="mt-2 space-y-2">{EN.agents.map((a, i) => <div key={a.role} className="rounded-xl bg-surface p-3"><b className="text-ink">{NAMES[i]}</b><div className="mt-1 whitespace-pre-wrap">{a.text}</div></div>)}</div>
           </details>
           <div className="mt-3 flex flex-wrap gap-4">
-            <a className="text-ink2 underline" href={`/gallery/${REC.id}.json`} download>Download this recording</a>
+            <a className="text-ink2 underline" href={asset(`/gallery/${REC.id}.json`)} download>Download this recording</a>
             <a className="text-ink2 underline" href="#numbers">See all results</a>
           </div>
           <p className="mt-4 border-t border-hair pt-3 text-[11px] text-muted">

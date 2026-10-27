@@ -3,6 +3,7 @@ import { getHealth, postLive } from "../api";
 import { useLane } from "../useLane";
 import { Lane } from "./Lane";
 import { SectionHead } from "./SectionHead";
+import { asset } from "../asset";
 
 type Agent = { role: string; seconds: number; words_written: number; text: string; silent_steps: number };
 type Run = {
@@ -85,12 +86,12 @@ export function Gallery() {
 
   useEffect(() => {
     getHealth().then((h) => setLiveOk(!!h.tf_live)).catch(() => setLiveOk(false));  // the button only appears when the server can run live
-    fetch("/gallery/index.json").then((r) => r.json()).then(setData).catch(() => setFailed(true));
+    fetch(asset("/gallery/index.json")).then((r) => r.json()).then(setData).catch(() => setFailed(true));
     return () => cancelAnimationFrame(raf.current);
   }, []);
   useEffect(() => {
     cancelAnimationFrame(raf.current); setPlaying(false); setT(0); setRec(null); setLiveRun(null); setLiveErr(null);
-    fetch(`/gallery/${sel}.json`).then((r) => r.json()).then(setRec).catch(() => setFailed(true));
+    fetch(asset(`/gallery/${sel}.json`)).then((r) => r.json()).then(setRec).catch(() => setFailed(true));
   }, [sel]);
 
   const text = rec?.runs.find((r) => r.mode === "text"), latent = rec?.runs.find((r) => r.mode === "latent");
@@ -210,7 +211,7 @@ export function Gallery() {
                 )}
 
                 <p className="mt-3 text-xs text-muted">
-                  <a className="underline" href={`/gallery/${cur.id}.json`} download>Download this recording</a> · {rec.model.split("/").pop()} · {rec.gpu.startsWith("NVIDIA") ? rec.gpu : `NVIDIA ${rec.gpu}`}
+                  <a className="underline" href={asset(`/gallery/${cur.id}.json`)} download>Download this recording</a> · {rec.model.split("/").pop()} · {rec.gpu.startsWith("NVIDIA") ? rec.gpu : `NVIDIA ${rec.gpu}`}
                 </p>
               </>
             )}

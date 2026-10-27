@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Accordion } from "./Accordion";
 import GI from "../data/gallery_index.json";
+import { asset } from "../asset";
 
 // Where each run's rows live. Kaggle runs use a small copy for the page (slim/); Nebius runs are read as they are.
 const DOWNLOADS = [
@@ -30,7 +31,7 @@ function MismatchProof() {
   const [d, setD] = useState<Record<string, MRow[]>>({});
   useEffect(() => {
     Promise.all(ARMS.map(async (a) => {
-      const t = await (await fetch(`/evidence/${a.file}`)).text();
+      const t = await (await fetch(asset(`/evidence/${a.file}`))).text();
       return [a.key, t.trim().split("\n").map((l) => JSON.parse(l) as MRow)] as const;
     })).then((e) => setD(Object.fromEntries(e))).catch(() => setD({}));
   }, []);
@@ -83,7 +84,7 @@ function MismatchProof() {
                 </ul>
               </div>
               <div className="mt-4 flex flex-wrap gap-4 text-xs">
-                {[...ARMS.map((a) => a.file), "mismatch_summary.md"].map((f) => <a key={f} className="underline text-ink2" href={`/evidence/${f}`} download>{f}</a>)}
+                {[...ARMS.map((a) => a.file), "mismatch_summary.md"].map((f) => <a key={f} className="underline text-ink2" href={asset(`/evidence/${f}`)} download>{f}</a>)}
               </div>
             </>
           )}
@@ -101,7 +102,7 @@ export function Details() {
         <div className="grid gap-4 text-sm sm:grid-cols-3">
           {DOWNLOADS.map(([title, files]) => (
             <div key={title}><div className="mb-1.5 font-medium text-ink">{title}</div>
-              <ul className="space-y-1 text-xs">{files.map((f) => <li key={f}><a className="text-ink2 underline" href={`/evidence/${f}`} download>{f.replace("runs/", "")}</a></li>)}</ul></div>
+              <ul className="space-y-1 text-xs">{files.map((f) => <li key={f}><a className="text-ink2 underline" href={asset(`/evidence/${f}`)} download>{f.replace("runs/", "")}</a></li>)}</ul></div>
           ))}
         </div>
         <p className="mt-4 text-xs text-muted">
@@ -120,7 +121,7 @@ export function Details() {
                 <td className="pr-3" style={{ color: i.usual.correct ? "var(--ok)" : "#e5484d" }}>{i.usual.correct ? "right" : "wrong"}</td>
                 <td className="pr-3" style={{ color: i.telepathy.correct ? "var(--ok)" : "#e5484d" }}>{i.telepathy.correct ? "right" : "wrong"}</td>
                 <td className="pr-3">{(i.usual.seconds / i.telepathy.seconds).toFixed(1)}×</td>
-                <td><a className="underline text-ink2" href={`/gallery/${i.id}.json`} download>json</a></td>
+                <td><a className="underline text-ink2" href={asset(`/gallery/${i.id}.json`)} download>json</a></td>
               </tr>
             ))}</tbody>
           </table>
@@ -132,7 +133,7 @@ export function Details() {
           <li>Readable "subtitles" of the silent thinking could not be checked: our honesty check could not tell real ones from fake ones, so we do not claim them.</li>
           <li>On research-style questions (read a page, then calculate) the small model did badly whichever way the agents talked, and our step-by-step fix did not help.</li>
           <li>Our first team-size run reused saved answers and looked free. We found it, fixed it and re-ran; the bad files are kept, not deleted.</li>
-          <li>Our first three "research" demos gave the agents fake web pages that were not needed to answer (one hid a planted instruction). The usual team got all three right and Telepathy none. We replaced them with real web-research questions; the old recordings are kept: <a className="underline" href="/evidence/retired/pens.json" download>pens</a>, <a className="underline" href="/evidence/retired/bus.json" download>bus</a>, <a className="underline" href="/evidence/retired/recipe.json" download>recipe</a>.</li>
+          <li>Our first three "research" demos gave the agents fake web pages that were not needed to answer (one hid a planted instruction). The usual team got all three right and Telepathy none. We replaced them with real web-research questions; the old recordings are kept: <a className="underline" href={asset("/evidence/retired/pens.json")} download>pens</a>, <a className="underline" href={asset("/evidence/retired/bus.json")} download>bus</a>, <a className="underline" href={asset("/evidence/retired/recipe.json")} download>recipe</a>.</li>
         </ul>
       </Accordion>
     </div>

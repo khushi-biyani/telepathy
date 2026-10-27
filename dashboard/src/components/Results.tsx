@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import R from "../data/results.json";
 import { Accordion } from "./Accordion";
 import { SectionHead } from "./SectionHead";
+import { asset } from "../asset";
 
 type Task = (typeof R.tasks)[number];
 type M = "single" | "text" | "latent";
@@ -84,11 +85,11 @@ function AllQuestions() {
   const [qs, setQs] = useState<Record<string, string>>({});
   const [all, setAll] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
-  useEffect(() => { fetch("/evidence/slim/questions.json").then((r) => r.json()).then(setQs).catch(() => {}); }, []);
+  useEffect(() => { fetch(asset("/evidence/slim/questions.json")).then((r) => r.json()).then(setQs).catch(() => {}); }, []);
   const cur = R.tasks.find((t) => t.key === task)!, ms = present(cur);
   useEffect(() => {
     setRows(null); setAll(false);
-    Promise.all(present(R.tasks.find((t) => t.key === task)!).map(async (m) => [m, Object.fromEntries(((await (await fetch(`/evidence/slim/${task}_${m}.json`)).json()) as Row[]).map((r) => [r.id, r]))] as const))
+    Promise.all(present(R.tasks.find((t) => t.key === task)!).map(async (m) => [m, Object.fromEntries(((await (await fetch(asset(`/evidence/slim/${task}_${m}.json`))).json()) as Row[]).map((r) => [r.id, r]))] as const))
       .then((e) => setRows(Object.fromEntries(e) as Record<M, Record<string, Row>>)).catch(() => setRows(null));
   }, [task]);
   const ids = rows ? Object.keys(rows.latent) : [];
