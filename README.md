@@ -2,13 +2,11 @@
 
 # Telepathy
 
-**AI agents that think together, without writing it all out.**
+### AI agents that think together, without writing it all out
 
-Multi-agent systems spend much of their time writing to each other.
-Telepathy lets agents share their working memory instead, on NVIDIA Nemotron.
+Multi-agent systems spend much of their time writing to each other. Telepathy lets agents share their working memory instead, on NVIDIA Nemotron.
 
-**2.9× to 40× faster** · **60% to 98% fewer tokens** · **same or better accuracy**
-<sub>than a usual multi-agent system on the same model and the same questions</sub>
+**2.9× to 40× faster** &nbsp;·&nbsp; **60% to 98% fewer tokens** &nbsp;·&nbsp; **same or better accuracy**<br>compared with a usual multi-agent system, on the same model and the same questions
 
 </div>
 
@@ -52,44 +50,24 @@ What if the agents skipped the notes and handed over what they are thinking?
 
 When a language model reads text, it builds a working memory of what it has understood so far (technically, its **KV cache**). Normally that memory is thrown away after each answer, and the next agent rebuilds it by reading text. Telepathy keeps it and passes it on.
 
-```
-Usual multi-agent flow
-  Planner ──writes notes──▶ Critic ──writes notes──▶ Refiner ──writes notes──▶ Solver ──▶ answer
-           (every agent writes in full; the next one rereads everything so far)
-
-Telepathy
-  Planner ══memory══▶ Critic ══memory══▶ Refiner ══memory══▶ Solver ──▶ answer
-  (thinks silently)   (thinks silently)   (thinks silently)    (the only one that writes)
-```
-
-Each of the first three agents thinks for 10 **silent steps**: instead of writing a word, the model feeds its own last internal state back in as the next input. Their thinking accumulates in the shared memory, and only the Solver writes, which is the answer.
+Each of the first three agents **thinks silently**: instead of writing a word, the model feeds its own last internal state back in as the next input. Their thinking accumulates in the shared memory, and only the Solver writes, which is the answer.
 
 > The silent hand-off follows the published **LatentMAS** method ([paper](https://arxiv.org/abs/2511.20639), [code](https://github.com/Gen-Verse/LatentMAS), Apache-2.0). We implemented it for NVIDIA Nemotron and built the measurement, the safety layer and the website around it.
 
 ![How Telepathy works: the usual multi-agent flow, the Telepathy flow, how the memory is passed, and what we measured](docs/architecture.svg)
 
-A visual, end-to-end version of this flow is in [`docs/architecture.excalidraw`](docs/architecture.excalidraw) (open it at [excalidraw.com](https://excalidraw.com)).
-
 ## 3. Results
 
 Everything below uses **one model** (NVIDIA Nemotron Nano 4B) on **one GPU** (NVIDIA Tesla T4 on Kaggle), answering the **same questions three ways**: a single agent, a usual multi-agent system (4 agents writing notes), and Telepathy (the same 4 agents sharing memory). Decoding is greedy, so every run is repeatable.
 
-| Test | Questions | | Single agent | Multi-agent | **Telepathy** | Telepathy vs multi-agent |
-|---|---:|---|---:|---:|---:|---|
-| **School maths** (GSM8K) | 150 | right | 79.3% | 69.3% | **72.7%** | **4.3× faster, 78% fewer tokens** |
-| | | seconds | 13.6 | 70.2 | 16.4 | |
-| | | tokens | 291 | 1,267 | 283 | |
-| **Coding** (MBPP+) | 60 | right | 43.3% | 43.3% | **55.0%** | **40× faster, 98% fewer tokens** |
-| | | seconds | 3.8 | 188.4 | 4.7 | |
-| | | tokens | 77 | 2,723 | 55 | |
-| **Medical exam** (MedQA) | 60 | right | 33.3% | 33.3% | **41.7%** | **3.4× faster, 74% fewer tokens** |
-| | | seconds | 17.3 | 96.5 | 28.1 | |
-| | | tokens | 316 | 1,427 | 377 | |
-| **Web research** | 3 | right | – | 2 of 3 | **2 of 3** | **2.9× faster, 60% fewer tokens** |
-| | | seconds | – | 230.7 | 80.5 | |
-| | | tokens | – | 3,045 | 1,228 | |
+| Test | Single agent | Multi-agent | **Telepathy** | Telepathy vs multi-agent |
+|---|:---:|:---:|:---:|---|
+| **School maths** (GSM8K)<br>150 questions | 79.3%<br>13.6 s · 291 tokens | 69.3%<br>70.2 s · 1,267 tokens | **72.7%**<br>16.4 s · 283 tokens | **4.3× faster, 78% fewer tokens** |
+| **Coding** (MBPP+)<br>60 questions | 43.3%<br>3.8 s · 77 tokens | 43.3%<br>188.4 s · 2,723 tokens | **55.0%**<br>4.7 s · 55 tokens | **40× faster, 98% fewer tokens** |
+| **Medical exam** (MedQA)<br>60 questions | 33.3%<br>17.3 s · 316 tokens | 33.3%<br>96.5 s · 1,427 tokens | **41.7%**<br>28.1 s · 377 tokens | **3.4× faster, 74% fewer tokens** |
+| **Web research**<br>3 questions | – | 2 of 3<br>230.7 s · 3,045 tokens | **2 of 3**<br>80.5 s · 1,228 tokens | **2.9× faster, 60% fewer tokens** |
 
-<sub>Seconds and tokens are averages per question. "Tokens" are tokens written. Coding answers are graded by running the official hidden tests; maths and medical answers against the known answer; research answers against a known number. Maths allowed up to 384 tokens per agent; the other tests up to 1,024.</sub>
+<sub>Each cell shows accuracy, then seconds and tokens as averages per question. "Tokens" are tokens written. Coding answers are graded by running the official hidden tests; maths and medical answers against the known answer; research answers against a known number. Maths allowed up to 384 tokens per agent; the other tests up to 1,024.</sub>
 
 **What this shows**
 
@@ -133,6 +111,24 @@ The differences are within luck at this size. So we do **not** claim the silent 
 - **Research with a step-by-step writer.** On generated read-then-calculate questions, the small model did badly whichever way the agents talked, and telling the writer to work step by step did not help ([`bench/research_bench.py`](bench/research_bench.py)).
 - **Our first team-size run** reused saved answers and looked almost free. We found it, fixed it (benchmarks never use the answer cache) and re-ran. The bad files are kept as `*.INVALID-cached-answers`.
 </details>
+
+### All results and raw files
+
+Every number in this README comes from a file in the repo, saved one row per question. Results on the small model ran on an NVIDIA Tesla T4 on Kaggle; results on the big model ran on Nebius Token Factory.
+
+| Result | Numbers | Files |
+|---|---|---|
+| **Main tests**: maths, coding, medical exam (the table above) | see the table above | [`kaggle_run/saved/test_rerun/`](bench/results/kaggle_run/saved/test_rerun), [`kaggle_teams/saved/teams/`](bench/results/kaggle_teams/saved/teams) |
+| **Web research**: 3 questions with real Tavily pages | multi-agent 2 of 3, 230.7 s · Telepathy 2 of 3, 80.5 s | [`kaggle_research/saved/gallery/`](bench/results/kaggle_research/saved/gallery) |
+| **The same 150 maths questions on a big model**: usual 4-agent flow, NVIDIA Nemotron 3 Super on Nebius | 91.3% right (137 of 150), 8.3 s, 1,279 tokens written | [`test/gsm8k_tokenfactory_text.jsonl`](bench/results/test/gsm8k_tokenfactory_text.jsonl) |
+| **Team size**: usual flow with 2, 4, 6 and 8 agents on Nebius, 50 maths questions | reading grows from 416 to 12,019 tokens; accuracy 92–96% (section 1) | [`team_size_summary.md`](bench/results/team_size_summary.md), [`test/`](bench/results/test) |
+| **Choosing the silent-step count**: 50 practice maths questions (questions 0–49, never used for the reported results) | 5 steps 74% · 10 steps 70% · 20 steps 68% · multi-agent 70%; differences within noise | [`gate_summary.md`](bench/results/gate_summary.md) |
+| **Self-test**: does the silent thinking carry information? | 35 / 37 / 32 of 50 (see above) | [`mismatch/`](bench/results/mismatch) |
+| **Research test**: 20 generated read-then-calculate questions, 5 versions | strict grading: 1–2 of 20 right in every version; inconclusive | [`kaggle_run/saved/research/`](bench/results/kaggle_run/saved/research) |
+| **Recorded examples behind the website**: 18 questions in maths, logic, coding, science and research | usual flow 12 of 18 right, Telepathy 14 of 18; typically 6.3× faster | [`gallery/`](bench/results/gallery), [`dashboard/public/gallery/index.json`](dashboard/public/gallery/index.json) |
+| **Retired examples**: our first 3 research demos used made-up pages | usual flow 3 of 3, Telepathy 0 of 3; replaced with real web research | [`retired_gallery/`](bench/results/retired_gallery) |
+
+<sub>The big-model run is the usual flow only: Telepathy needs the model's memory, which an API cannot give. Its seconds are not comparable with the T4 runs.</sub>
 
 ## 4. How it works
 
