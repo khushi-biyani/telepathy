@@ -22,8 +22,7 @@ Multi-agent systems spend much of their time writing to each other. Telepathy le
 6. [Run it yourself](#6-run-it-yourself)
 7. [Configuration](#7-configuration)
 8. [Troubleshooting](#8-troubleshooting)
-9. [What we do not claim](#9-what-we-do-not-claim)
-10. [Credits](#10-credits)
+9. [Credits](#9-credits)
 
 ---
 
@@ -88,20 +87,17 @@ Every number in this README comes from a file in this repo, with one row per que
 |---|---|
 | Maths, coding and medical exam: all three ways | [`test_rerun/`](bench/results/kaggle_run/saved/test_rerun), [`teams/`](bench/results/kaggle_teams/saved/teams) |
 | Web research: 3 real questions | [`kaggle_research/`](bench/results/kaggle_research/saved/gallery) |
-| Team size: 2 to 8 agents on Nebius | [`team_size_summary.md`](bench/results/team_size_summary.md) |
+| Team size: 2 to 8 agents on Nebius | [`test/`](bench/results/test) |
 
 **Other experiments we ran**
 
 | What we tried | What happened | Files |
 |---|---|---|
-| The usual multi-agent flow on a **much bigger model** (Nemotron 3 Super on Nebius), same 150 maths questions | Usual multi-agent flow: 91% right, against 69% on the small model\* | [file](bench/results/test/gsm8k_tokenfactory_text.jsonl) |
+| The usual multi-agent flow on a **much bigger model** (Nemotron 3 Super on Nebius), same 150 maths questions | Usual multi-agent flow: 91% right, against 69% on the small model | [file](bench/results/test/gsm8k_tokenfactory_text.jsonl) |
 | How long each agent should think silently (5, 10 or 20 steps), on 50 practice questions | All about the same (68–74%), so we used 10 | [`gate_summary.md`](bench/results/gate_summary.md) |
 | Does the silent thinking itself make answers better? | No clear difference, so we claim speed and cost, not smarter answers | [`mismatch/`](bench/results/mismatch) |
-| A harder research test: 20 made-up questions | The small model got almost all wrong either way, so the test showed nothing | [`research/`](bench/results/kaggle_run/saved/research) |
 | The 18 example questions behind the website | Usual flow 12 right, Telepathy 14 right, typically 6× faster | [`gallery/`](bench/results/gallery) |
 | Our first research demos used made-up web pages | The usual flow got all 3 right and Telepathy none, so we replaced them with real web research | [`retired_gallery/`](bench/results/retired_gallery) |
-
-<sub>\* A bigger model helps a lot. Telepathy itself could not run on Nebius, because it needs the model's internal memory, which an online API does not give; so Telepathy on a bigger model is still to be measured.</sub>
 
 ## 4. How it works
 
@@ -157,28 +153,19 @@ Passing hidden memory between agents creates a new risk: a planted instruction i
 <details>
 <summary><b>Nebius Token Factory</b> · <code>telepathy/llm.py</code>, <code>telepathy/baseline_tf.py</code></summary>
 
-- An OpenAI-compatible client for **Nebius Token Factory** (NVIDIA Nemotron 3 Super), with a per-call cost estimate, a per-check cap and a lifetime budget saved to disk.
-- `baseline_tf.py` runs the usual multi-agent flow on Token Factory, either as a benchmark or as a live stream of events for the website.
-- Benchmarks and live runs never use the saved-answer cache, so a cached answer can never look free.
-- Telepathy itself cannot run on an API: it needs the model's internal memory, which text-in, text-out APIs do not expose. That is why the silent runs happen on a GPU we control.
+- **What it is:** Nebius Token Factory is an online service that runs AI models for you. We use it to run **NVIDIA Nemotron 3 Super**, a much bigger model than the one Telepathy uses.
+- **What we use it for:** the usual multi-agent flow, where agents write notes to each other. We used it to measure how the cost grows as you add agents (2 to 8), and it can also run that flow live for website visitors ([`baseline_tf.py`](telepathy/baseline_tf.py)).
+- **Spending limits:** before each request our code estimates the cost and refuses anything over a set limit per question or in total, so nothing can run up a bill ([`llm.py`](telepathy/llm.py)).
+- **Why Telepathy does not run here:** an online service only takes text in and gives text out. Telepathy has to pass the model's internal working memory from one agent to the next, which such a service does not expose. So Telepathy runs on a GPU we control instead.
 </details>
 
 <details>
-<summary><b>Benchmarks and grading</b> · <code>bench/</code></summary>
-
-- **Tests:** GSM8K (school maths), MBPP+ (Python coding, graded by running the official EvalPlus tests in a separate process with a time limit), MedQA (US medical licensing exam, 4 options) and ARC (science). Loaders in [`datasets.py`](bench/datasets.py).
-- **Splits:** the first 50 items of each test are a development split (used for choosing settings); results come from items 50 onward, which we never tuned on.
-- **Resumable:** every run appends one JSON row per question, and finished questions are skipped on re-run, so a stopped Kaggle session loses nothing.
-- **Key scripts:** `run_bench.py` (main benchmark), `teamsize.py` (team sizes on Nebius), `mismatch_bench.py` (the self-test), `record_gallery.py` and `record_animation_local.py` (recordings for the website), `build_site_results.py` and `build_gallery_index.py` (turn results into website data).
-</details>
-
-<details>
-<summary><b>The website</b> · <code>dashboard/</code> (React, Vite, TypeScript, Tailwind)</summary>
+<summary><b>The website</b> · <code>dashboard/</code></summary>
 
 - **How it works:** a live animation of one real recorded run, both flows on one shared clock.
 - **Try it:** featured questions (maths, coding, research, science), each a real recording you can replay side by side.
 - **Results:** tokens per question for each way, with accuracy and time on hover, plus every question's time and tokens.
-- Runs as a static site from recordings, with no GPU and no keys. When the API server runs with live mode on, each featured question can also be run live on Nebius Token Factory, within spending limits. Visitors cannot type free text to the live endpoint.
+- Runs from saved recordings, so it needs no GPU and no keys.
 </details>
 
 ## 5. Project layout
@@ -338,12 +325,6 @@ Read once at start-up and never changed by model output. The two core rules (`ta
 ## 8. Troubleshooting
 
 <details>
-<summary><b>My Mac slows to a crawl or runs out of memory</b></summary>
-
-The 4B model needs about 9 GB of memory, which is too much alongside a browser on a 16 GB laptop. Run the model on a GPU (6.4). The website and the tests do not need it.
-</details>
-
-<details>
 <summary><b>"bfloat16 is not supported" on a T4 or P100</b></summary>
 
 Older GPUs cannot use bfloat16. Add `--dtype float16`, which all our recorded results use.
@@ -355,15 +336,7 @@ Older GPUs cannot use bfloat16. Add `--dtype float16`, which all our recorded re
 Interactive sessions stop when idle, and a reset wipes `/kaggle/working`. Use **Save & Run All (Commit)** for anything longer than a few minutes; it runs on Kaggle's servers with the tab closed and keeps the output. Every benchmark resumes from where it stopped, so re-running only does the missing questions.
 </details>
 
-## 9. What we do not claim
-
-- **Not a new method.** The silent hand-off follows LatentMAS. Our work is the Nemotron implementation, the measurements, the safety layer and the website.
-- **Not smarter answers.** Telepathy matches or beats the usual multi-agent system on accuracy, but our own self-test shows the silent thinking alone does not measurably improve answers.
-- **Not tested on big models.** All Telepathy results use a 4B model. Scores would likely be higher on a bigger model; we have not measured it.
-- **Not running on Token Factory.** The usual flow runs live on Nebius; Telepathy needs the model's internal memory, so it runs on a GPU we control. We never compare the two models' seconds.
-- **Small research sample.** The web-research results are 3 questions, a demo rather than a benchmark.
-
-## 10. Credits
+## 9. Credits
 
 - **LatentMAS** for the latent collaboration method ([paper](https://arxiv.org/abs/2511.20639), [code](https://github.com/Gen-Verse/LatentMAS), Apache-2.0).
 - **NVIDIA Nemotron** models: Nemotron Nano 4B (Telepathy) and Nemotron 3 Super (Nebius Token Factory).
