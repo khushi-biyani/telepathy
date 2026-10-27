@@ -135,14 +135,14 @@ telepathy/
 <details>
 <summary><b>The safety layer</b> · <code>telepathy/trust.py</code>, <code>scan.py</code>, <code>cache_utils.py</code>, <code>policy.yaml</code></summary>
 
-Passing hidden memory between agents creates a new risk: a planted instruction in a web page could travel silently. So:
+Passing hidden memory between agents creates a new risk: a web page could hide an instruction aimed at the AI, and it could travel silently in the memory. So:
 
-- **Trust is set by code, never by the model.** Every piece of content carries a source. User input is trusted; web pages are untrusted, and nothing at runtime can upgrade them.
-- **One reader.** Only one agent in a team may read outside content.
-- **Tainted hand-offs are in text.** That agent must hand off in plain, readable text, decoded on a copy of the memory so raw untrusted tokens never enter the shared cache.
-- **Scanned.** That text is checked for planted instructions; a scan can warn or block, never clear.
-- **Memory belongs to one run.** Every cache is bound to its run id and refuses to be used by another; run state cannot be pickled or saved.
-- **No secrets in prompts.** Prompts are checked for keys before they reach the model.
+- **Our code decides what to trust, never the AI.** The user's question is trusted; web pages are always untrusted, and nothing while running can change that.
+- **Only one agent reads web pages.** Every other agent works without them.
+- **That agent passes on what it found in plain text**, not through the shared memory, so nothing from a web page travels hidden.
+- **That text can be checked for hidden instructions.** The check is on for our research demos. It can add a warning or block the text, but it can never mark anything as safe.
+- **Each memory belongs to one run.** It can't be reused by another run or saved to a file.
+- **No secrets reach the AI.** Everything the agents read is checked for passwords and keys first.
 </details>
 
 ## 5. Run it yourself
