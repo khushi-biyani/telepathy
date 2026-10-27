@@ -1,0 +1,313 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+env={'torch': '2.11.0+cu128', 'transformers': '5.19.0', 'device': 'cuda', 'python': '3.13.15'} items=60
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:46<00:46, 46.09s/it]Fetching 2 files: 100%|██████████| 2/2 [00:46<00:00, 23.05s/it]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:02<13:46,  2.85s/it]Loading weights:   1%|          | 2/291 [00:03<06:42,  1.39s/it]Loading weights:  23%|██▎       | 67/291 [00:03<00:06, 36.64it/s]Loading weights:  30%|██▉       | 87/291 [00:03<00:05, 36.44it/s]Loading weights:  35%|███▍      | 101/291 [00:04<00:04, 40.13it/s]Loading weights:  38%|███▊      | 112/291 [00:04<00:05, 33.18it/s]Loading weights:  42%|████▏     | 121/291 [00:04<00:04, 35.78it/s]Loading weights:  44%|████▍     | 128/291 [00:05<00:04, 36.18it/s]Loading weights:  46%|████▌     | 134/291 [00:05<00:04, 32.94it/s]Loading weights:  48%|████▊     | 139/291 [00:05<00:05, 29.71it/s]Loading weights:  51%|█████     | 148/291 [00:05<00:04, 33.42it/s]Loading weights:  54%|█████▍    | 157/291 [00:05<00:03, 36.25it/s]Loading weights:  56%|█████▌    | 162/291 [00:06<00:03, 36.66it/s]Loading weights:  57%|█████▋    | 167/291 [00:07<00:08, 14.23it/s]Loading weights:  60%|██████    | 175/291 [00:08<00:09, 12.35it/s]Loading weights:  63%|██████▎   | 184/291 [00:08<00:09, 11.23it/s]Loading weights:  66%|██████▌   | 191/291 [00:09<00:06, 14.50it/s]Loading weights:  67%|██████▋   | 195/291 [00:09<00:09, 10.38it/s]Loading weights:  69%|██████▉   | 202/291 [00:10<00:09,  9.59it/s]Loading weights:  72%|███████▏  | 209/291 [00:10<00:06, 13.10it/s]Loading weights:  73%|███████▎  | 213/291 [00:11<00:08,  9.32it/s]Loading weights:  76%|███████▌  | 220/291 [00:12<00:08,  8.83it/s]Loading weights:  78%|███████▊  | 227/291 [00:12<00:05, 12.14it/s]Loading weights:  79%|███████▉  | 231/291 [00:13<00:06,  9.34it/s]Loading weights:  81%|████████  | 235/291 [00:13<00:05, 11.03it/s]Loading weights:  82%|████████▏ | 238/291 [00:14<00:06,  8.41it/s]Loading weights:  84%|████████▍ | 244/291 [00:14<00:04, 11.12it/s]Loading weights:  85%|████████▍ | 247/291 [00:15<00:05,  8.17it/s]Loading weights:  87%|████████▋ | 253/291 [00:15<00:03, 11.51it/s]Loading weights:  88%|████████▊ | 256/291 [00:16<00:04,  8.10it/s]Loading weights:  90%|█████████ | 262/291 [00:16<00:02, 11.76it/s]Loading weights:  91%|█████████ | 265/291 [00:17<00:03,  7.15it/s]Loading weights:  94%|█████████▍| 274/291 [00:18<00:02,  8.41it/s]Loading weights:  97%|█████████▋| 281/291 [00:18<00:00, 11.94it/s]Loading weights:  98%|█████████▊| 284/291 [00:19<00:00,  8.39it/s]Loading weights: 100%|██████████| 291/291 [00:19<00:00, 14.97it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+medqa_test_text.jsonl medqa-50 ok=True 65.3s
+medqa_test_text.jsonl medqa-51 ok=False 122.8s
+medqa_test_text.jsonl medqa-52 ok=True 63.1s
+medqa_test_text.jsonl medqa-53 ok=False 25.5s
+medqa_test_text.jsonl medqa-54 ok=True 84.4s
+medqa_test_text.jsonl medqa-55 ok=True 25.1s
+medqa_test_text.jsonl medqa-56 ok=False 40.2s
+medqa_test_text.jsonl medqa-57 ok=True 65.8s
+medqa_test_text.jsonl medqa-58 ok=True 82.7s
+medqa_test_text.jsonl medqa-59 ok=False 48.5s
+medqa_test_text.jsonl medqa-60 ok=False 254.8s
+medqa_test_text.jsonl medqa-61 ok=True 50.1s
+medqa_test_text.jsonl medqa-62 ok=False 74.2s
+medqa_test_text.jsonl medqa-63 ok=True 78.7s
+medqa_test_text.jsonl medqa-64 ok=False 58.5s
+medqa_test_text.jsonl medqa-65 ok=False 85.2s
+medqa_test_text.jsonl medqa-66 ok=False 63.2s
+medqa_test_text.jsonl medqa-67 ok=False 36.7s
+medqa_test_text.jsonl medqa-68 ok=True 68.4s
+medqa_test_text.jsonl medqa-69 ok=False 61.2s
+medqa_test_text.jsonl medqa-70 ok=True 87.8s
+medqa_test_text.jsonl medqa-71 ok=True 133.9s
+medqa_test_text.jsonl medqa-72 ok=False 181.3s
+medqa_test_text.jsonl medqa-73 ok=False 147.0s
+medqa_test_text.jsonl medqa-74 ok=False 111.4s
+medqa_test_text.jsonl medqa-75 ok=False 93.8s
+medqa_test_text.jsonl medqa-76 ok=True 47.1s
+medqa_test_text.jsonl medqa-77 ok=False 104.4s
+medqa_test_text.jsonl medqa-78 ok=True 149.4s
+medqa_test_text.jsonl medqa-79 ok=False 143.1s
+medqa_test_text.jsonl medqa-80 ok=False 95.1s
+medqa_test_text.jsonl medqa-81 ok=False 137.0s
+medqa_test_text.jsonl medqa-82 ok=True 95.6s
+medqa_test_text.jsonl medqa-83 ok=False 126.5s
+medqa_test_text.jsonl medqa-84 ok=True 80.0s
+medqa_test_text.jsonl medqa-85 ok=False 105.6s
+medqa_test_text.jsonl medqa-86 ok=False 97.3s
+medqa_test_text.jsonl medqa-87 ok=True 139.7s
+medqa_test_text.jsonl medqa-88 ok=False 123.5s
+medqa_test_text.jsonl medqa-89 ok=False 364.1s
+medqa_test_text.jsonl medqa-90 ok=False 63.1s
+medqa_test_text.jsonl medqa-91 ok=True 34.2s
+medqa_test_text.jsonl medqa-92 ok=True 114.8s
+medqa_test_text.jsonl medqa-93 ok=False 107.3s
+medqa_test_text.jsonl medqa-94 ok=False 29.0s
+medqa_test_text.jsonl medqa-95 ok=False 133.7s
+medqa_test_text.jsonl medqa-96 ok=False 136.8s
+medqa_test_text.jsonl medqa-97 ok=False 32.0s
+medqa_test_text.jsonl medqa-98 ok=False 35.7s
+medqa_test_text.jsonl medqa-99 ok=True 58.9s
+medqa_test_text.jsonl medqa-100 ok=False 105.3s
+medqa_test_text.jsonl medqa-101 ok=False 74.0s
+medqa_test_text.jsonl medqa-102 ok=False 86.5s
+medqa_test_text.jsonl medqa-103 ok=False 72.3s
+medqa_test_text.jsonl medqa-104 ok=False 118.3s
+medqa_test_text.jsonl medqa-105 ok=True 59.6s
+medqa_test_text.jsonl medqa-106 ok=False 73.1s
+medqa_test_text.jsonl medqa-107 ok=False 105.4s
+medqa_test_text.jsonl medqa-108 ok=False 137.1s
+medqa_test_text.jsonl medqa-109 ok=False 196.2s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+env={'torch': '2.11.0+cu128', 'transformers': '5.19.0', 'device': 'cuda', 'python': '3.13.15'} items=60
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:07<36:03,  7.46s/it]Loading weights:  88%|████████▊ | 256/291 [00:07<00:00, 47.27it/s]Loading weights: 100%|██████████| 291/291 [00:08<00:00, 35.98it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+medqa_test_single.jsonl medqa-50 ok=True 16.3s
+medqa_test_single.jsonl medqa-51 ok=True 0.5s
+medqa_test_single.jsonl medqa-52 ok=False 54.9s
+medqa_test_single.jsonl medqa-53 ok=False 13.8s
+medqa_test_single.jsonl medqa-54 ok=True 0.4s
+medqa_test_single.jsonl medqa-55 ok=True 0.4s
+medqa_test_single.jsonl medqa-56 ok=False 23.1s
+medqa_test_single.jsonl medqa-57 ok=True 0.4s
+medqa_test_single.jsonl medqa-58 ok=False 0.6s
+medqa_test_single.jsonl medqa-59 ok=False 10.0s
+medqa_test_single.jsonl medqa-60 ok=True 20.6s
+medqa_test_single.jsonl medqa-61 ok=False 15.8s
+medqa_test_single.jsonl medqa-62 ok=False 0.5s
+medqa_test_single.jsonl medqa-63 ok=True 0.5s
+medqa_test_single.jsonl medqa-64 ok=False 22.1s
+medqa_test_single.jsonl medqa-65 ok=False 19.0s
+medqa_test_single.jsonl medqa-66 ok=False 0.4s
+medqa_test_single.jsonl medqa-67 ok=False 34.0s
+medqa_test_single.jsonl medqa-68 ok=True 59.2s
+medqa_test_single.jsonl medqa-69 ok=False 0.5s
+medqa_test_single.jsonl medqa-70 ok=True 0.6s
+medqa_test_single.jsonl medqa-71 ok=False 18.8s
+medqa_test_single.jsonl medqa-72 ok=False 0.6s
+medqa_test_single.jsonl medqa-73 ok=False 0.4s
+medqa_test_single.jsonl medqa-74 ok=False 19.0s
+medqa_test_single.jsonl medqa-75 ok=False 15.3s
+medqa_test_single.jsonl medqa-76 ok=True 19.8s
+medqa_test_single.jsonl medqa-77 ok=False 35.9s
+medqa_test_single.jsonl medqa-78 ok=True 18.9s
+medqa_test_single.jsonl medqa-79 ok=False 12.2s
+medqa_test_single.jsonl medqa-80 ok=False 19.4s
+medqa_test_single.jsonl medqa-81 ok=False 12.4s
+medqa_test_single.jsonl medqa-82 ok=True 21.0s
+medqa_test_single.jsonl medqa-83 ok=True 12.5s
+medqa_test_single.jsonl medqa-84 ok=True 58.0s
+medqa_test_single.jsonl medqa-85 ok=False 0.5s
+medqa_test_single.jsonl medqa-86 ok=False 0.4s
+medqa_test_single.jsonl medqa-87 ok=False 62.6s
+medqa_test_single.jsonl medqa-88 ok=True 27.7s
+medqa_test_single.jsonl medqa-89 ok=False 31.3s
+medqa_test_single.jsonl medqa-90 ok=False 0.5s
+medqa_test_single.jsonl medqa-91 ok=True 23.0s
+medqa_test_single.jsonl medqa-92 ok=False 0.4s
+medqa_test_single.jsonl medqa-93 ok=False 9.5s
+medqa_test_single.jsonl medqa-94 ok=False 25.3s
+medqa_test_single.jsonl medqa-95 ok=False 0.5s
+medqa_test_single.jsonl medqa-96 ok=False 59.6s
+medqa_test_single.jsonl medqa-97 ok=True 0.4s
+medqa_test_single.jsonl medqa-98 ok=False 10.5s
+medqa_test_single.jsonl medqa-99 ok=True 38.6s
+medqa_test_single.jsonl medqa-100 ok=False 43.7s
+medqa_test_single.jsonl medqa-101 ok=False 0.4s
+medqa_test_single.jsonl medqa-102 ok=False 10.0s
+medqa_test_single.jsonl medqa-103 ok=False 0.5s
+medqa_test_single.jsonl medqa-104 ok=False 23.7s
+medqa_test_single.jsonl medqa-105 ok=True 17.2s
+medqa_test_single.jsonl medqa-106 ok=True 0.5s
+medqa_test_single.jsonl medqa-107 ok=False 43.1s
+medqa_test_single.jsonl medqa-108 ok=False 22.5s
+medqa_test_single.jsonl medqa-109 ok=False 26.0s
+medqa_test_latent_s10.jsonl medqa-50 ok=True 16.2s
+medqa_test_latent_s10.jsonl medqa-51 ok=False 30.2s
+medqa_test_latent_s10.jsonl medqa-52 ok=False 59.6s
+medqa_test_latent_s10.jsonl medqa-53 ok=False 29.8s
+medqa_test_latent_s10.jsonl medqa-54 ok=True 27.2s
+medqa_test_latent_s10.jsonl medqa-55 ok=False 2.8s
+medqa_test_latent_s10.jsonl medqa-56 ok=True 66.8s
+medqa_test_latent_s10.jsonl medqa-57 ok=True 73.3s
+medqa_test_latent_s10.jsonl medqa-58 ok=True 40.4s
+medqa_test_latent_s10.jsonl medqa-59 ok=False 11.3s
+medqa_test_latent_s10.jsonl medqa-60 ok=False 33.2s
+medqa_test_latent_s10.jsonl medqa-61 ok=True 13.2s
+medqa_test_latent_s10.jsonl medqa-62 ok=False 77.2s
+medqa_test_latent_s10.jsonl medqa-63 ok=True 3.1s
+medqa_test_latent_s10.jsonl medqa-64 ok=True 36.3s
+medqa_test_latent_s10.jsonl medqa-65 ok=False 2.7s
+medqa_test_latent_s10.jsonl medqa-66 ok=False 2.7s
+medqa_test_latent_s10.jsonl medqa-67 ok=True 53.1s
+medqa_test_latent_s10.jsonl medqa-68 ok=False 77.5s
+medqa_test_latent_s10.jsonl medqa-69 ok=True 3.0s
+medqa_test_latent_s10.jsonl medqa-70 ok=True 3.5s
+medqa_test_latent_s10.jsonl medqa-71 ok=True 2.9s
+medqa_test_latent_s10.jsonl medqa-72 ok=True 3.6s
+medqa_test_latent_s10.jsonl medqa-73 ok=False 26.8s
+medqa_test_latent_s10.jsonl medqa-74 ok=False 3.1s
+medqa_test_latent_s10.jsonl medqa-75 ok=False 70.5s
+medqa_test_latent_s10.jsonl medqa-76 ok=True 3.0s
+medqa_test_latent_s10.jsonl medqa-77 ok=False 42.8s
+medqa_test_latent_s10.jsonl medqa-78 ok=False 31.3s
+medqa_test_latent_s10.jsonl medqa-79 ok=False 3.1s
+medqa_test_latent_s10.jsonl medqa-80 ok=False 24.9s
+medqa_test_latent_s10.jsonl medqa-81 ok=False 68.6s
+medqa_test_latent_s10.jsonl medqa-82 ok=False 35.8s
+medqa_test_latent_s10.jsonl medqa-83 ok=True 82.1s
+medqa_test_latent_s10.jsonl medqa-84 ok=False 49.4s
+medqa_test_latent_s10.jsonl medqa-85 ok=False 33.4s
+medqa_test_latent_s10.jsonl medqa-86 ok=True 18.9s
+medqa_test_latent_s10.jsonl medqa-87 ok=False 3.5s
+medqa_test_latent_s10.jsonl medqa-88 ok=False 43.3s
+medqa_test_latent_s10.jsonl medqa-89 ok=True 3.1s
+medqa_test_latent_s10.jsonl medqa-90 ok=False 23.0s
+medqa_test_latent_s10.jsonl medqa-91 ok=True 22.4s
+medqa_test_latent_s10.jsonl medqa-92 ok=True 20.8s
+medqa_test_latent_s10.jsonl medqa-93 ok=False 41.7s
+medqa_test_latent_s10.jsonl medqa-94 ok=False 3.2s
+medqa_test_latent_s10.jsonl medqa-95 ok=True 2.9s
+medqa_test_latent_s10.jsonl medqa-96 ok=False 20.1s
+medqa_test_latent_s10.jsonl medqa-97 ok=True 2.6s
+medqa_test_latent_s10.jsonl medqa-98 ok=True 9.0s
+medqa_test_latent_s10.jsonl medqa-99 ok=False 20.9s
+medqa_test_latent_s10.jsonl medqa-100 ok=True 80.6s
+medqa_test_latent_s10.jsonl medqa-101 ok=False 16.8s
+medqa_test_latent_s10.jsonl medqa-102 ok=False 13.1s
+medqa_test_latent_s10.jsonl medqa-103 ok=True 3.1s
+medqa_test_latent_s10.jsonl medqa-104 ok=False 3.0s
+medqa_test_latent_s10.jsonl medqa-105 ok=True 35.4s
+medqa_test_latent_s10.jsonl medqa-106 ok=False 3.0s
+medqa_test_latent_s10.jsonl medqa-107 ok=False 72.5s
+medqa_test_latent_s10.jsonl medqa-108 ok=False 11.8s
+medqa_test_latent_s10.jsonl medqa-109 ok=False 68.5s
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+env={'torch': '2.11.0+cu128', 'transformers': '5.19.0', 'device': 'cuda', 'python': '3.13.15'} items=60
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:01<08:34,  1.77s/it]Loading weights:  20%|█▉        | 58/291 [00:01<00:05, 41.73it/s]Loading weights:  28%|██▊       | 82/291 [00:02<00:04, 49.64it/s]Loading weights:  34%|███▍      | 99/291 [00:02<00:03, 53.42it/s]Loading weights:  38%|███▊      | 112/291 [00:02<00:03, 53.31it/s]Loading weights:  42%|████▏     | 122/291 [00:02<00:03, 54.10it/s]Loading weights:  45%|████▌     | 131/291 [00:03<00:02, 55.61it/s]Loading weights:  48%|████▊     | 139/291 [00:03<00:02, 56.69it/s]Loading weights:  51%|█████     | 149/291 [00:03<00:02, 61.85it/s]Loading weights:  54%|█████▍    | 157/291 [00:03<00:02, 60.17it/s]Loading weights:  57%|█████▋    | 166/291 [00:03<00:02, 60.97it/s]Loading weights:  60%|██████    | 175/291 [00:03<00:01, 65.42it/s]Loading weights:  63%|██████▎   | 184/291 [00:03<00:01, 57.25it/s]Loading weights:  67%|██████▋   | 194/291 [00:04<00:01, 64.76it/s]Loading weights:  69%|██████▉   | 202/291 [00:04<00:01, 61.16it/s]Loading weights:  73%|███████▎  | 211/291 [00:04<00:01, 60.99it/s]Loading weights:  76%|███████▌  | 220/291 [00:04<00:01, 63.70it/s]Loading weights:  79%|███████▊  | 229/291 [00:04<00:00, 63.22it/s]Loading weights:  82%|████████▏ | 238/291 [00:04<00:00, 65.08it/s]Loading weights:  85%|████████▍ | 247/291 [00:04<00:00, 63.89it/s]Loading weights:  88%|████████▊ | 256/291 [00:05<00:00, 66.13it/s]Loading weights:  91%|█████████ | 265/291 [00:05<00:00, 60.38it/s]Loading weights:  94%|█████████▍| 274/291 [00:05<00:00, 63.36it/s]Loading weights:  97%|█████████▋| 283/291 [00:05<00:00, 59.16it/s]Loading weights: 100%|██████████| 291/291 [00:05<00:00, 53.01it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+mbppplus_test_single.jsonl mbpp-97 ok=True 3.1s
+mbppplus_test_single.jsonl mbpp-98 ok=True 1.7s
+mbppplus_test_single.jsonl mbpp-99 ok=False 2.4s
+mbppplus_test_single.jsonl mbpp-100 ok=True 2.5s
+mbppplus_test_single.jsonl mbpp-101 ok=False 1.1s
+mbppplus_test_single.jsonl mbpp-102 ok=False 6.0s
+mbppplus_test_single.jsonl mbpp-103 ok=False 4.2s
+mbppplus_test_single.jsonl mbpp-104 ok=True 1.1s
+mbppplus_test_single.jsonl mbpp-105 ok=False 1.4s
+mbppplus_test_single.jsonl mbpp-106 ok=False 1.0s
+mbppplus_test_single.jsonl mbpp-108 ok=True 1.2s
+mbppplus_test_single.jsonl mbpp-109 ok=False 53.9s
+mbppplus_test_single.jsonl mbpp-111 ok=False 4.8s
+mbppplus_test_single.jsonl mbpp-113 ok=False 1.5s
+mbppplus_test_single.jsonl mbpp-116 ok=True 1.1s
+mbppplus_test_single.jsonl mbpp-118 ok=True 0.9s
+mbppplus_test_single.jsonl mbpp-119 ok=False 2.9s
+mbppplus_test_single.jsonl mbpp-120 ok=True 2.7s
+mbppplus_test_single.jsonl mbpp-123 ok=False 8.4s
+mbppplus_test_single.jsonl mbpp-124 ok=False 1.2s
+mbppplus_test_single.jsonl mbpp-125 ok=False 4.0s
+mbppplus_test_single.jsonl mbpp-126 ok=False 7.1s
+mbppplus_test_single.jsonl mbpp-127 ok=True 0.8s
+mbppplus_test_single.jsonl mbpp-128 ok=False 1.3s
+mbppplus_test_single.jsonl mbpp-129 ok=False 26.8s
+mbppplus_test_single.jsonl mbpp-130 ok=False 1.6s
+mbppplus_test_single.jsonl mbpp-131 ok=False 6.4s
+mbppplus_test_single.jsonl mbpp-132 ok=False 1.0s
+mbppplus_test_single.jsonl mbpp-133 ok=True 1.3s
+mbppplus_test_single.jsonl mbpp-135 ok=False 1.4s
+mbppplus_test_single.jsonl mbpp-137 ok=False 2.8s
+mbppplus_test_single.jsonl mbpp-138 ok=False 1.6s
+mbppplus_test_single.jsonl mbpp-139 ok=True 1.2s
+mbppplus_test_single.jsonl mbpp-140 ok=False 1.2s
+mbppplus_test_single.jsonl mbpp-141 ok=False 4.0s
+mbppplus_test_single.jsonl mbpp-142 ok=True 2.8s
+mbppplus_test_single.jsonl mbpp-145 ok=False 5.3s
+mbppplus_test_single.jsonl mbpp-160 ok=False 7.2s
+mbppplus_test_single.jsonl mbpp-161 ok=False 1.3s
+mbppplus_test_single.jsonl mbpp-162 ok=False 2.5s
+mbppplus_test_single.jsonl mbpp-165 ok=False 2.2s
+mbppplus_test_single.jsonl mbpp-166 ok=True 3.0s
+mbppplus_test_single.jsonl mbpp-167 ok=False 5.3s
+mbppplus_test_single.jsonl mbpp-168 ok=True 0.8s
+mbppplus_test_single.jsonl mbpp-170 ok=True 1.1s
+mbppplus_test_single.jsonl mbpp-171 ok=True 1.0s
+mbppplus_test_single.jsonl mbpp-172 ok=True 0.9s
+mbppplus_test_single.jsonl mbpp-222 ok=True 1.3s
+mbppplus_test_single.jsonl mbpp-223 ok=False 5.1s
+mbppplus_test_single.jsonl mbpp-224 ok=True 1.8s
+mbppplus_test_single.jsonl mbpp-226 ok=True 1.6s
+mbppplus_test_single.jsonl mbpp-227 ok=True 1.1s
+mbppplus_test_single.jsonl mbpp-230 ok=True 0.9s
+mbppplus_test_single.jsonl mbpp-232 ok=True 1.1s
+mbppplus_test_single.jsonl mbpp-233 ok=True 1.5s
+mbppplus_test_single.jsonl mbpp-234 ok=True 0.9s
+mbppplus_test_single.jsonl mbpp-235 ok=False 2.1s
+mbppplus_test_single.jsonl mbpp-237 ok=False 1.3s
+mbppplus_test_single.jsonl mbpp-238 ok=True 3.0s
+mbppplus_test_single.jsonl mbpp-239 ok=False 6.6s
+mbppplus_test_latent_s10.jsonl mbpp-97 ok=True 3.7s
+mbppplus_test_latent_s10.jsonl mbpp-98 ok=True 19.8s
+mbppplus_test_latent_s10.jsonl mbpp-99 ok=False 2.6s
+mbppplus_test_latent_s10.jsonl mbpp-100 ok=True 4.4s
+mbppplus_test_latent_s10.jsonl mbpp-101 ok=False 2.8s
+mbppplus_test_latent_s10.jsonl mbpp-102 ok=False 3.5s
+mbppplus_test_latent_s10.jsonl mbpp-103 ok=False 6.7s
+mbppplus_test_latent_s10.jsonl mbpp-104 ok=True 3.2s
+mbppplus_test_latent_s10.jsonl mbpp-105 ok=False 3.0s
+mbppplus_test_latent_s10.jsonl mbpp-106 ok=False 2.7s
+mbppplus_test_latent_s10.jsonl mbpp-108 ok=True 3.7s
+mbppplus_test_latent_s10.jsonl mbpp-109 ok=False 7.8s
+mbppplus_test_latent_s10.jsonl mbpp-111 ok=True 4.2s
+mbppplus_test_latent_s10.jsonl mbpp-113 ok=False 3.0s
+mbppplus_test_latent_s10.jsonl mbpp-116 ok=True 2.9s
+mbppplus_test_latent_s10.jsonl mbpp-118 ok=True 2.6s
+mbppplus_test_latent_s10.jsonl mbpp-119 ok=False 6.6s
+mbppplus_test_latent_s10.jsonl mbpp-120 ok=True 5.0s
+mbppplus_test_latent_s10.jsonl mbpp-123 ok=False 11.4s
+mbppplus_test_latent_s10.jsonl mbpp-124 ok=False 3.3s
+mbppplus_test_latent_s10.jsonl mbpp-125 ok=False 7.0s
+mbppplus_test_latent_s10.jsonl mbpp-126 ok=False 10.0s
+mbppplus_test_latent_s10.jsonl mbpp-127 ok=True 3.0s
+mbppplus_test_latent_s10.jsonl mbpp-128 ok=False 3.2s
+mbppplus_test_latent_s10.jsonl mbpp-129 ok=False 10.5s
+mbppplus_test_latent_s10.jsonl mbpp-130 ok=True 3.5s
+mbppplus_test_latent_s10.jsonl mbpp-131 ok=True 7.9s
+mbppplus_test_latent_s10.jsonl mbpp-132 ok=True 2.7s
+mbppplus_test_latent_s10.jsonl mbpp-133 ok=True 3.3s
+mbppplus_test_latent_s10.jsonl mbpp-135 ok=False 3.4s
+mbppplus_test_latent_s10.jsonl mbpp-137 ok=False 5.6s
+mbppplus_test_latent_s10.jsonl mbpp-138 ok=False 3.4s
+mbppplus_test_latent_s10.jsonl mbpp-139 ok=True 3.1s
+mbppplus_test_latent_s10.jsonl mbpp-140 ok=True 4.1s
+mbppplus_test_latent_s10.jsonl mbpp-141 ok=False 6.4s
+mbppplus_test_latent_s10.jsonl mbpp-142 ok=True 5.7s
+mbppplus_test_latent_s10.jsonl mbpp-145 ok=True 2.9s
+mbppplus_test_latent_s10.jsonl mbpp-160 ok=False 9.9s
+mbppplus_test_latent_s10.jsonl mbpp-161 ok=True 3.6s
+mbppplus_test_latent_s10.jsonl mbpp-162 ok=False 4.6s
+mbppplus_test_latent_s10.jsonl mbpp-165 ok=False 4.3s
+mbppplus_test_latent_s10.jsonl mbpp-166 ok=True 5.1s
+mbppplus_test_latent_s10.jsonl mbpp-167 ok=False 4.6s
+mbppplus_test_latent_s10.jsonl mbpp-168 ok=True 2.6s
+mbppplus_test_latent_s10.jsonl mbpp-170 ok=True 3.3s
+mbppplus_test_latent_s10.jsonl mbpp-171 ok=True 2.8s
+mbppplus_test_latent_s10.jsonl mbpp-172 ok=True 2.7s
+mbppplus_test_latent_s10.jsonl mbpp-222 ok=True 3.8s
+mbppplus_test_latent_s10.jsonl mbpp-223 ok=False 7.5s
+mbppplus_test_latent_s10.jsonl mbpp-224 ok=True 3.8s
+mbppplus_test_latent_s10.jsonl mbpp-226 ok=True 3.5s
+mbppplus_test_latent_s10.jsonl mbpp-227 ok=True 2.9s
+mbppplus_test_latent_s10.jsonl mbpp-230 ok=True 2.7s
+mbppplus_test_latent_s10.jsonl mbpp-232 ok=True 3.1s
+mbppplus_test_latent_s10.jsonl mbpp-233 ok=True 3.3s
+mbppplus_test_latent_s10.jsonl mbpp-234 ok=True 2.6s
+mbppplus_test_latent_s10.jsonl mbpp-235 ok=False 2.8s
+mbppplus_test_latent_s10.jsonl mbpp-237 ok=False 4.5s
+mbppplus_test_latent_s10.jsonl mbpp-238 ok=True 3.6s
+mbppplus_test_latent_s10.jsonl mbpp-239 ok=False 8.1s

@@ -1,0 +1,17 @@
+# Telepathy policy. Read at start-up. It is NOT changed at runtime and NEVER by model output.
+# Extra trusted sources can only be added here, by a developer, never by a prompt or a tool result.
+trusted_sources: [user_input, developer_prompts]
+
+# Safety (Section 8a). The first two are mandatory: other values are rejected at load time.
+tainted_handoff: text          # an agent that read outside content must hand off in readable text
+agent_tools: none              # agents only produce text; our code calls the read-only tools
+share_default: thoughts_only   # full | thoughts_only, for handoffs that cross roles with different context
+untrusted_scan: demo_only      # off | demo_only | always : instruction scan of tainted text handoffs
+scan_action: warn              # warn | block (a scan can add a warning or block, never clear)
+
+# Auto mode (Section 8)
+honesty_check: sample          # off | sample | always
+sample_rate: 0.3
+on_unfaithful: switch_to_text  # switch_to_text | flag_only
+high_stakes_roles: []
+max_text_fallbacks: 2

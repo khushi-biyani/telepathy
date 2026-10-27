@@ -1,0 +1,535 @@
+[
+  {
+    "id": "bakery",
+    "title": "Bakery profit",
+    "kind": "math",
+    "blurb": "A multi-step money problem.",
+    "question": "A bakery sells muffins for 35 rupees and cookies for 18 rupees. On Monday it sold 24 muffins and 40 cookies. On Tuesday it sold a quarter more muffins than on Monday, but 10 fewer cookies. It spends 40% of its two-day sales on ingredients. How much profit does it make over the two days?",
+    "answer": "1890",
+    "featured": false
+  },
+  {
+    "id": "gsm8k-76",
+    "title": "Puppy food",
+    "kind": "math",
+    "blurb": "A school-level maths word problem, drawn at random from our test set.",
+    "source": "gsm8k-76",
+    "featured": false
+  },
+  {
+    "id": "gsm8k-80",
+    "title": "Water left over",
+    "kind": "math",
+    "blurb": "A school-level maths word problem, drawn at random from our test set.",
+    "source": "gsm8k-80",
+    "featured": false
+  },
+  {
+    "id": "gsm8k-131",
+    "title": "Two months of spending",
+    "kind": "math",
+    "blurb": "A school-level maths word problem, drawn at random from our test set.",
+    "source": "gsm8k-131",
+    "featured": false
+  },
+  {
+    "id": "gsm8k-178",
+    "title": "Counting crabs",
+    "kind": "math",
+    "blurb": "A school-level maths word problem, drawn at random from our test set.",
+    "source": "gsm8k-178",
+    "featured": true
+  },
+  {
+    "id": "gsm8k-181",
+    "title": "The florist's order",
+    "kind": "math",
+    "blurb": "A school-level maths word problem, drawn at random from our test set.",
+    "source": "gsm8k-181",
+    "featured": true
+  },
+  {
+    "id": "pets",
+    "title": "Who owns the fish?",
+    "kind": "logic",
+    "blurb": "A five-house logic puzzle with exactly one solution (checked by computer).",
+    "question": "Five people (Asha, Bilal, Chen, Dev and Esha) live in five houses in a row, numbered 1 to 5 from left to right. Each owns a different pet: a cat, a dog, a fish, a bird or a rabbit. Clues: 1) Chen lives in house 1. 2) Dev lives in the house immediately to the right of Esha. 3) The bird owner lives in house 5. 4) Bilal owns the dog. 5) Asha lives next to the cat owner. 6) Esha does not own the fish. 7) The rabbit owner lives immediately to the left of the dog owner. 8) Chen does not own the cat. Who owns the fish?",
+    "answer": "Asha",
+    "featured": false
+  },
+  {
+    "id": "race",
+    "title": "Who finished third?",
+    "kind": "logic",
+    "blurb": "A race-order puzzle with exactly one solution (checked by computer).",
+    "question": "Five runners (Ana, Bo, Cy, Di and Ed) finish a race with no ties. Clues: 1) Ana finished before Bo. 2) Cy finished immediately after Di. 3) Ed did not finish first or last. 4) Bo finished after Cy. 5) Ana finished before Di. 6) Ed finished before Cy. Who finished third?",
+    "answer": "Di",
+    "featured": false
+  },
+  {
+    "id": "cake",
+    "title": "Who took the cake?",
+    "kind": "logic",
+    "blurb": "A who-is-telling-the-truth puzzle with exactly one solution (checked by computer).",
+    "question": "One of four people took the cake: Mia, Noah, Omar or Pia. Exactly one of the four statements below is true, and the other three are false. Mia says: \"Noah took it.\" Noah says: \"Omar took it.\" Omar says: \"Noah is lying.\" Pia says: \"I did not take it.\" Who took the cake?",
+    "answer": "Pia",
+    "featured": false
+  },
+  {
+    "id": "merge",
+    "title": "Merge time slots",
+    "kind": "code",
+    "blurb": "Write a small Python function. We run it against test cases to see if it works.",
+    "question": "Write a Python function merge_slots(slots) that takes a list of [start, end] pairs (whole numbers, start <= end, in any order) and returns a list of merged pairs sorted by start. Slots that overlap or touch (for example [1, 3] and [3, 5]) must be merged into one. Example: merge_slots([[1, 3], [2, 6], [8, 10], [9, 12]]) returns [[1, 6], [8, 12]]. An empty list returns an empty list.",
+    "tests": [
+      {
+        "args": [
+          [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              9,
+              12
+            ]
+          ]
+        ],
+        "expect": [
+          [
+            1,
+            6
+          ],
+          [
+            8,
+            12
+          ]
+        ]
+      },
+      {
+        "args": [
+          []
+        ],
+        "expect": []
+      },
+      {
+        "args": [
+          [
+            [
+              5,
+              7
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              3,
+              5
+            ]
+          ]
+        ],
+        "expect": [
+          [
+            1,
+            7
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              10
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        ],
+        "expect": [
+          [
+            1,
+            10
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              4,
+              4
+            ]
+          ]
+        ],
+        "expect": [
+          [
+            4,
+            4
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              5
+            ]
+          ]
+        ],
+        "expect": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            5
+          ]
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              6,
+              8
+            ],
+            [
+              1,
+              9
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              4,
+              7
+            ]
+          ]
+        ],
+        "expect": [
+          [
+            1,
+            9
+          ]
+        ]
+      }
+    ],
+    "func": "merge_slots",
+    "featured": true
+  },
+  {
+    "id": "brackets",
+    "title": "Balanced brackets",
+    "kind": "code",
+    "blurb": "Write a small Python function. We run it against test cases to see if it works.",
+    "question": "Write a Python function is_balanced(text) that returns True if every bracket in the text is closed in the right order, and False otherwise. The brackets are (), [] and {}. All other characters are ignored. Example: is_balanced('{[()]}') returns True and is_balanced('(]') returns False. An empty string returns True.",
+    "func": "is_balanced",
+    "tests": [
+      {
+        "args": [
+          "{[()]}"
+        ],
+        "expect": true
+      },
+      {
+        "args": [
+          "(]"
+        ],
+        "expect": false
+      },
+      {
+        "args": [
+          ""
+        ],
+        "expect": true
+      },
+      {
+        "args": [
+          "(("
+        ],
+        "expect": false
+      },
+      {
+        "args": [
+          "a(b)c"
+        ],
+        "expect": true
+      },
+      {
+        "args": [
+          "([)]"
+        ],
+        "expect": false
+      },
+      {
+        "args": [
+          "}{"
+        ],
+        "expect": false
+      },
+      {
+        "args": [
+          "{[}"
+        ],
+        "expect": false
+      },
+      {
+        "args": [
+          "x"
+        ],
+        "expect": true
+      }
+    ],
+    "featured": false
+  },
+  {
+    "id": "roman",
+    "title": "Roman numerals",
+    "kind": "code",
+    "blurb": "Write a small Python function. We run it against test cases to see if it works.",
+    "question": "Write a Python function roman_to_int(text) that converts a Roman numeral (capital letters I, V, X, L, C, D, M) to a whole number. A smaller symbol placed before a larger one is subtracted, for example IV is 4 and IX is 9. Example: roman_to_int('MCMXCIV') returns 1994.",
+    "func": "roman_to_int",
+    "tests": [
+      {
+        "args": [
+          "MCMXCIV"
+        ],
+        "expect": 1994
+      },
+      {
+        "args": [
+          "III"
+        ],
+        "expect": 3
+      },
+      {
+        "args": [
+          "IV"
+        ],
+        "expect": 4
+      },
+      {
+        "args": [
+          "IX"
+        ],
+        "expect": 9
+      },
+      {
+        "args": [
+          "LVIII"
+        ],
+        "expect": 58
+      },
+      {
+        "args": [
+          "XL"
+        ],
+        "expect": 40
+      },
+      {
+        "args": [
+          "CD"
+        ],
+        "expect": 400
+      },
+      {
+        "args": [
+          "MMXXVI"
+        ],
+        "expect": 2026
+      },
+      {
+        "args": [
+          "I"
+        ],
+        "expect": 1
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "flatten",
+    "title": "Flatten a nested list",
+    "kind": "code",
+    "blurb": "Write a small Python function. We run it against test cases to see if it works.",
+    "question": "Write a Python function flatten(items) that takes a list which may contain other lists nested to any depth, and returns one flat list with the same values in the same order. Example: flatten([1, [2, [3, 4]], 5]) returns [1, 2, 3, 4, 5]. An empty list returns an empty list.",
+    "func": "flatten",
+    "tests": [
+      {
+        "args": [
+          [
+            1,
+            [
+              2,
+              [
+                3,
+                4
+              ]
+            ],
+            5
+          ]
+        ],
+        "expect": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      {
+        "args": [
+          []
+        ],
+        "expect": []
+      },
+      {
+        "args": [
+          [
+            [
+              []
+            ]
+          ]
+        ],
+        "expect": []
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            3
+          ]
+        ],
+        "expect": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              [
+                1
+              ]
+            ],
+            [
+              2
+            ],
+            3
+          ]
+        ],
+        "expect": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              [
+                2
+              ]
+            ],
+            [
+              [
+                3
+              ]
+            ],
+            [
+              [
+                [
+                  4
+                ]
+              ]
+            ]
+          ]
+        ],
+        "expect": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "eiffel_burj",
+    "title": "Eiffel Tower to Burj Khalifa",
+    "kind": "research",
+    "task": "research_cot",
+    "blurb": "The Reader searched the web (real Tavily results, saved when we recorded), read the pages, and the team combined two facts to answer.",
+    "question": "How many years passed between the opening of the Eiffel Tower and the opening of the Burj Khalifa?",
+    "fixture": "server/fixtures/real_eiffel_burj.json",
+    "answer": "121",
+    "featured": true
+  },
+  {
+    "id": "burj_shanghai",
+    "title": "Burj Khalifa vs Shanghai Tower",
+    "kind": "research",
+    "task": "research_cot",
+    "blurb": "The Reader searched the web (real Tavily results, saved when we recorded), read the pages, and the team combined two facts to answer.",
+    "question": "How many metres taller is the Burj Khalifa than the Shanghai Tower?",
+    "fixture": "server/fixtures/real_burj_shanghai.json",
+    "answer": "196",
+    "featured": true
+  },
+  {
+    "id": "moon_curiosity",
+    "title": "Moon landing to Curiosity on Mars",
+    "kind": "research",
+    "task": "research_cot",
+    "blurb": "The Reader searched the web (real Tavily results, saved when we recorded), read the pages, and the team combined two facts to answer.",
+    "question": "How many years after the first Moon landing did the Curiosity rover land on Mars?",
+    "fixture": "server/fixtures/real_moon_curiosity.json",
+    "answer": "43",
+    "featured": false
+  },
+  {
+    "id": "arc-30",
+    "title": "Fossils in rock layers",
+    "kind": "science",
+    "blurb": "A science multiple-choice question, drawn at random from the ARC test set.",
+    "source": "arc-30",
+    "featured": true
+  },
+  {
+    "id": "arc-81",
+    "title": "Light in the deep sea",
+    "kind": "science",
+    "blurb": "A science multiple-choice question, drawn at random from the ARC test set.",
+    "source": "arc-81",
+    "featured": false
+  }
+]

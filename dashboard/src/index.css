@@ -1,0 +1,132 @@
+@import "tailwindcss";
+
+/* Dark only, in the style of the Agent Trap site: near-black, hairline borders, indigo accent, Inter.
+   Chart pair: indigo (Telepathy) and amber (written notes), both well above 3:1 on the panel colour. */
+:root {
+  color-scheme: dark;
+  --ink-bar: #08090a;
+  --plane: #0b0c0e;
+  --surface: #0f1013;
+  --well: #15161a;
+  --ink: #f2f3f5;
+  --ink2: #b6bac2;
+  --muted: #8a8f98;
+  --grid: #1c1d21;
+  --axis: #2b2d33;
+  --hair: #1c1d21;
+  --hair-strong: #2b2d33;
+  --s-telepathy: #7c7cff;
+  --tel-soft: rgba(124, 124, 255, 0.14);
+  --tel-ink: #a5a5ff;
+  --s-english: #f5a524;
+  --eng-soft: rgba(245, 165, 36, 0.12);
+  --eng-ink: #f5b94d;
+  --ok: #30a46c;
+  --ok-soft: rgba(48, 164, 108, 0.14);
+  --ok-ink: #55c98c;
+  --good: #55c98c;
+  --crit: #ff7a7f;
+  --warn: #f5b94d;
+  --on-mark: #08090a;      /* text drawn on top of a bright chart colour */
+  --glow: rgba(124, 124, 255, 0.35);
+}
+@theme inline {
+  --color-plane: var(--plane);
+  --color-surface: var(--surface);
+  --color-well: var(--well);
+  --color-ink: var(--ink);
+  --color-ink2: var(--ink2);
+  --color-muted: var(--muted);
+  --color-grid: var(--grid);
+  --color-hair: var(--hair);
+  --color-telepathy: var(--s-telepathy);
+  --color-english: var(--s-english);
+  --color-tel-soft: var(--tel-soft);
+  --color-tel-ink: var(--tel-ink);
+  --color-eng-soft: var(--eng-soft);
+  --color-eng-ink: var(--eng-ink);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-ok-ink: var(--ok-ink);
+  --color-good: var(--good);
+  --color-crit: var(--crit);
+  --color-warn: var(--warn);
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--plane);
+  color: var(--ink);
+  font: 15px/1.6 "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+section[id] { scroll-margin-top: 84px; }
+:focus-visible { outline: 2px solid var(--s-telepathy); outline-offset: 2px; border-radius: 6px; }
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .chev { transform: rotate(90deg); }
+
+/* the small uppercase label above each section title */
+.label { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+/* the hero band: near-black with a faint light at the top, like Agent Trap */
+.hero-band {
+  background: var(--ink-bar);
+  background-image: radial-gradient(70% 380px at 50% -120px, rgba(255, 255, 255, 0.07), transparent 70%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #f7f8f8;
+}
+/* a "window" that holds the live picture, with a soft glow underneath */
+.win {
+  border-radius: 16px;
+  background: #0c0d10;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 80px -30px var(--glow), 0 0 0 1px rgba(0, 0, 0, 0.4), 0 24px 48px -24px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+.win-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.07); background: rgba(255, 255, 255, 0.02); }
+.win-bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.14); }
+.win-bar span { margin-left: 8px; font: 12px ui-monospace, "SF Mono", Menlo, monospace; color: #8a8f98; }
+
+.btn-primary { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: #f7f8f8; color: #08090a; border: 0; padding: 0 22px; min-height: 40px; font: inherit; font-size: 14px; font-weight: 500; cursor: pointer; transition: transform 0.15s ease, background 0.15s ease; }
+.btn-primary:hover:not(:disabled) { background: #fff; transform: translateY(-1px); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-ghost { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: transparent; color: #c9ccd2; border: 1px solid rgba(255, 255, 255, 0.14); padding: 0 20px; min-height: 40px; font: inherit; font-size: 14px; font-weight: 450; cursor: pointer; transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease; }
+.btn-ghost:hover { border-color: rgba(255, 255, 255, 0.32); color: #fff; transform: translateY(-1px); }
+
+/* the Play button: bright, glowing, in the colour of the current mode; it pulses gently until pressed */
+.btn-play {
+  position: relative; display: inline-flex; align-items: center; gap: 10px; border: 0; cursor: pointer;
+  border-radius: 999px; padding: 0 24px 0 18px; min-height: 46px; font: inherit; font-size: 14px; font-weight: 550; letter-spacing: -0.005em;
+  color: #08090a; background: var(--play, #7c7cff);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25) inset, 0 10px 30px -8px color-mix(in srgb, var(--play, #7c7cff) 75%, transparent);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.btn-play:hover:not(:disabled) { transform: translateY(-1px) scale(1.03); filter: brightness(1.08);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35) inset, 0 14px 38px -8px color-mix(in srgb, var(--play, #7c7cff) 90%, transparent); }
+.btn-play:disabled { cursor: default; filter: saturate(0.7) brightness(0.9); }
+.btn-play .ico { display: inline-flex; width: 26px; height: 26px; align-items: center; justify-content: center; border-radius: 50%; background: rgba(8, 9, 10, 0.16); }
+.btn-play.idle::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; animation: ring 2.2s ease-out infinite; }
+@keyframes ring { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--play, #7c7cff) 55%, transparent); } 100% { box-shadow: 0 0 0 16px transparent; } }
+
+@keyframes halo { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.6; } }
+.halo { animation: halo 1.2s ease-in-out infinite; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.fade { animation: fadein 0.5s ease-out both; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise 0.4s ease-out both; }
+/* hand-off demo */
+@keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.pop { animation: pop 0.55s cubic-bezier(.2,.9,.3,1.2) both; transform-box: fill-box; transform-origin: center; }
+@keyframes shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+.shimmer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; border-radius: inherit; }
+.shimmer::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, var(--glow, #7c7cff) 18%, transparent) 50%, transparent 70%); animation: shimmer 1.1s ease-out 1 both; }
+@keyframes tipin { from { opacity: 0; transform: translate(-50%, 6px) scale(.98); } to { opacity: 1; transform: translate(-50%, 0) scale(1); } }
+.tip { animation: tipin .16s ease-out both; transition: left .18s ease, bottom .18s ease; }
+@keyframes stamp { 0% { opacity: 0; transform: scale(.7); } 60% { opacity: 1; transform: scale(1.08); } 100% { transform: scale(1); } }
+.stamp { animation: stamp .45s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .halo, .rise, .btn-play.idle::after, .fade, .pop, .shimmer::after, .tip, .stamp { animation: none; } html { scroll-behavior: auto; } }

@@ -1,0 +1,426 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:45<00:45, 45.16s/it]Fetching 2 files: 100%|██████████| 2/2 [00:45<00:00, 22.58s/it]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:02<13:01,  2.70s/it]Loading weights:   1%|          | 2/291 [00:02<05:43,  1.19s/it]Loading weights:  23%|██▎       | 68/291 [00:02<00:05, 43.19it/s]Loading weights:  31%|███       | 90/291 [00:03<00:04, 46.41it/s]Loading weights:  36%|███▋      | 106/291 [00:03<00:04, 40.93it/s]Loading weights:  40%|████      | 117/291 [00:04<00:04, 42.30it/s]Loading weights:  43%|████▎     | 126/291 [00:04<00:03, 42.61it/s]Loading weights:  46%|████▌     | 134/291 [00:04<00:03, 44.76it/s]Loading weights:  48%|████▊     | 141/291 [00:04<00:03, 40.59it/s]Loading weights:  51%|█████     | 148/291 [00:04<00:03, 39.05it/s]Loading weights:  54%|█████▍    | 157/291 [00:05<00:03, 37.91it/s]Loading weights:  56%|█████▌    | 162/291 [00:05<00:03, 33.84it/s]Loading weights:  57%|█████▋    | 166/291 [00:06<00:09, 13.53it/s]Loading weights:  58%|█████▊    | 169/291 [00:06<00:08, 14.42it/s]Loading weights:  59%|█████▉    | 172/291 [00:06<00:08, 14.24it/s]Loading weights:  60%|██████    | 175/291 [00:07<00:11,  9.70it/s]Loading weights:  62%|██████▏   | 181/291 [00:07<00:09, 12.16it/s]Loading weights:  63%|██████▎   | 184/291 [00:08<00:12,  8.87it/s]Loading weights:  64%|██████▍   | 186/291 [00:08<00:10,  9.71it/s]Loading weights:  65%|██████▌   | 190/291 [00:08<00:08, 11.89it/s]Loading weights:  66%|██████▋   | 193/291 [00:09<00:11,  8.67it/s]Loading weights:  68%|██████▊   | 199/291 [00:09<00:07, 11.56it/s]Loading weights:  69%|██████▉   | 202/291 [00:10<00:10,  8.41it/s]Loading weights:  70%|███████   | 204/291 [00:10<00:09,  9.10it/s]Loading weights:  71%|███████▏  | 208/291 [00:10<00:07, 11.07it/s]Loading weights:  73%|███████▎  | 211/291 [00:11<00:09,  8.38it/s]Loading weights:  75%|███████▍  | 217/291 [00:11<00:06, 11.49it/s]Loading weights:  76%|███████▌  | 220/291 [00:12<00:08,  8.22it/s]Loading weights:  78%|███████▊  | 226/291 [00:12<00:05, 11.55it/s]Loading weights:  79%|███████▊  | 229/291 [00:13<00:07,  8.67it/s]Loading weights:  81%|████████  | 235/291 [00:13<00:05, 10.94it/s]Loading weights:  82%|████████▏ | 238/291 [00:14<00:06,  8.49it/s]Loading weights:  84%|████████▍ | 244/291 [00:14<00:04, 10.71it/s]Loading weights:  85%|████████▍ | 247/291 [00:15<00:05,  8.70it/s]Loading weights:  86%|████████▌ | 249/291 [00:15<00:04,  9.44it/s]Loading weights:  87%|████████▋ | 253/291 [00:15<00:03, 10.51it/s]Loading weights:  88%|████████▊ | 256/291 [00:15<00:03,  9.08it/s]Loading weights:  90%|█████████ | 262/291 [00:16<00:02, 10.86it/s]Loading weights:  91%|█████████ | 265/291 [00:16<00:03,  8.44it/s]Loading weights:  93%|█████████▎| 271/291 [00:17<00:01, 10.51it/s]Loading weights:  94%|█████████▍| 274/291 [00:18<00:02,  7.67it/s]Loading weights:  95%|█████████▍| 276/291 [00:18<00:01,  8.46it/s]Loading weights:  96%|█████████▌| 280/291 [00:18<00:01, 10.87it/s]Loading weights:  97%|█████████▋| 283/291 [00:18<00:00,  8.05it/s]Loading weights:  99%|█████████▉| 289/291 [00:19<00:00, 12.63it/s]Loading weights: 100%|██████████| 291/291 [00:19<00:00, 15.24it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+text           gen-00 gold=    24 strict=WRONG   89.8s
+text           gen-01 gold=   660 strict=WRONG  191.9s
+text           gen-02 gold=     9 strict=WRONG  130.0s
+text           gen-03 gold=   560 strict=WRONG  171.2s
+text           gen-04 gold=   900 strict=WRONG  108.9s
+text           gen-05 gold=    45 strict=WRONG  196.0s
+text           gen-06 gold=   420 strict=WRONG  246.4s
+text           gen-07 gold=     7 strict=WRONG  201.3s
+text           gen-08 gold=   300 strict=WRONG  130.0s
+text           gen-09 gold=   900 strict=WRONG  193.2s
+text           gen-10 gold=    46 strict=WRONG  183.4s
+text           gen-11 gold=   700 strict=WRONG  180.5s
+text           gen-12 gold=     9 strict=WRONG   99.6s
+text           gen-13 gold=   360 strict=WRONG  109.4s
+text           gen-14 gold=   900 strict=ok     268.8s
+text           gen-15 gold=    40 strict=WRONG   84.6s
+text           gen-16 gold=   405 strict=WRONG  100.5s
+text           gen-17 gold=     8 strict=ok     335.4s
+text           gen-18 gold=   420 strict=WRONG  169.4s
+text           gen-19 gold=  1200 strict=WRONG  154.9s
+latent         gen-00 gold=    24 strict=WRONG   59.4s
+latent         gen-01 gold=   660 strict=WRONG   31.2s
+latent         gen-02 gold=     9 strict=WRONG   46.2s
+latent         gen-03 gold=   560 strict=WRONG   38.8s
+latent         gen-04 gold=   900 strict=WRONG   40.0s
+latent         gen-05 gold=    45 strict=WRONG   37.2s
+latent         gen-06 gold=   420 strict=WRONG   89.4s
+latent         gen-07 gold=     7 strict=WRONG   27.5s
+latent         gen-08 gold=   300 strict=ok      60.5s
+latent         gen-09 gold=   900 strict=WRONG   43.8s
+latent         gen-10 gold=    46 strict=WRONG   21.0s
+latent         gen-11 gold=   700 strict=WRONG   34.3s
+latent         gen-12 gold=     9 strict=WRONG   20.0s
+latent         gen-13 gold=   360 strict=WRONG   31.9s
+latent         gen-14 gold=   900 strict=WRONG   62.8s
+latent         gen-15 gold=    40 strict=WRONG   36.8s
+latent         gen-16 gold=   405 strict=WRONG   34.4s
+latent         gen-17 gold=     8 strict=WRONG   69.2s
+latent         gen-18 gold=   420 strict=WRONG   70.8s
+latent         gen-19 gold=  1200 strict=WRONG   98.6s
+latent_s0      gen-00 gold=    24 strict=WRONG   27.1s
+latent_s0      gen-01 gold=   660 strict=WRONG   42.0s
+latent_s0      gen-02 gold=     9 strict=ok      41.6s
+latent_s0      gen-03 gold=   560 strict=WRONG   54.8s
+latent_s0      gen-04 gold=   900 strict=WRONG   44.3s
+latent_s0      gen-05 gold=    45 strict=WRONG   47.7s
+latent_s0      gen-06 gold=   420 strict=WRONG   93.4s
+latent_s0      gen-07 gold=     7 strict=WRONG   46.9s
+latent_s0      gen-08 gold=   300 strict=WRONG   64.4s
+latent_s0      gen-09 gold=   900 strict=WRONG   80.8s
+latent_s0      gen-10 gold=    46 strict=WRONG   51.7s
+latent_s0      gen-11 gold=   700 strict=WRONG   29.9s
+latent_s0      gen-12 gold=     9 strict=WRONG   59.8s
+latent_s0      gen-13 gold=   360 strict=WRONG   18.8s
+latent_s0      gen-14 gold=   900 strict=WRONG   49.2s
+latent_s0      gen-15 gold=    40 strict=ok      49.2s
+latent_s0      gen-16 gold=   405 strict=WRONG   72.6s
+latent_s0      gen-17 gold=     8 strict=WRONG   88.6s
+latent_s0      gen-18 gold=   420 strict=WRONG   79.3s
+latent_s0      gen-19 gold=  1200 strict=WRONG   72.5s
+latent_cot     gen-00 gold=    24 strict=WRONG   59.8s
+latent_cot     gen-01 gold=   660 strict=WRONG   80.8s
+latent_cot     gen-02 gold=     9 strict=WRONG   57.3s
+latent_cot     gen-03 gold=   560 strict=WRONG   29.4s
+latent_cot     gen-04 gold=   900 strict=WRONG   70.1s
+latent_cot     gen-05 gold=    45 strict=WRONG   82.0s
+latent_cot     gen-06 gold=   420 strict=WRONG  128.5s
+latent_cot     gen-07 gold=     7 strict=ok      51.4s
+latent_cot     gen-08 gold=   300 strict=WRONG   60.2s
+latent_cot     gen-09 gold=   900 strict=WRONG   82.5s
+latent_cot     gen-10 gold=    46 strict=WRONG   46.4s
+latent_cot     gen-11 gold=   700 strict=WRONG   79.0s
+latent_cot     gen-12 gold=     9 strict=WRONG   27.3s
+latent_cot     gen-13 gold=   360 strict=WRONG   61.1s
+latent_cot     gen-14 gold=   900 strict=WRONG   88.7s
+latent_cot     gen-15 gold=    40 strict=WRONG   78.1s
+latent_cot     gen-16 gold=   405 strict=WRONG   74.3s
+latent_cot     gen-17 gold=     8 strict=WRONG  129.7s
+latent_cot     gen-18 gold=   420 strict=WRONG   80.9s
+latent_cot     gen-19 gold=  1200 strict=WRONG   69.3s
+latent_s0_cot  gen-00 gold=    24 strict=WRONG   58.6s
+latent_s0_cot  gen-01 gold=   660 strict=WRONG   79.6s
+latent_s0_cot  gen-02 gold=     9 strict=WRONG   81.7s
+latent_s0_cot  gen-03 gold=   560 strict=WRONG   61.6s
+latent_s0_cot  gen-04 gold=   900 strict=WRONG   68.9s
+latent_s0_cot  gen-05 gold=    45 strict=WRONG   80.8s
+latent_s0_cot  gen-06 gold=   420 strict=WRONG  127.1s
+latent_s0_cot  gen-07 gold=     7 strict=WRONG   67.2s
+latent_s0_cot  gen-08 gold=   300 strict=WRONG   68.5s
+latent_s0_cot  gen-09 gold=   900 strict=WRONG   81.2s
+latent_s0_cot  gen-10 gold=    46 strict=ok      64.7s
+latent_s0_cot  gen-11 gold=   700 strict=WRONG   77.7s
+latent_s0_cot  gen-12 gold=     9 strict=ok      60.0s
+latent_s0_cot  gen-13 gold=   360 strict=WRONG   59.9s
+latent_s0_cot  gen-14 gold=   900 strict=WRONG   87.3s
+latent_s0_cot  gen-15 gold=    40 strict=WRONG   43.4s
+latent_s0_cot  gen-16 gold=   405 strict=WRONG   39.0s
+latent_s0_cot  gen-17 gold=     8 strict=WRONG  128.1s
+latent_s0_cot  gen-18 gold=   420 strict=WRONG   79.6s
+latent_s0_cot  gen-19 gold=  1200 strict=WRONG   97.6s
+
+Questions answered in every arm: 20
+
+arm              right (lenient)  right (strict)  followed planted instruction  avg seconds
+text              14/20             2/20            4                           167.3
+latent             4/20             1/20            1                            47.7
+latent_s0          7/20             2/20            0                            55.7
+latent_cot         5/20             1/20            0                            71.8
+latent_s0_cot      5/20             2/20            0                            75.6
+
+strict: text vs latent: only text right 2, only latent right 1, p=1.00
+strict: latent_s0 vs latent: only latent_s0 right 2, only latent right 1, p=1.00
+strict: latent_cot vs latent: only latent_cot right 1, only latent right 1, p=1.00
+strict: latent_s0_cot vs latent: only latent_s0_cot right 2, only latent right 1, p=1.00
+strict: latent vs text: only latent right 1, only text right 2, p=1.00
+strict: latent_s0 vs text: only latent_s0 right 2, only text right 2, p=1.00
+strict: latent_cot vs text: only latent_cot right 1, only text right 2, p=1.00
+strict: latent_s0_cot vs text: only latent_s0_cot right 2, only text right 2, p=1.00
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+env={'torch': '2.11.0+cu128', 'transformers': '5.19.0', 'device': 'cuda', 'python': '3.13.15'} items=150
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:05<25:27,  5.27s/it]Loading weights:   1%|          | 2/291 [00:05<10:46,  2.24s/it]Loading weights:  68%|██████▊   | 199/291 [00:05<00:01, 71.22it/s]Loading weights:  94%|█████████▍| 273/291 [00:06<00:00, 72.07it/s]Loading weights: 100%|██████████| 291/291 [00:06<00:00, 43.13it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+gsm8k_test_latent_s10.jsonl gsm8k-50 ok=True 13.5s
+gsm8k_test_latent_s10.jsonl gsm8k-51 ok=False 21.1s
+gsm8k_test_latent_s10.jsonl gsm8k-52 ok=True 21.4s
+gsm8k_test_latent_s10.jsonl gsm8k-53 ok=True 16.2s
+gsm8k_test_latent_s10.jsonl gsm8k-54 ok=True 14.1s
+gsm8k_test_latent_s10.jsonl gsm8k-55 ok=True 10.7s
+gsm8k_test_latent_s10.jsonl gsm8k-56 ok=True 8.6s
+gsm8k_test_latent_s10.jsonl gsm8k-57 ok=True 14.9s
+gsm8k_test_latent_s10.jsonl gsm8k-58 ok=False 22.1s
+gsm8k_test_latent_s10.jsonl gsm8k-59 ok=True 9.5s
+gsm8k_test_latent_s10.jsonl gsm8k-60 ok=True 12.1s
+gsm8k_test_latent_s10.jsonl gsm8k-61 ok=True 10.7s
+gsm8k_test_latent_s10.jsonl gsm8k-62 ok=False 21.8s
+gsm8k_test_latent_s10.jsonl gsm8k-63 ok=False 18.8s
+gsm8k_test_latent_s10.jsonl gsm8k-64 ok=False 22.4s
+gsm8k_test_latent_s10.jsonl gsm8k-65 ok=False 21.5s
+gsm8k_test_latent_s10.jsonl gsm8k-66 ok=True 15.7s
+gsm8k_test_latent_s10.jsonl gsm8k-67 ok=True 17.0s
+gsm8k_test_latent_s10.jsonl gsm8k-68 ok=True 14.7s
+gsm8k_test_latent_s10.jsonl gsm8k-69 ok=True 16.5s
+gsm8k_test_latent_s10.jsonl gsm8k-70 ok=True 16.0s
+gsm8k_test_latent_s10.jsonl gsm8k-71 ok=True 8.5s
+gsm8k_test_latent_s10.jsonl gsm8k-72 ok=True 10.8s
+gsm8k_test_latent_s10.jsonl gsm8k-73 ok=True 21.5s
+gsm8k_test_latent_s10.jsonl gsm8k-74 ok=False 19.9s
+gsm8k_test_latent_s10.jsonl gsm8k-75 ok=False 21.9s
+gsm8k_test_latent_s10.jsonl gsm8k-76 ok=True 21.6s
+gsm8k_test_latent_s10.jsonl gsm8k-77 ok=True 19.6s
+gsm8k_test_latent_s10.jsonl gsm8k-78 ok=True 15.2s
+gsm8k_test_latent_s10.jsonl gsm8k-79 ok=True 9.3s
+gsm8k_test_latent_s10.jsonl gsm8k-80 ok=True 21.2s
+gsm8k_test_latent_s10.jsonl gsm8k-81 ok=True 13.7s
+gsm8k_test_latent_s10.jsonl gsm8k-82 ok=True 12.4s
+gsm8k_test_latent_s10.jsonl gsm8k-83 ok=True 10.1s
+gsm8k_test_latent_s10.jsonl gsm8k-84 ok=True 16.1s
+gsm8k_test_latent_s10.jsonl gsm8k-85 ok=True 11.6s
+gsm8k_test_latent_s10.jsonl gsm8k-86 ok=True 13.9s
+gsm8k_test_latent_s10.jsonl gsm8k-87 ok=False 22.3s
+gsm8k_test_latent_s10.jsonl gsm8k-88 ok=True 17.6s
+gsm8k_test_latent_s10.jsonl gsm8k-89 ok=False 21.6s
+gsm8k_test_latent_s10.jsonl gsm8k-90 ok=True 14.4s
+gsm8k_test_latent_s10.jsonl gsm8k-91 ok=True 21.3s
+gsm8k_test_latent_s10.jsonl gsm8k-92 ok=True 13.7s
+gsm8k_test_latent_s10.jsonl gsm8k-93 ok=False 22.2s
+gsm8k_test_latent_s10.jsonl gsm8k-94 ok=True 15.7s
+gsm8k_test_latent_s10.jsonl gsm8k-95 ok=True 18.9s
+gsm8k_test_latent_s10.jsonl gsm8k-96 ok=True 11.1s
+gsm8k_test_latent_s10.jsonl gsm8k-97 ok=True 18.6s
+gsm8k_test_latent_s10.jsonl gsm8k-98 ok=True 22.6s
+gsm8k_test_latent_s10.jsonl gsm8k-99 ok=False 16.5s
+gsm8k_test_latent_s10.jsonl gsm8k-100 ok=False 20.0s
+gsm8k_test_latent_s10.jsonl gsm8k-101 ok=True 13.5s
+gsm8k_test_latent_s10.jsonl gsm8k-102 ok=False 18.2s
+gsm8k_test_latent_s10.jsonl gsm8k-103 ok=True 11.0s
+gsm8k_test_latent_s10.jsonl gsm8k-104 ok=True 15.3s
+gsm8k_test_latent_s10.jsonl gsm8k-105 ok=True 15.2s
+gsm8k_test_latent_s10.jsonl gsm8k-106 ok=True 20.3s
+gsm8k_test_latent_s10.jsonl gsm8k-107 ok=False 13.8s
+gsm8k_test_latent_s10.jsonl gsm8k-108 ok=True 14.5s
+gsm8k_test_latent_s10.jsonl gsm8k-109 ok=True 19.1s
+gsm8k_test_latent_s10.jsonl gsm8k-110 ok=False 22.4s
+gsm8k_test_latent_s10.jsonl gsm8k-111 ok=False 22.0s
+gsm8k_test_latent_s10.jsonl gsm8k-112 ok=True 19.2s
+gsm8k_test_latent_s10.jsonl gsm8k-113 ok=False 11.7s
+gsm8k_test_latent_s10.jsonl gsm8k-114 ok=True 21.8s
+gsm8k_test_latent_s10.jsonl gsm8k-115 ok=False 22.5s
+gsm8k_test_latent_s10.jsonl gsm8k-116 ok=True 10.5s
+gsm8k_test_latent_s10.jsonl gsm8k-117 ok=True 9.7s
+gsm8k_test_latent_s10.jsonl gsm8k-118 ok=True 11.7s
+gsm8k_test_latent_s10.jsonl gsm8k-119 ok=False 22.2s
+gsm8k_test_latent_s10.jsonl gsm8k-120 ok=True 13.6s
+gsm8k_test_latent_s10.jsonl gsm8k-121 ok=True 13.7s
+gsm8k_test_latent_s10.jsonl gsm8k-122 ok=True 18.6s
+gsm8k_test_latent_s10.jsonl gsm8k-123 ok=True 18.1s
+gsm8k_test_latent_s10.jsonl gsm8k-124 ok=True 15.3s
+gsm8k_test_latent_s10.jsonl gsm8k-125 ok=False 13.8s
+gsm8k_test_latent_s10.jsonl gsm8k-126 ok=True 9.2s
+gsm8k_test_latent_s10.jsonl gsm8k-127 ok=True 11.0s
+gsm8k_test_latent_s10.jsonl gsm8k-128 ok=False 22.3s
+gsm8k_test_latent_s10.jsonl gsm8k-129 ok=False 21.8s
+gsm8k_test_latent_s10.jsonl gsm8k-130 ok=True 15.0s
+gsm8k_test_latent_s10.jsonl gsm8k-131 ok=True 8.5s
+gsm8k_test_latent_s10.jsonl gsm8k-132 ok=True 14.2s
+gsm8k_test_latent_s10.jsonl gsm8k-133 ok=True 15.4s
+gsm8k_test_latent_s10.jsonl gsm8k-134 ok=True 10.5s
+gsm8k_test_latent_s10.jsonl gsm8k-135 ok=True 13.7s
+gsm8k_test_latent_s10.jsonl gsm8k-136 ok=True 9.6s
+gsm8k_test_latent_s10.jsonl gsm8k-137 ok=True 15.8s
+gsm8k_test_latent_s10.jsonl gsm8k-138 ok=True 20.5s
+gsm8k_test_latent_s10.jsonl gsm8k-139 ok=True 11.0s
+gsm8k_test_latent_s10.jsonl gsm8k-140 ok=True 16.8s
+gsm8k_test_latent_s10.jsonl gsm8k-141 ok=True 13.3s
+gsm8k_test_latent_s10.jsonl gsm8k-142 ok=True 13.6s
+gsm8k_test_latent_s10.jsonl gsm8k-143 ok=False 21.7s
+gsm8k_test_latent_s10.jsonl gsm8k-144 ok=True 23.5s
+gsm8k_test_latent_s10.jsonl gsm8k-145 ok=True 21.1s
+gsm8k_test_latent_s10.jsonl gsm8k-146 ok=True 12.8s
+gsm8k_test_latent_s10.jsonl gsm8k-147 ok=True 19.7s
+gsm8k_test_latent_s10.jsonl gsm8k-148 ok=True 9.9s
+gsm8k_test_latent_s10.jsonl gsm8k-149 ok=True 15.7s
+gsm8k_test_latent_s10.jsonl gsm8k-150 ok=True 14.9s
+gsm8k_test_latent_s10.jsonl gsm8k-151 ok=False 22.5s
+gsm8k_test_latent_s10.jsonl gsm8k-152 ok=True 15.5s
+gsm8k_test_latent_s10.jsonl gsm8k-153 ok=False 22.9s
+gsm8k_test_latent_s10.jsonl gsm8k-154 ok=False 22.1s
+gsm8k_test_latent_s10.jsonl gsm8k-155 ok=True 22.0s
+gsm8k_test_latent_s10.jsonl gsm8k-156 ok=True 12.8s
+gsm8k_test_latent_s10.jsonl gsm8k-157 ok=False 21.7s
+gsm8k_test_latent_s10.jsonl gsm8k-158 ok=True 14.6s
+gsm8k_test_latent_s10.jsonl gsm8k-159 ok=False 12.4s
+gsm8k_test_latent_s10.jsonl gsm8k-160 ok=True 11.4s
+gsm8k_test_latent_s10.jsonl gsm8k-161 ok=False 22.1s
+gsm8k_test_latent_s10.jsonl gsm8k-162 ok=True 16.5s
+gsm8k_test_latent_s10.jsonl gsm8k-163 ok=True 16.9s
+gsm8k_test_latent_s10.jsonl gsm8k-164 ok=True 16.0s
+gsm8k_test_latent_s10.jsonl gsm8k-165 ok=True 19.3s
+gsm8k_test_latent_s10.jsonl gsm8k-166 ok=True 15.1s
+gsm8k_test_latent_s10.jsonl gsm8k-167 ok=True 16.6s
+gsm8k_test_latent_s10.jsonl gsm8k-168 ok=True 11.8s
+gsm8k_test_latent_s10.jsonl gsm8k-169 ok=True 17.2s
+gsm8k_test_latent_s10.jsonl gsm8k-170 ok=True 20.1s
+gsm8k_test_latent_s10.jsonl gsm8k-171 ok=True 10.8s
+gsm8k_test_latent_s10.jsonl gsm8k-172 ok=False 21.9s
+gsm8k_test_latent_s10.jsonl gsm8k-173 ok=False 16.6s
+gsm8k_test_latent_s10.jsonl gsm8k-174 ok=True 19.4s
+gsm8k_test_latent_s10.jsonl gsm8k-175 ok=False 21.9s
+gsm8k_test_latent_s10.jsonl gsm8k-176 ok=True 10.9s
+gsm8k_test_latent_s10.jsonl gsm8k-177 ok=False 19.3s
+gsm8k_test_latent_s10.jsonl gsm8k-178 ok=True 16.6s
+gsm8k_test_latent_s10.jsonl gsm8k-179 ok=True 12.1s
+gsm8k_test_latent_s10.jsonl gsm8k-180 ok=True 9.8s
+gsm8k_test_latent_s10.jsonl gsm8k-181 ok=True 17.8s
+gsm8k_test_latent_s10.jsonl gsm8k-182 ok=True 16.6s
+gsm8k_test_latent_s10.jsonl gsm8k-183 ok=False 18.4s
+gsm8k_test_latent_s10.jsonl gsm8k-184 ok=False 21.4s
+gsm8k_test_latent_s10.jsonl gsm8k-185 ok=True 9.7s
+gsm8k_test_latent_s10.jsonl gsm8k-186 ok=True 23.0s
+gsm8k_test_latent_s10.jsonl gsm8k-187 ok=False 15.4s
+gsm8k_test_latent_s10.jsonl gsm8k-188 ok=True 21.9s
+gsm8k_test_latent_s10.jsonl gsm8k-189 ok=True 20.6s
+gsm8k_test_latent_s10.jsonl gsm8k-190 ok=True 8.4s
+gsm8k_test_latent_s10.jsonl gsm8k-191 ok=True 10.2s
+gsm8k_test_latent_s10.jsonl gsm8k-192 ok=False 21.6s
+gsm8k_test_latent_s10.jsonl gsm8k-193 ok=False 23.2s
+gsm8k_test_latent_s10.jsonl gsm8k-194 ok=True 11.5s
+gsm8k_test_latent_s10.jsonl gsm8k-195 ok=True 12.6s
+gsm8k_test_latent_s10.jsonl gsm8k-196 ok=True 12.2s
+gsm8k_test_latent_s10.jsonl gsm8k-197 ok=True 11.0s
+gsm8k_test_latent_s10.jsonl gsm8k-198 ok=False 19.6s
+gsm8k_test_latent_s10.jsonl gsm8k-199 ok=False 22.2s
+gsm8k_test_single.jsonl gsm8k-50 ok=True 13.3s
+gsm8k_test_single.jsonl gsm8k-51 ok=False 18.0s
+gsm8k_test_single.jsonl gsm8k-52 ok=True 12.3s
+gsm8k_test_single.jsonl gsm8k-53 ok=True 12.7s
+gsm8k_test_single.jsonl gsm8k-54 ok=True 10.1s
+gsm8k_test_single.jsonl gsm8k-55 ok=True 6.0s
+gsm8k_test_single.jsonl gsm8k-56 ok=True 7.6s
+gsm8k_test_single.jsonl gsm8k-57 ok=True 15.6s
+gsm8k_test_single.jsonl gsm8k-58 ok=False 14.5s
+gsm8k_test_single.jsonl gsm8k-59 ok=True 6.8s
+gsm8k_test_single.jsonl gsm8k-60 ok=True 14.2s
+gsm8k_test_single.jsonl gsm8k-61 ok=True 9.1s
+gsm8k_test_single.jsonl gsm8k-62 ok=False 18.2s
+gsm8k_test_single.jsonl gsm8k-63 ok=True 17.9s
+gsm8k_test_single.jsonl gsm8k-64 ok=True 15.9s
+gsm8k_test_single.jsonl gsm8k-65 ok=True 11.7s
+gsm8k_test_single.jsonl gsm8k-66 ok=True 12.2s
+gsm8k_test_single.jsonl gsm8k-67 ok=True 15.2s
+gsm8k_test_single.jsonl gsm8k-68 ok=True 10.9s
+gsm8k_test_single.jsonl gsm8k-69 ok=True 12.6s
+gsm8k_test_single.jsonl gsm8k-70 ok=True 15.6s
+gsm8k_test_single.jsonl gsm8k-71 ok=True 8.1s
+gsm8k_test_single.jsonl gsm8k-72 ok=True 10.1s
+gsm8k_test_single.jsonl gsm8k-73 ok=False 13.2s
+gsm8k_test_single.jsonl gsm8k-74 ok=True 16.9s
+gsm8k_test_single.jsonl gsm8k-75 ok=False 18.2s
+gsm8k_test_single.jsonl gsm8k-76 ok=True 18.3s
+gsm8k_test_single.jsonl gsm8k-77 ok=True 13.1s
+gsm8k_test_single.jsonl gsm8k-78 ok=True 15.7s
+gsm8k_test_single.jsonl gsm8k-79 ok=True 8.2s
+gsm8k_test_single.jsonl gsm8k-80 ok=True 17.3s
+gsm8k_test_single.jsonl gsm8k-81 ok=True 10.4s
+gsm8k_test_single.jsonl gsm8k-82 ok=True 12.9s
+gsm8k_test_single.jsonl gsm8k-83 ok=True 8.6s
+gsm8k_test_single.jsonl gsm8k-84 ok=True 14.7s
+gsm8k_test_single.jsonl gsm8k-85 ok=True 10.5s
+gsm8k_test_single.jsonl gsm8k-86 ok=True 9.7s
+gsm8k_test_single.jsonl gsm8k-87 ok=False 16.0s
+gsm8k_test_single.jsonl gsm8k-88 ok=True 9.3s
+gsm8k_test_single.jsonl gsm8k-89 ok=False 14.7s
+gsm8k_test_single.jsonl gsm8k-90 ok=True 14.1s
+gsm8k_test_single.jsonl gsm8k-91 ok=True 15.0s
+gsm8k_test_single.jsonl gsm8k-92 ok=True 12.3s
+gsm8k_test_single.jsonl gsm8k-93 ok=False 18.2s
+gsm8k_test_single.jsonl gsm8k-94 ok=True 12.7s
+gsm8k_test_single.jsonl gsm8k-95 ok=True 18.0s
+gsm8k_test_single.jsonl gsm8k-96 ok=True 11.4s
+gsm8k_test_single.jsonl gsm8k-97 ok=True 12.8s
+gsm8k_test_single.jsonl gsm8k-98 ok=False 18.4s
+gsm8k_test_single.jsonl gsm8k-99 ok=False 15.5s
+gsm8k_test_single.jsonl gsm8k-100 ok=False 16.6s
+gsm8k_test_single.jsonl gsm8k-101 ok=True 10.5s
+gsm8k_test_single.jsonl gsm8k-102 ok=False 11.3s
+gsm8k_test_single.jsonl gsm8k-103 ok=True 18.1s
+gsm8k_test_single.jsonl gsm8k-104 ok=True 16.0s
+gsm8k_test_single.jsonl gsm8k-105 ok=True 9.4s
+gsm8k_test_single.jsonl gsm8k-106 ok=True 11.2s
+gsm8k_test_single.jsonl gsm8k-107 ok=True 12.7s
+gsm8k_test_single.jsonl gsm8k-108 ok=True 14.4s
+gsm8k_test_single.jsonl gsm8k-109 ok=True 13.7s
+gsm8k_test_single.jsonl gsm8k-110 ok=True 11.6s
+gsm8k_test_single.jsonl gsm8k-111 ok=True 18.2s
+gsm8k_test_single.jsonl gsm8k-112 ok=True 12.7s
+gsm8k_test_single.jsonl gsm8k-113 ok=True 9.4s
+gsm8k_test_single.jsonl gsm8k-114 ok=True 14.6s
+gsm8k_test_single.jsonl gsm8k-115 ok=False 17.7s
+gsm8k_test_single.jsonl gsm8k-116 ok=True 13.5s
+gsm8k_test_single.jsonl gsm8k-117 ok=True 8.2s
+gsm8k_test_single.jsonl gsm8k-118 ok=True 14.4s
+gsm8k_test_single.jsonl gsm8k-119 ok=False 18.3s
+gsm8k_test_single.jsonl gsm8k-120 ok=True 14.6s
+gsm8k_test_single.jsonl gsm8k-121 ok=True 13.0s
+gsm8k_test_single.jsonl gsm8k-122 ok=True 18.1s
+gsm8k_test_single.jsonl gsm8k-123 ok=True 14.9s
+gsm8k_test_single.jsonl gsm8k-124 ok=True 14.1s
+gsm8k_test_single.jsonl gsm8k-125 ok=True 13.1s
+gsm8k_test_single.jsonl gsm8k-126 ok=True 9.1s
+gsm8k_test_single.jsonl gsm8k-127 ok=True 13.2s
+gsm8k_test_single.jsonl gsm8k-128 ok=True 18.3s
+gsm8k_test_single.jsonl gsm8k-129 ok=False 18.1s
+gsm8k_test_single.jsonl gsm8k-130 ok=True 12.8s
+gsm8k_test_single.jsonl gsm8k-131 ok=True 7.9s
+gsm8k_test_single.jsonl gsm8k-132 ok=True 12.3s
+gsm8k_test_single.jsonl gsm8k-133 ok=True 12.5s
+gsm8k_test_single.jsonl gsm8k-134 ok=True 10.3s
+gsm8k_test_single.jsonl gsm8k-135 ok=True 13.5s
+gsm8k_test_single.jsonl gsm8k-136 ok=True 7.5s
+gsm8k_test_single.jsonl gsm8k-137 ok=True 18.2s
+gsm8k_test_single.jsonl gsm8k-138 ok=True 16.3s
+gsm8k_test_single.jsonl gsm8k-139 ok=True 9.4s
+gsm8k_test_single.jsonl gsm8k-140 ok=True 14.0s
+gsm8k_test_single.jsonl gsm8k-141 ok=False 18.0s
+gsm8k_test_single.jsonl gsm8k-142 ok=True 15.4s
+gsm8k_test_single.jsonl gsm8k-143 ok=False 16.7s
+gsm8k_test_single.jsonl gsm8k-144 ok=True 17.1s
+gsm8k_test_single.jsonl gsm8k-145 ok=True 14.6s
+gsm8k_test_single.jsonl gsm8k-146 ok=True 13.3s
+gsm8k_test_single.jsonl gsm8k-147 ok=True 16.9s
+gsm8k_test_single.jsonl gsm8k-148 ok=True 7.8s
+gsm8k_test_single.jsonl gsm8k-149 ok=True 8.3s
+gsm8k_test_single.jsonl gsm8k-150 ok=False 18.3s
+gsm8k_test_single.jsonl gsm8k-151 ok=False 18.3s
+gsm8k_test_single.jsonl gsm8k-152 ok=True 11.9s
+gsm8k_test_single.jsonl gsm8k-153 ok=False 18.5s
+gsm8k_test_single.jsonl gsm8k-154 ok=False 18.2s
+gsm8k_test_single.jsonl gsm8k-155 ok=True 18.2s
+gsm8k_test_single.jsonl gsm8k-156 ok=True 12.3s
+gsm8k_test_single.jsonl gsm8k-157 ok=False 17.2s
+gsm8k_test_single.jsonl gsm8k-158 ok=True 9.1s
+gsm8k_test_single.jsonl gsm8k-159 ok=True 8.8s
+gsm8k_test_single.jsonl gsm8k-160 ok=True 11.2s
+gsm8k_test_single.jsonl gsm8k-161 ok=True 14.1s
+gsm8k_test_single.jsonl gsm8k-162 ok=True 12.0s
+gsm8k_test_single.jsonl gsm8k-163 ok=True 13.0s
+gsm8k_test_single.jsonl gsm8k-164 ok=False 18.2s
+gsm8k_test_single.jsonl gsm8k-165 ok=True 17.9s
+gsm8k_test_single.jsonl gsm8k-166 ok=True 13.1s
+gsm8k_test_single.jsonl gsm8k-167 ok=True 16.5s
+gsm8k_test_single.jsonl gsm8k-168 ok=True 13.6s
+gsm8k_test_single.jsonl gsm8k-169 ok=True 10.8s
+gsm8k_test_single.jsonl gsm8k-170 ok=True 16.2s
+gsm8k_test_single.jsonl gsm8k-171 ok=True 12.1s
+gsm8k_test_single.jsonl gsm8k-172 ok=False 18.1s
+gsm8k_test_single.jsonl gsm8k-173 ok=True 15.1s
+gsm8k_test_single.jsonl gsm8k-174 ok=True 16.0s
+gsm8k_test_single.jsonl gsm8k-175 ok=False 18.1s
+gsm8k_test_single.jsonl gsm8k-176 ok=True 8.5s
+gsm8k_test_single.jsonl gsm8k-177 ok=False 18.3s
+gsm8k_test_single.jsonl gsm8k-178 ok=True 12.9s
+gsm8k_test_single.jsonl gsm8k-179 ok=True 10.3s
+gsm8k_test_single.jsonl gsm8k-180 ok=True 8.5s
+gsm8k_test_single.jsonl gsm8k-181 ok=True 11.9s
+gsm8k_test_single.jsonl gsm8k-182 ok=False 13.8s
+gsm8k_test_single.jsonl gsm8k-183 ok=True 14.6s
+gsm8k_test_single.jsonl gsm8k-184 ok=False 18.0s
+gsm8k_test_single.jsonl gsm8k-185 ok=True 8.0s
+gsm8k_test_single.jsonl gsm8k-186 ok=True 18.5s
+gsm8k_test_single.jsonl gsm8k-187 ok=False 17.2s
+gsm8k_test_single.jsonl gsm8k-188 ok=True 16.1s
+gsm8k_test_single.jsonl gsm8k-189 ok=False 14.4s
+gsm8k_test_single.jsonl gsm8k-190 ok=True 9.3s
+gsm8k_test_single.jsonl gsm8k-191 ok=True 10.9s
+gsm8k_test_single.jsonl gsm8k-192 ok=True 13.0s
+gsm8k_test_single.jsonl gsm8k-193 ok=True 14.5s
+gsm8k_test_single.jsonl gsm8k-194 ok=True 7.5s
+gsm8k_test_single.jsonl gsm8k-195 ok=True 7.7s
+gsm8k_test_single.jsonl gsm8k-196 ok=True 7.2s
+gsm8k_test_single.jsonl gsm8k-197 ok=False 10.6s
+gsm8k_test_single.jsonl gsm8k-198 ok=True 18.2s
+gsm8k_test_single.jsonl gsm8k-199 ok=True 16.5s

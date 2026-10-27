@@ -1,0 +1,16 @@
+.env
+.venv/
+__pycache__/
+.cache/
+*.pyc
+.pytest_cache/
+.spend.json
+*.zip
+node_modules/
+dashboard/dist/
+
+# kept local, not published
+.DS_Store
+HANDOFF.md
+telepathy_spike.py
+spike_results/

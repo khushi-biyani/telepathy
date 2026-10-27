@@ -1,0 +1,65 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+env={'torch': '2.11.0+cu128', 'transformers': '5.19.0', 'device': 'cuda', 'python': '3.13.15'} items=60
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:46<00:46, 46.13s/it]Fetching 2 files: 100%|██████████| 2/2 [00:46<00:00, 23.06s/it]
+Loading weights:   0%|          | 0/291 [00:00<?, ?it/s]Loading weights:   0%|          | 1/291 [00:02<13:40,  2.83s/it]Loading weights:   1%|          | 2/291 [00:02<05:56,  1.23s/it]Loading weights:  20%|█▉        | 58/291 [00:03<00:07, 32.70it/s]Loading weights:  23%|██▎       | 68/291 [00:03<00:06, 34.91it/s]Loading weights:  26%|██▌       | 76/291 [00:03<00:06, 33.55it/s]Loading weights:  29%|██▉       | 85/291 [00:03<00:05, 39.19it/s]Loading weights:  32%|███▏      | 92/291 [00:03<00:04, 40.18it/s]Loading weights:  34%|███▍      | 99/291 [00:04<00:05, 37.94it/s]Loading weights:  36%|███▌      | 105/291 [00:04<00:05, 31.60it/s]Loading weights:  39%|███▉      | 113/291 [00:04<00:05, 30.59it/s]Loading weights:  42%|████▏     | 121/291 [00:04<00:04, 35.34it/s]Loading weights:  43%|████▎     | 126/291 [00:05<00:04, 35.58it/s]Loading weights:  45%|████▌     | 131/291 [00:05<00:04, 32.67it/s]Loading weights:  48%|████▊     | 139/291 [00:05<00:04, 31.34it/s]Loading weights:  51%|█████     | 148/291 [00:05<00:04, 31.59it/s]Loading weights:  54%|█████▍    | 157/291 [00:06<00:04, 31.94it/s]Loading weights:  57%|█████▋    | 166/291 [00:07<00:07, 16.81it/s]Loading weights:  60%|██████    | 175/291 [00:08<00:08, 14.00it/s]Loading weights:  63%|██████▎   | 184/291 [00:08<00:08, 12.25it/s]Loading weights:  66%|██████▌   | 191/291 [00:09<00:06, 15.38it/s]Loading weights:  67%|██████▋   | 194/291 [00:09<00:09, 10.73it/s]Loading weights:  68%|██████▊   | 199/291 [00:10<00:07, 13.09it/s]Loading weights:  69%|██████▉   | 202/291 [00:10<00:09,  9.25it/s]Loading weights:  71%|███████▏  | 208/291 [00:10<00:06, 12.84it/s]Loading weights:  73%|███████▎  | 212/291 [00:11<00:08,  9.03it/s]Loading weights:  76%|███████▌  | 220/291 [00:12<00:08,  8.82it/s]Loading weights:  78%|███████▊  | 227/291 [00:12<00:05, 12.35it/s]Loading weights:  79%|███████▉  | 231/291 [00:13<00:06,  9.37it/s]Loading weights:  81%|████████  | 235/291 [00:13<00:05, 11.11it/s]Loading weights:  82%|████████▏ | 238/291 [00:14<00:06,  8.41it/s]Loading weights:  84%|████████▍ | 244/291 [00:14<00:04, 11.16it/s]Loading weights:  85%|████████▍ | 247/291 [00:15<00:05,  8.17it/s]Loading weights:  87%|████████▋ | 253/291 [00:15<00:03, 11.53it/s]Loading weights:  88%|████████▊ | 256/291 [00:16<00:04,  8.10it/s]Loading weights:  90%|█████████ | 262/291 [00:16<00:02, 11.77it/s]Loading weights:  91%|█████████ | 265/291 [00:17<00:03,  7.17it/s]Loading weights:  94%|█████████▍| 274/291 [00:18<00:02,  8.37it/s]Loading weights:  97%|█████████▋| 281/291 [00:18<00:00, 11.95it/s]Loading weights:  98%|█████████▊| 285/291 [00:19<00:00,  8.69it/s]Loading weights: 100%|██████████| 291/291 [00:19<00:00, 14.98it/s]
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+mbppplus_test_text.jsonl mbpp-97 ok=True 166.4s
+mbppplus_test_text.jsonl mbpp-98 ok=True 164.5s
+mbppplus_test_text.jsonl mbpp-99 ok=False 167.5s
+mbppplus_test_text.jsonl mbpp-100 ok=True 202.7s
+mbppplus_test_text.jsonl mbpp-101 ok=True 172.6s
+mbppplus_test_text.jsonl mbpp-102 ok=False 206.8s
+mbppplus_test_text.jsonl mbpp-103 ok=False 184.0s
+mbppplus_test_text.jsonl mbpp-104 ok=True 110.7s
+mbppplus_test_text.jsonl mbpp-105 ok=False 189.6s
+mbppplus_test_text.jsonl mbpp-106 ok=True 180.3s
+mbppplus_test_text.jsonl mbpp-108 ok=True 200.0s
+mbppplus_test_text.jsonl mbpp-109 ok=False 148.9s
+mbppplus_test_text.jsonl mbpp-111 ok=False 160.4s
+mbppplus_test_text.jsonl mbpp-113 ok=False 184.1s
+mbppplus_test_text.jsonl mbpp-116 ok=True 148.7s
+mbppplus_test_text.jsonl mbpp-118 ok=False 149.5s
+mbppplus_test_text.jsonl mbpp-119 ok=False 247.9s
+mbppplus_test_text.jsonl mbpp-120 ok=False 288.9s
+mbppplus_test_text.jsonl mbpp-123 ok=False 216.3s
+mbppplus_test_text.jsonl mbpp-124 ok=False 179.9s
+mbppplus_test_text.jsonl mbpp-125 ok=False 187.9s
+mbppplus_test_text.jsonl mbpp-126 ok=False 194.1s
+mbppplus_test_text.jsonl mbpp-127 ok=True 231.3s
+mbppplus_test_text.jsonl mbpp-128 ok=False 233.4s
+mbppplus_test_text.jsonl mbpp-129 ok=False 225.2s
+mbppplus_test_text.jsonl mbpp-130 ok=False 191.0s
+mbppplus_test_text.jsonl mbpp-131 ok=True 189.2s
+mbppplus_test_text.jsonl mbpp-132 ok=False 194.8s
+mbppplus_test_text.jsonl mbpp-133 ok=True 166.4s
+mbppplus_test_text.jsonl mbpp-135 ok=False 137.7s
+mbppplus_test_text.jsonl mbpp-137 ok=False 175.2s
+mbppplus_test_text.jsonl mbpp-138 ok=False 211.6s
+mbppplus_test_text.jsonl mbpp-139 ok=True 215.2s
+mbppplus_test_text.jsonl mbpp-140 ok=True 171.4s
+mbppplus_test_text.jsonl mbpp-141 ok=False 131.2s
+mbppplus_test_text.jsonl mbpp-142 ok=True 202.1s
+mbppplus_test_text.jsonl mbpp-145 ok=False 193.6s
+mbppplus_test_text.jsonl mbpp-160 ok=False 259.6s
+mbppplus_test_text.jsonl mbpp-161 ok=False 197.9s
+mbppplus_test_text.jsonl mbpp-162 ok=False 179.1s
+mbppplus_test_text.jsonl mbpp-165 ok=True 185.4s
+mbppplus_test_text.jsonl mbpp-166 ok=True 197.3s
+mbppplus_test_text.jsonl mbpp-167 ok=True 213.9s
+mbppplus_test_text.jsonl mbpp-168 ok=True 192.9s
+mbppplus_test_text.jsonl mbpp-170 ok=False 186.1s
+mbppplus_test_text.jsonl mbpp-171 ok=False 144.7s
+mbppplus_test_text.jsonl mbpp-172 ok=True 191.2s
+mbppplus_test_text.jsonl mbpp-222 ok=True 199.5s
+mbppplus_test_text.jsonl mbpp-223 ok=False 238.1s
+mbppplus_test_text.jsonl mbpp-224 ok=True 162.1s
+mbppplus_test_text.jsonl mbpp-226 ok=False 199.9s
+mbppplus_test_text.jsonl mbpp-227 ok=True 185.4s
+mbppplus_test_text.jsonl mbpp-230 ok=True 175.0s
+mbppplus_test_text.jsonl mbpp-232 ok=False 190.1s
+mbppplus_test_text.jsonl mbpp-233 ok=True 154.8s
+mbppplus_test_text.jsonl mbpp-234 ok=True 173.7s
+mbppplus_test_text.jsonl mbpp-235 ok=False 203.0s
+mbppplus_test_text.jsonl mbpp-237 ok=False 218.9s
+mbppplus_test_text.jsonl mbpp-238 ok=True 146.4s
+mbppplus_test_text.jsonl mbpp-239 ok=False 189.9s

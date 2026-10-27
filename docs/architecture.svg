@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1560" height="1240" viewBox="0 0 1560 1240" style="background:#fff;font-family:Helvetica">
+<rect width="1560" height="1240" fill="#ffffff"/>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10" fill="none" stroke="#1e1e1e"/></marker></defs>
+<text x="60" text-anchor="start" y="64.0" font-size="36" fill="#1e1e1e">Telepathy: AI agents that share memory instead of writing notes</text>
+<text x="60" text-anchor="start" y="98.0" font-size="18" fill="#495057">A plain-language picture of what Telepathy changes, and what we measured. Read it from top to bottom.</text>
+<rect x="60" y="130" width="1440" height="225" rx="12" fill="#ffe8cc" stroke="#e8590c" stroke-width="2" />
+<text x="780.0" text-anchor="middle" y="163.0" font-size="19" fill="#1e1e1e">1   TODAY: a usual multi-agent system</text>
+<text x="780.0" text-anchor="middle" y="189.0" font-size="17" fill="#1e1e1e">Several AI agents work on one question in turn, each with its own job. They talk to each other by writing notes.</text>
+<rect x="80" y="215" width="150" height="80" rx="12" fill="#d0ebff" stroke="#1971c2" stroke-width="2" />
+<text x="155.0" text-anchor="middle" y="261.75" font-size="18" fill="#1e1e1e">Question</text>
+<line x1="232" y1="255" x2="288" y2="255" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<rect x="290" y="215" width="190" height="80" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="385.0" text-anchor="middle" y="250.0" font-size="18" fill="#1e1e1e">Planner Agent</text>
+<text x="385.0" text-anchor="middle" y="274.5" font-size="14" fill="#495057">makes a plan</text>
+<line x1="482" y1="255" x2="538" y2="255" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<text x="510.0" text-anchor="middle" y="238.0" font-size="13" fill="#e8590c">notes</text>
+<rect x="540" y="215" width="190" height="80" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="635.0" text-anchor="middle" y="250.0" font-size="18" fill="#1e1e1e">Critic Agent</text>
+<text x="635.0" text-anchor="middle" y="274.5" font-size="14" fill="#495057">checks the plan</text>
+<line x1="732" y1="255" x2="788" y2="255" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<text x="760.0" text-anchor="middle" y="238.0" font-size="13" fill="#e8590c">notes</text>
+<rect x="790" y="215" width="190" height="80" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="885.0" text-anchor="middle" y="250.0" font-size="18" fill="#1e1e1e">Refiner Agent</text>
+<text x="885.0" text-anchor="middle" y="274.5" font-size="14" fill="#495057">improves it</text>
+<line x1="982" y1="255" x2="1038" y2="255" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<text x="1010.0" text-anchor="middle" y="238.0" font-size="13" fill="#e8590c">notes</text>
+<rect x="1040" y="215" width="190" height="80" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="1135.0" text-anchor="middle" y="250.0" font-size="18" fill="#1e1e1e">Solver Agent</text>
+<text x="1135.0" text-anchor="middle" y="274.5" font-size="14" fill="#495057">writes the answer</text>
+<line x1="1232" y1="255" x2="1288" y2="255" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<rect x="1290" y="215" width="170" height="80" rx="12" fill="#d3f9d8" stroke="#2f9e44" stroke-width="2" />
+<text x="1375.0" text-anchor="middle" y="261.75" font-size="18" fill="#1e1e1e">Answer</text>
+<text x="780.0" text-anchor="middle" y="335.0" font-size="17" fill="#c92a2a">The problem: every agent must reread all the notes written before it, so each agent you add makes it slower and more expensive.</text>
+<rect x="60" y="385" width="1440" height="225" rx="12" fill="#e5dbff" stroke="#6741d9" stroke-width="2" />
+<text x="780.0" text-anchor="middle" y="418.0" font-size="19" fill="#1e1e1e">2   WITH TELEPATHY: the same agents share working memory</text>
+<text x="780.0" text-anchor="middle" y="444.0" font-size="17" fill="#1e1e1e">An AI model builds a working memory (the KV cache) as it thinks. Telepathy hands it straight to the next agent, like passing on thoughts instead of a letter.</text>
+<rect x="80" y="470" width="150" height="80" rx="12" fill="#d0ebff" stroke="#1971c2" stroke-width="2" />
+<text x="155.0" text-anchor="middle" y="516.75" font-size="18" fill="#1e1e1e">Question</text>
+<line x1="232" y1="510" x2="288" y2="510" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<rect x="290" y="470" width="190" height="80" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="385.0" text-anchor="middle" y="505.0" font-size="18" fill="#1e1e1e">Planner Agent</text>
+<text x="385.0" text-anchor="middle" y="529.5" font-size="14" fill="#495057">makes a plan</text>
+<line x1="482" y1="510" x2="538" y2="510" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<text x="510.0" text-anchor="middle" y="493.0" font-size="13" fill="#6741d9">memory</text>
+<rect x="540" y="470" width="190" height="80" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="635.0" text-anchor="middle" y="505.0" font-size="18" fill="#1e1e1e">Critic Agent</text>
+<text x="635.0" text-anchor="middle" y="529.5" font-size="14" fill="#495057">checks the plan</text>
+<line x1="732" y1="510" x2="788" y2="510" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<text x="760.0" text-anchor="middle" y="493.0" font-size="13" fill="#6741d9">memory</text>
+<rect x="790" y="470" width="190" height="80" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="885.0" text-anchor="middle" y="505.0" font-size="18" fill="#1e1e1e">Refiner Agent</text>
+<text x="885.0" text-anchor="middle" y="529.5" font-size="14" fill="#495057">improves it</text>
+<line x1="982" y1="510" x2="1038" y2="510" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<text x="1010.0" text-anchor="middle" y="493.0" font-size="13" fill="#6741d9">memory</text>
+<rect x="1040" y="470" width="190" height="80" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="1135.0" text-anchor="middle" y="505.0" font-size="18" fill="#1e1e1e">Solver Agent</text>
+<text x="1135.0" text-anchor="middle" y="529.5" font-size="14" fill="#495057">writes the answer</text>
+<line x1="1232" y1="510" x2="1288" y2="510" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<rect x="1290" y="470" width="170" height="80" rx="12" fill="#d3f9d8" stroke="#2f9e44" stroke-width="2" />
+<text x="1375.0" text-anchor="middle" y="516.75" font-size="18" fill="#1e1e1e">Answer</text>
+<text x="780.0" text-anchor="middle" y="590.0" font-size="17" fill="#5f3dc4">Nobody writes notes in between: only the last agent writes, and what it writes is the answer. Same model, same agents, same jobs, far less text.</text>
+<rect x="60" y="640" width="1440" height="285.5" rx="12" fill="#e3fafc" stroke="#0c8599" stroke-width="2" />
+<text x="780.0" text-anchor="middle" y="673.0" font-size="19" fill="#1e1e1e">3   HOW THE MEMORY IS PASSED (inside one GPU)</text>
+<rect x="80" y="691.75" width="256" height="178.5" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="208.0" text-anchor="middle" y="721.75" font-size="16" fill="#1e1e1e">Step 1  One model</text>
+<text x="208.0" text-anchor="middle" y="745.75" font-size="14" fill="#1e1e1e">All four agents are the same</text>
+<text x="208.0" text-anchor="middle" y="763.25" font-size="14" fill="#1e1e1e">NVIDIA Nemotron Nano 4B</text>
+<text x="208.0" text-anchor="middle" y="780.75" font-size="14" fill="#1e1e1e">model, loaded once on one</text>
+<text x="208.0" text-anchor="middle" y="798.25" font-size="14" fill="#1e1e1e">GPU. Each agent is just a</text>
+<text x="208.0" text-anchor="middle" y="815.75" font-size="14" fill="#1e1e1e">different job prompt, such as</text>
+<text x="208.0" text-anchor="middle" y="833.25" font-size="14" fill="#1e1e1e">&quot;You are the Critic&quot;.</text>
+<line x1="339" y1="781.0" x2="363" y2="781.0" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<rect x="366" y="691.75" width="256" height="178.5" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="494.0" text-anchor="middle" y="721.75" font-size="16" fill="#1e1e1e">Step 2  Read</text>
+<text x="494.0" text-anchor="middle" y="745.75" font-size="14" fill="#1e1e1e">The agent reads its job and</text>
+<text x="494.0" text-anchor="middle" y="763.25" font-size="14" fill="#1e1e1e">the question. As it reads,</text>
+<text x="494.0" text-anchor="middle" y="780.75" font-size="14" fill="#1e1e1e">the model stores every word</text>
+<text x="494.0" text-anchor="middle" y="798.25" font-size="14" fill="#1e1e1e">as keys and values at each of</text>
+<text x="494.0" text-anchor="middle" y="815.75" font-size="14" fill="#1e1e1e">its layers. That store is the</text>
+<text x="494.0" text-anchor="middle" y="833.25" font-size="14" fill="#1e1e1e">KV cache.</text>
+<line x1="625" y1="781.0" x2="649" y2="781.0" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<rect x="652" y="691.75" width="256" height="178.5" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="780.0" text-anchor="middle" y="721.75" font-size="16" fill="#1e1e1e">Step 3  Think silently</text>
+<text x="780.0" text-anchor="middle" y="745.75" font-size="14" fill="#1e1e1e">Instead of saying its thought</text>
+<text x="780.0" text-anchor="middle" y="763.25" font-size="14" fill="#1e1e1e">as a word, the model keeps</text>
+<text x="780.0" text-anchor="middle" y="780.75" font-size="14" fill="#1e1e1e">the thought and thinks on top</text>
+<text x="780.0" text-anchor="middle" y="798.25" font-size="14" fill="#1e1e1e">of it, quietly, a few times</text>
+<text x="780.0" text-anchor="middle" y="815.75" font-size="14" fill="#1e1e1e">over. Each silent thought</text>
+<text x="780.0" text-anchor="middle" y="833.25" font-size="14" fill="#1e1e1e">adds to the KV cache; no</text>
+<text x="780.0" text-anchor="middle" y="850.75" font-size="14" fill="#1e1e1e">words come out.</text>
+<line x1="911" y1="781.0" x2="935" y2="781.0" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<rect x="938" y="691.75" width="256" height="178.5" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="1066.0" text-anchor="middle" y="721.75" font-size="16" fill="#1e1e1e">Step 4  Hand over</text>
+<text x="1066.0" text-anchor="middle" y="745.75" font-size="14" fill="#1e1e1e">The next agent&#x27;s job prompt</text>
+<text x="1066.0" text-anchor="middle" y="763.25" font-size="14" fill="#1e1e1e">is added on top of the same</text>
+<text x="1066.0" text-anchor="middle" y="780.75" font-size="14" fill="#1e1e1e">KV cache. It can attend to</text>
+<text x="1066.0" text-anchor="middle" y="798.25" font-size="14" fill="#1e1e1e">everything the earlier agents</text>
+<text x="1066.0" text-anchor="middle" y="815.75" font-size="14" fill="#1e1e1e">read and thought, without</text>
+<text x="1066.0" text-anchor="middle" y="833.25" font-size="14" fill="#1e1e1e">rereading any text.</text>
+<line x1="1197" y1="781.0" x2="1221" y2="781.0" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+<rect x="1224" y="691.75" width="256" height="178.5" rx="12" fill="#ffffff" stroke="#495057" stroke-width="2" />
+<text x="1352.0" text-anchor="middle" y="721.75" font-size="16" fill="#1e1e1e">Step 5  Answer</text>
+<text x="1352.0" text-anchor="middle" y="745.75" font-size="14" fill="#1e1e1e">The Solver Agent reads its</text>
+<text x="1352.0" text-anchor="middle" y="763.25" font-size="14" fill="#1e1e1e">job on top of the full cache</text>
+<text x="1352.0" text-anchor="middle" y="780.75" font-size="14" fill="#1e1e1e">and is the only one that</text>
+<text x="1352.0" text-anchor="middle" y="798.25" font-size="14" fill="#1e1e1e">writes: word by word, always</text>
+<text x="1352.0" text-anchor="middle" y="815.75" font-size="14" fill="#1e1e1e">picking the most likely word,</text>
+<text x="1352.0" text-anchor="middle" y="833.25" font-size="14" fill="#1e1e1e">so a run can be repeated</text>
+<text x="1352.0" text-anchor="middle" y="850.75" font-size="14" fill="#1e1e1e">exactly.</text>
+<text x="780.0" text-anchor="middle" y="899.25" font-size="15" fill="#0b7285">Each memory is tagged with the run that made it and can never be used by another run. An agent that reads web pages hands off in plain text instead (see Keeping it safe).</text>
+<rect x="60" y="955.5" width="560" height="213.75" rx="12" fill="#d3f9d8" stroke="#2f9e44" stroke-width="2" />
+<text x="340.0" text-anchor="middle" y="988.5" font-size="19" fill="#1e1e1e">4   WHAT WE MEASURED</text>
+<text x="340.0" text-anchor="middle" y="1014.25" font-size="15" fill="#1e1e1e">We asked the same questions three ways: one agent alone, a usual</text>
+<text x="340.0" text-anchor="middle" y="1033.0" font-size="15" fill="#1e1e1e">multi-agent system, and Telepathy, on the same model (NVIDIA</text>
+<text x="340.0" text-anchor="middle" y="1051.75" font-size="15" fill="#1e1e1e">Nemotron Nano 4B) and the same GPU (NVIDIA Tesla T4).</text>
+<text x="340.0" text-anchor="middle" y="1070.5" font-size="15" fill="#1e1e1e"></text>
+<text x="340.0" text-anchor="middle" y="1089.25" font-size="15" fill="#1e1e1e">Across maths, coding, a medical exam and web research, Telepathy</text>
+<text x="340.0" text-anchor="middle" y="1108.0" font-size="15" fill="#1e1e1e">was 2.9× to 40× faster than the usual multi-agent system, wrote</text>
+<text x="340.0" text-anchor="middle" y="1126.75" font-size="15" fill="#1e1e1e">60% to 98% fewer tokens, and was just as accurate or more.</text>
+<rect x="650" y="955.5" width="410" height="213.75" rx="12" fill="#f1f3f5" stroke="#495057" stroke-width="2" />
+<text x="855.0" text-anchor="middle" y="988.5" font-size="19" fill="#1e1e1e">Why it runs on a GPU</text>
+<text x="855.0" text-anchor="middle" y="1014.25" font-size="15" fill="#1e1e1e">To pass its memory on, Telepathy has to reach</text>
+<text x="855.0" text-anchor="middle" y="1033.0" font-size="15" fill="#1e1e1e">inside the AI model. Online AI services only</text>
+<text x="855.0" text-anchor="middle" y="1051.75" font-size="15" fill="#1e1e1e">take text in and give text out, so Telepathy</text>
+<text x="855.0" text-anchor="middle" y="1070.5" font-size="15" fill="#1e1e1e">runs on a GPU we control.</text>
+<text x="855.0" text-anchor="middle" y="1089.25" font-size="15" fill="#1e1e1e"></text>
+<text x="855.0" text-anchor="middle" y="1108.0" font-size="15" fill="#1e1e1e">We also measured the usual flow at 2 to 8</text>
+<text x="855.0" text-anchor="middle" y="1126.75" font-size="15" fill="#1e1e1e">agents on Nebius Token Factory, with NVIDIA</text>
+<text x="855.0" text-anchor="middle" y="1145.5" font-size="15" fill="#1e1e1e">Nemotron 3 Super.</text>
+<rect x="1090" y="955.5" width="410" height="213.75" rx="12" fill="#fff3bf" stroke="#f08c00" stroke-width="2" />
+<text x="1295.0" text-anchor="middle" y="988.5" font-size="19" fill="#1e1e1e">Keeping it safe</text>
+<text x="1295.0" text-anchor="middle" y="1014.25" font-size="15" fill="#1e1e1e">Web pages can hide instructions aimed at the</text>
+<text x="1295.0" text-anchor="middle" y="1033.0" font-size="15" fill="#1e1e1e">AI, so our code marks them untrusted. Only one</text>
+<text x="1295.0" text-anchor="middle" y="1051.75" font-size="15" fill="#1e1e1e">agent may read them, and it passes on what it</text>
+<text x="1295.0" text-anchor="middle" y="1070.5" font-size="15" fill="#1e1e1e">found as plain text that is checked first.</text>
+<text x="1295.0" text-anchor="middle" y="1089.25" font-size="15" fill="#1e1e1e"></text>
+<text x="1295.0" text-anchor="middle" y="1108.0" font-size="15" fill="#1e1e1e">Nothing from the web travels hidden inside the</text>
+<text x="1295.0" text-anchor="middle" y="1126.75" font-size="15" fill="#1e1e1e">shared memory.</text>
+<text x="780.0" text-anchor="middle" y="1205.25" font-size="14" fill="#868e96">Telepathy follows the published LatentMAS method (Apache-2.0), implemented for NVIDIA Nemotron.</text>
+</svg>

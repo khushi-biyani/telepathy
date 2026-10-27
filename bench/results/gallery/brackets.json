@@ -1,0 +1,162 @@
+{
+  "id": "brackets",
+  "title": "Balanced brackets",
+  "kind": "code",
+  "blurb": "Write a small Python function. We run it against test cases to see if it works.",
+  "question": "Write a Python function is_balanced(text) that returns True if every bracket in the text is closed in the right order, and False otherwise. The brackets are (), [] and {}. All other characters are ignored. Example: is_balanced('{[()]}') returns True and is_balanced('(]') returns False. An empty string returns True.",
+  "func": "is_balanced",
+  "tests": [
+    {
+      "args": [
+        "{[()]}"
+      ],
+      "expect": true
+    },
+    {
+      "args": [
+        "(]"
+      ],
+      "expect": false
+    },
+    {
+      "args": [
+        ""
+      ],
+      "expect": true
+    },
+    {
+      "args": [
+        "(("
+      ],
+      "expect": false
+    },
+    {
+      "args": [
+        "a(b)c"
+      ],
+      "expect": true
+    },
+    {
+      "args": [
+        "([)]"
+      ],
+      "expect": false
+    },
+    {
+      "args": [
+        "}{"
+      ],
+      "expect": false
+    },
+    {
+      "args": [
+        "{[}"
+      ],
+      "expect": false
+    },
+    {
+      "args": [
+        "x"
+      ],
+      "expect": true
+    }
+  ],
+  "model": "nvidia/Llama-3.1-Nemotron-Nano-4B-v1.1",
+  "dtype": "float16",
+  "latent_steps": 10,
+  "max_new_tokens": 1024,
+  "recorded_at": "2026-10-24 08:35:59",
+  "repeats": 1,
+  "gpu": "Tesla T4",
+  "versions": {
+    "torch": "2.11.0+cu128",
+    "transformers": "5.19.0",
+    "python": "3.13.15"
+  },
+  "runs": [
+    {
+      "mode": "text",
+      "seconds": 185.91,
+      "tokens_written": 2684,
+      "latent_steps": 0,
+      "answer": "```python\ndef is_balanced(text):\n    bracket_pairs = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for char in text:\n        if char in bracket_pairs.values():\n            stack.append(char)\n        elif char in bracket_pairs:\n            if not stack or stack[-1] != bracket_pairs[char]:\n                return False\n            stack.pop()\n    return not stack\n```",
+      "agents": [
+        {
+          "role": "planner",
+          "seconds": 27.5,
+          "words_written": 348,
+          "text": "**Planner's Approach**\n\n### Step 1: **Define the Bracket Matching Logic**\n\n*   **Bracket Pairs**: Establish the bracket pairs to match: `()`, `[]`, `{}`.\n*   **Stack Data Structure**: Utilize a stack to keep track of opening brackets.\n*   **Iterate Through Text**: Loop through each character in the input text.\n\n### Step 2: **Handle Bracket Characters**\n\n*   **Opening Bracket**: When encountering an opening bracket:\n    *   **Push onto Stack**: Add the bracket to the top of the stack.\n*   **Closing Bracket**: When encountering a closing bracket:\n    *   **Check Stack**: If the stack is empty or the top of the stack does not match the corresponding opening bracket, return `False`.\n    *   **Pop from Stack**: If the top of the stack matches, pop the bracket from the stack.\n\n### Step 3: **Ignore Non-Bracket Characters**\n\n*   **Conditional Statement**: If the character is not a bracket (opening or closing), simply **ignore it** by continuing to the next character.\n\n### Step 4: **Final Check**\n\n*   **Stack Empty Check**: After iterating through the text, if the stack is **empty**, it means all brackets were properly closed in the right order, so return `True`. Otherwise, return `False`.\n\n---\n\n**Edge Cases**\n\n### Edge Case 1: **Empty String**\n\n\n*   **Expected Outcome**: The function should return `True` as there are no unmatched brackets.\n\n### Edge Case 2: **Only Non-Bracket Characters**\n\n*   **Expected Outcome**: The function should return `True` as there are no brackets to match.\n\n### Edge Case 3: **Mismatched Bracket Order**\n\n*   **Example**: `'(]}' \n    *   **Expected Outcome**: The function should return `False` as the closing brackets do not match the opening ones in the order they appear.\n\n### Edge Case 4: **Unmatched Opening Brackets**\n\n*   **Example**: `'({[<>'}`\n    *   **Expected Outcome**: The function should return `False` as there are unmatched opening brackets.\n\n### Edge Case 5: **Only Closing Brackets**\n\n*   **Example**: `')()}['`\n    *   **Expected Outcome**: The function should return `False` as there are no matching opening brackets for the closing ones.\n\n### Edge Case 6: **Mixed Data Types and Non-Bracket Characters**\n\n*   **Example**: `\"a(b[c{d}e]f)g\"`\n    *   **Expected Outcome**: The function should correctly ignore non-bracket characters and return `True` as the brackets are balanced.",
+          "silent_steps": 0
+        },
+        {
+          "role": "critic",
+          "seconds": 63.96,
+          "words_written": 688,
+          "text": "**Critic's Analysis**\n\nBased on the team's planner's approach, the following potential issues and edge cases are identified:\n\n1. **Implementation Gaps**:\n    * **Missing Code**: The actual code implementing the planner's steps is not provided. This lack of implementation makes it difficult to assess the current functionality and identify specific bugs or improvements.\n    * **Dictionary/Map Usage**: The planner does not specify how to implement the bracket matching logic (e.g., using a dictionary to map closing brackets to their corresponding opening brackets). This is crucial for efficiently checking if a closing bracket matches the last opening bracket on the stack.\n\n2 **Edge Case Handling**:\n    * **General Approach**: The planner correctly identifies expected outcomes for various edge cases, indicating a good understanding of the problem's requirements.\n    * **Specific Implementation Guidance**: **None provided**. To ensure comprehensive handling of edge cases, consider incorporating the following into the code:\n\n### **Potential Bug Fix Suggestions and New Edge Case Considerations**\n\n#### **Code Snippet for Improvement (Hypothetical, based on best practices)**:\n```python\ndef is_balanced(text: str) -> bool:\n    # Define bracket pairs with closing as keys and opening as values\n    bracket_pairs = {')': '(', ']': '[', '}': '{'}\n    \n    # Stack to keep track of opening brackets\n    stack = []\n    \n    for char in text:\n        # Ignore non-bracket characters\n        if char not in bracket_pairs.values():  # Check if it's an opening bracket\n            continue\n        elif char in bracket_pairs:  # It's a closing bracket\n            if not stack or stack[-1] != bracket_pairs[char]:\n                return False  # Mismatch or stack is empty\n            stack.pop()  # Pop the matching opening bracket\n        # No action needed for non-bracket characters other than ignore\n    \n    # Final check: stack should be empty for balanced brackets\n    return not stack\n\n# Example use cases\nprint(is_balanced('{[()]}'))  # True\nprint(is_balanced('(]'))       # False\nprint(is_balanced(\"\"))         # True\n```\n\n#### **Enhanced Edge Case Handling**\n\n1. **Empty String**:\n    * **Current Handling (Assumed Correct)**: Return `True`.\n    * **Code Verification**: Ensure the function correctly returns `True` when the input is an empty string.\n\n2. **Only Non-Bracket Characters**:\n    * **Current Handling (Assumed Correct)**: Return `True`.\n    * **Code Verification**: Verify that non-bracket characters do not affect the outcome, i.e., the function still returns `True`.\n\n3. **Mixed Data Types and Non-Bracket Characters**:\n    * **Current Handling (Assumed Correct)**: Return `True` if brackets are balanced, ignoring other characters.\n    * **Code Verification**: Confirm that the function ignores non-bracket characters and focuses solely on bracket matching.\n\n4. **Unmatched Opening Brackets**:\n    * **Example**: `'({[` \n    * **Expected Outcome**: `False`\n    * **Code Verification**: Ensure that if there are unmatched opening brackets at the end, the function returns `False`.\n\n5. **Unmatched Closing Brackets**:\n    * **Example**: `')` \n    * **Expected Outcome**: `False`\n    * **Code Verification**: Verify that encountering a closing bracket when the stack is empty or the top does not match results in `False`.\n\n6. **Nested Bracket Mismatch**:\n    * **Example**: `'( [ { } ])'` \n    * **Expected Outcome**: `False` (if the closing `}` is intended to match '{' but '{' was not opened after '(' due to a typo in the example, adjust the example for clarity)\n    * **Clarification Needed**: Ensure the example is correctly stated or clarify the expected behavior for nested mismatched brackets in the context of the provided code.\n\n**Recommendations for Fixing Issues**:\n\n- **Provide Complete Code**: Share the actual code implemented based on the planner's steps to facilitate a detailed review.\n- **Unit Testing**: Write unit tests covering all identified edge cases to ensure the function behaves as expected.\n- **Refine Variable Names**: If the provided code uses unclear variable names, consider renaming them for better readability and understanding.\n- **Review Loop Logic**: Carefully review the loop to ensure it correctly handles all bracket types and ignores other characters.\n- **Stack Handling**: Double-check the stack operations, especially when dealing with multiple types of brackets, to prevent unintended matches.\n- **Nested Bracket Handling**: Ensure the code correctly handles nested brackets by matching the most recent opening bracket, regardless of its type. Adjust examples if necessary to reflect proper nesting scenarios. \n\n**Additional Tip**:\nWhen dealing with multiple bracket types, ensure the stack's last opening bracket is always the one that determines the expected closing bracket, preventing accidental matches based on position rather than type. This is crucial for correctly validating nested structures",
+          "silent_steps": 0
+        },
+        {
+          "role": "refiner",
+          "seconds": 82.82,
+          "words_written": 599,
+          "text": "**Corrected, Improved Approach for `is_balanced(text)` Function**\n\n**Refined Code with Explanation**\n\n### **Updated Code**\n\n```python\ndef is_balanced(text: str) -> bool:\n    \"\"\"\n    Checks if all brackets in the input text are balanced and properly nested.\n    \n    Args:\n    text (str): The input string to check for balanced brackets.\n    \n    Returns:\n    bool: True if all brackets are balanced and in the correct order, False otherwise.\n    \"\"\"\n    \n    # Define the bracket pairs with closing brackets as keys for quick lookup\n    bracket_pairs = {')': '(', ']': '[', '}': '{'}\n    \n    # Initialize a stack to track opening brackets\n    stack = []\n    \n    # Iterate over each character in the input text\n    for char in text:\n        # If the character is an opening bracket, push it onto the stack\n        if char in bracket_pairs.values():\n            stack.append(char)\n        # If the character is a closing bracket\n        elif char in bracket_pairs:\n            # Check if the stack is empty or the top of the stack doesn't match the expected opening bracket\n            if not stack or stack[-1] != bracket_pairs[char]:\n                return False\n            # If matched, pop the top of the stack\n            stack.pop()\n        # **Ignore all other characters** (non-bracket characters)\n        else:\n            continue\n    \n    # After processing all characters, the stack should be empty for a balanced string\n    return not stack\n\n# Example use cases\nprint(is_balanced('{[()]}'))  # True\nprint(is_balanced('(]'))       # False\nprint(is_balanced(\"\"))         # True\n```\n\n### **Key Improvements and Clarifications**\n\n1. **Clear Variable and Function Naming**:\n    - Function: `is_balanced` clearly conveys its purpose.\n    - Variable: `stack` is a standard name for a stack data structure in Python.\n\n2. **Detailed Commenting**:\n    - Added docstrings and comments to explain the function's purpose, arguments, return values, and key steps for better readability and understanding.\n\n3. **Efficient Bracket Pair Lookup**:\n    - Utilized a dictionary (`bracket_pairs`) with closing brackets as keys for O(1) average-time complexity lookups, making the matching process more efficient.\n\n4. **Robust Stack Handling**:\n    - Ensured the stack is empty after processing to confirm all brackets were matched correctly.\n    - Implemented checks to handle unmatched closing brackets and mismatched bracket orders.\n\n5. **Ignoring Non-Bracket Characters**:\n    - Explicitly handled non-bracket characters by continuing to the next iteration, ensuring they do not affect the bracket matching logic.\n\n### **Enhanced Edge Case Testing**\n\nTo thoroughly test the function, especially for the identified edge cases, consider the following unit tests:\n\n```python\nimport unittest\n\nclass TestIsBalanced(unittest.TestCase):\n\n    def test_empty_string(self):\n        self.assertTrue(is_balanced(''))\n\n    def test_only_non_bracket_chars(self):\n        self.assertTrue(is_balanced('abcd'))\n\n    def test_unmatched_opening_brackets(self):\n        self.assertFalse(is_balanced('({['))\n\n    def test_unmatched_closing_brackets(self):\n        self.assertFalse(is_balanced(')'))\n\n    def test_mismatched_bracket_order(self):\n        self.assertFalse(is_balanced('(]'))\n\n    def test_balanced_with_nesting(self):\n        self.assertTrue(is_balanced('{[()]}'))\n\n    def test_mixed_data_types_and_non_bracket_chars(self):\n        self.assertTrue(is_balanced(\"a(b[c{d}e]f)g\"))\n\nif __name__ == '__main__':\n    unittest.main()\n```\n\n**Implementation Guidance for Developers**\n\n- **Refine Based on Tests**: Use the provided tests to refine your implementation based on observed failures.\n- **Consider Type Hints**: Always include type hints for function parameters and return types for better code clarity and compatibility with linters and IDEs.\n- **Document Assumptions**: If making assumptions about the input (e.g., assuming only ASCII characters), document these assumptions clearly within the function or its docstring.\n- **Version Control**: Track changes to the code, especially when addressing specific edge cases or bugs, to maintain a clear history of improvements.\n\n**Additional Note**: The refactored code addresses potential implementation gaps by providing a clear, step-by-step approach and incorporating best practices for readability and efficiency. It also outlines a structured testing strategy to ensure comprehensive coverage of edge cases. \n\n**Refiner's Decision Summary**\n\n* **Implementation Gaps Addressed**: Provided refined code to fill in missing implementation details.\n* **Improvements in Clarity and Efficiency**: Enhanced the code for better readability and performance.\n* **Enhanced Edge Case Handling**: Outlined strategies for thorough testing of all identified edge cases.\n* **Best Practices Incorporated**: Applied type hints, detailed commenting, and comprehensive testing to align with modern development practices. \n\nBy following this approach,",
+          "silent_steps": 0
+        },
+        {
+          "role": "solver",
+          "seconds": 11.63,
+          "words_written": 41,
+          "text": "```python\ndef is_balanced(text):\n    bracket_pairs = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for char in text:\n        if char in bracket_pairs.values():\n            stack.append(char)\n        elif char in bracket_pairs:\n            if not stack or stack[-1] != bracket_pairs[char]:\n                return False\n            stack.pop()\n    return not stack\n```",
+          "silent_steps": 0
+        }
+      ],
+      "safety_events": [],
+      "pred": "9/9 tests pass",
+      "correct": true,
+      "tests_passed": 9,
+      "tests_total": 9
+    },
+    {
+      "mode": "latent",
+      "seconds": 6.3,
+      "tokens_written": 86,
+      "latent_steps": 30,
+      "answer": "```python\ndef is_balanced(text):\n    stack = []\n    mapping = {')': '(', ']': '[', '}': '{'}\n    \n    for char in text:\n        if char in mapping:\n            top_element = stack.pop() if stack else '#'\n            if mapping[char] != top_element:\n                return False\n        elif char in mapping.values():\n            stack.append(char)\n    \n    return not stack\n```",
+      "agents": [
+        {
+          "role": "planner",
+          "seconds": 0.53,
+          "words_written": 0,
+          "text": "",
+          "silent_steps": 10
+        },
+        {
+          "role": "critic",
+          "seconds": 0.56,
+          "words_written": 0,
+          "text": "",
+          "silent_steps": 10
+        },
+        {
+          "role": "refiner",
+          "seconds": 0.58,
+          "words_written": 0,
+          "text": "",
+          "silent_steps": 10
+        },
+        {
+          "role": "solver",
+          "seconds": 4.62,
+          "words_written": 44,
+          "text": "```python\ndef is_balanced(text):\n    stack = []\n    mapping = {')': '(', ']': '[', '}': '{'}\n    \n    for char in text:\n        if char in mapping:\n            top_element = stack.pop() if stack else '#'\n            if mapping[char] != top_element:\n                return False\n        elif char in mapping.values():\n            stack.append(char)\n    \n    return not stack\n```",
+          "silent_steps": 0
+        }
+      ],
+      "safety_events": [],
+      "pred": "9/9 tests pass",
+      "correct": true,
+      "tests_passed": 9,
+      "tests_total": 9
+    }
+  ]
+}

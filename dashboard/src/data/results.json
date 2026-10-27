@@ -1,0 +1,186 @@
+{
+ "meta": {
+  "model": "nvidia/Llama-3.1-Nemotron-Nano-4B-v1.1",
+  "gpu": "Kaggle NVIDIA Tesla T4",
+  "dtype": "float16",
+  "greedy": true,
+  "silent_steps": 10,
+  "notes": {
+   "maths": "up to 384 tokens per agent",
+   "coding": "up to 1,024 tokens per agent",
+   "medical": "up to 1,024 tokens per agent"
+  },
+  "published_source": "https://arxiv.org/abs/2511.20639"
+ },
+ "tasks": [
+  {
+   "key": "maths",
+   "label": "School maths",
+   "about": "150 school maths word problems",
+   "n": 150,
+   "methods": {
+    "single": {
+     "right": 119,
+     "acc": 79.3,
+     "sec": 13.6,
+     "tokens": 291
+    },
+    "text": {
+     "right": 104,
+     "acc": 69.3,
+     "sec": 70.2,
+     "tokens": 1267
+    },
+    "latent": {
+     "right": 109,
+     "acc": 72.7,
+     "sec": 16.4,
+     "tokens": 283
+    }
+   },
+   "pairs": {
+    "latent_vs_text": {
+     "only_a": 24,
+     "only_b": 19,
+     "p": 0.542
+    },
+    "latent_vs_single": {
+     "only_a": 8,
+     "only_b": 18,
+     "p": 0.076
+    },
+    "text_vs_single": {
+     "only_a": 11,
+     "only_b": 26,
+     "p": 0.02
+    }
+   },
+   "speedup_vs_team": 4.3,
+   "tokens_saved_vs_team": 78,
+   "yardstick": {
+    "published_4b": 88.2
+   }
+  },
+  {
+   "key": "coding",
+   "label": "Coding",
+   "about": "60 small Python tasks, checked by running tests",
+   "n": 60,
+   "methods": {
+    "single": {
+     "right": 26,
+     "acc": 43.3,
+     "sec": 3.8,
+     "tokens": 77
+    },
+    "text": {
+     "right": 26,
+     "acc": 43.3,
+     "sec": 188.4,
+     "tokens": 2723
+    },
+    "latent": {
+     "right": 33,
+     "acc": 55.0,
+     "sec": 4.7,
+     "tokens": 55
+    }
+   },
+   "pairs": {
+    "latent_vs_text": {
+     "only_a": 11,
+     "only_b": 4,
+     "p": 0.118
+    },
+    "latent_vs_single": {
+     "only_a": 7,
+     "only_b": 0,
+     "p": 0.016
+    },
+    "text_vs_single": {
+     "only_a": 6,
+     "only_b": 6,
+     "p": 1.0
+    }
+   },
+   "speedup_vs_team": 40.1,
+   "tokens_saved_vs_team": 98,
+   "yardstick": {
+    "published_4b": 73.5
+   }
+  },
+  {
+   "key": "medical",
+   "label": "Medical exam",
+   "about": "60 US medical licensing exam questions",
+   "n": 60,
+   "methods": {
+    "single": {
+     "right": 20,
+     "acc": 33.3,
+     "sec": 17.3,
+     "tokens": 316
+    },
+    "text": {
+     "right": 20,
+     "acc": 33.3,
+     "sec": 96.5,
+     "tokens": 1427
+    },
+    "latent": {
+     "right": 25,
+     "acc": 41.7,
+     "sec": 28.1,
+     "tokens": 377
+    }
+   },
+   "pairs": {
+    "latent_vs_text": {
+     "only_a": 13,
+     "only_b": 8,
+     "p": 0.383
+    },
+    "latent_vs_single": {
+     "only_a": 15,
+     "only_b": 10,
+     "p": 0.424
+    },
+    "text_vs_single": {
+     "only_a": 6,
+     "only_b": 6,
+     "p": 1.0
+    }
+   },
+   "speedup_vs_team": 3.4,
+   "tokens_saved_vs_team": 74,
+   "yardstick": {
+    "published_4b": 66.3,
+    "random_guess": 25.0
+   }
+  },
+  {
+   "key": "research",
+   "label": "Web research",
+   "about": "3 questions answered from real web pages",
+   "n": 3,
+   "methods": {
+    "text": {
+     "right": 2,
+     "acc": 66.7,
+     "sec": 230.7,
+     "tokens": 3045
+    },
+    "latent": {
+     "right": 2,
+     "acc": 66.7,
+     "sec": 80.5,
+     "tokens": 1228
+    }
+   },
+   "pairs": {},
+   "speedup_vs_team": 2.9,
+   "tokens_saved_vs_team": 60,
+   "yardstick": {}
+  }
+ ]
+}

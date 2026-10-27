@@ -1,0 +1,88 @@
+{
+  "modes": {
+    "gate/gsm8k_all_text": {
+      "n": 50,
+      "accuracy": 0.7,
+      "sec_avg": 72.81651271236001,
+      "sec_p90": 89.09139530500033,
+      "tokens_written": 1296.66,
+      "latent_steps": 0
+    },
+    "gate/gsm8k_all_latent_s5": {
+      "n": 50,
+      "accuracy": 0.74,
+      "sec_avg": 15.925046265379988,
+      "sec_p90": 21.321352751999257,
+      "tokens_written": 287.32,
+      "latent_steps": 15
+    },
+    "gate/gsm8k_all_latent_s10": {
+      "n": 50,
+      "accuracy": 0.7,
+      "sec_avg": 16.67893761056002,
+      "sec_p90": 22.185149903999445,
+      "tokens_written": 287.76,
+      "latent_steps": 30
+    },
+    "gate/gsm8k_all_latent_s20": {
+      "n": 50,
+      "accuracy": 0.68,
+      "sec_avg": 18.41663981137999,
+      "sec_p90": 23.741327958999136,
+      "tokens_written": 292.16,
+      "latent_steps": 60
+    },
+    "test/gsm8k_test_text": {
+      "n": 150,
+      "accuracy": 0.6933,
+      "sec_avg": 70.207,
+      "sec_p90": 88.08,
+      "tokens_written": 1266.57,
+      "latent_steps": 0
+    },
+    "test/gsm8k_test_latent_s10": {
+      "n": 150,
+      "accuracy": 0.7267,
+      "sec_avg": 16.388,
+      "sec_p90": 22.062,
+      "tokens_written": 282.98,
+      "latent_steps": 30
+    }
+  },
+  "honesty": {},
+  "notes": "static copy of bench/results/test_summary.md (report split, n=150) and gate_summary.md (dev split, n=50); Kaggle T4, float16 | team_sizes: Nemotron 3 Super on Nebius Token Factory, 50 GSM8K questions per size, no cache.",
+  "team_sizes": {
+    "2": {
+      "questions": 50,
+      "accuracy": 0.92,
+      "sec_avg": 2.82,
+      "tokens_in": 416.32,
+      "tokens_out": 358.28,
+      "usd": 0.0006
+    },
+    "4": {
+      "questions": 50,
+      "accuracy": 0.92,
+      "sec_avg": 8.8461,
+      "tokens_in": 2660.58,
+      "tokens_out": 1319.04,
+      "usd": 0.0026
+    },
+    "6": {
+      "questions": 50,
+      "accuracy": 0.96,
+      "sec_avg": 13.1467,
+      "tokens_in": 6722.78,
+      "tokens_out": 2135.74,
+      "usd": 0.0053
+    },
+    "8": {
+      "questions": 50,
+      "accuracy": 0.96,
+      "sec_avg": 16.4439,
+      "tokens_in": 12018.98,
+      "tokens_out": 2487.3,
+      "usd": 0.0078
+    }
+  }
+}
