@@ -17,12 +17,11 @@ Multi-agent systems spend much of their time writing to each other. Telepathy le
 1. [The problem](#1-the-problem)
 2. [The idea](#2-the-idea)
 3. [Results](#3-results)
-4. [How it works](#4-how-it-works)
-5. [Project layout](#5-project-layout)
-6. [Run it yourself](#6-run-it-yourself)
-7. [Configuration](#7-configuration)
-8. [Troubleshooting](#8-troubleshooting)
-9. [Credits](#9-credits)
+4. [Where it is in the code](#4-where-it-is-in-the-code)
+5. [Run it yourself](#5-run-it-yourself)
+6. [Configuration](#6-configuration)
+7. [Troubleshooting](#7-troubleshooting)
+8. [Credits](#8-credits)
 
 ---
 
@@ -99,31 +98,26 @@ These are the raw numbers from everything we tested. For each question, the file
 | The 18 example questions behind the website | Usual flow 12 right, Telepathy 14 right, typically 6× faster | [`gallery/`](bench/results/gallery) |
 | Our first research demos used made-up web pages | The usual flow got all 3 right and Telepathy none, so we replaced them with real web research | [`retired_gallery/`](bench/results/retired_gallery) |
 
-## 4. How it works
+## 4. Where it is in the code
 
 ```
-          question (+ web pages for research)
-                         │
-                         ▼
-┌──────────────────────────────────────────────┐
-│ Safety rules (trust.py, policy.yaml)         │  outside content is UNTRUSTED;
-│                                              │  only one agent may read it,
-└──────────────────────────────────────────────┘  and it must hand off in text
-                         │
-          ┌──────────────┴──────────────┐
-          ▼                             ▼
-  Usual multi-agent flow          Telepathy engine
-  (baseline_tf.py on Nebius,      (engine.py + latent.py on a GPU)
-   or engine.py "text" mode)        silent steps, shared KV cache
-          │                             │
-          └──────────────┬──────────────┘
-                         ▼
-          Benchmarks and recordings (bench/)
-          graded by code, saved row by row
-                         │
-                         ▼
-          Website (dashboard/) replays recordings;
-          live lane (server/) calls Nebius Token Factory
+telepathy/
+├── telepathy/              the engine
+│   ├── engine.py             teams, modes and the run loop
+│   ├── latent.py             silent thinking steps
+│   ├── roles.py              agent roles, task wording, team sizes
+│   ├── trust.py  scan.py     the safety layer
+│   ├── cache_utils.py        cache binding and copying
+│   ├── llm.py                Nebius Token Factory client with budgets
+│   ├── baseline_tf.py        the usual flow on Token Factory
+│   └── tools/tavily.py       web search for research questions
+├── bench/                  benchmarks, recordings, website data builders
+│   └── results/              raw results (one JSON row per question)
+├── server/                 FastAPI server: replays, live Nebius lane, limits
+├── dashboard/              the website
+├── tests/                  112 tests (run on CPU with a tiny model)
+├── docs/                   architecture diagram, Devpost text, feedback
+└── policy.yaml             safety policy, read at start-up
 ```
 
 <details open>
@@ -150,61 +144,21 @@ Passing hidden memory between agents creates a new risk: a planted instruction i
 - **No secrets in prompts.** Prompts are checked for keys before they reach the model.
 </details>
 
-<details>
-<summary><b>Nebius Token Factory</b> · <code>telepathy/llm.py</code>, <code>telepathy/baseline_tf.py</code></summary>
-
-- **What it is:** Nebius Token Factory is an online service that runs AI models for you. We use it to run **NVIDIA Nemotron 3 Super**, a much bigger model than the one Telepathy uses.
-- **What we use it for:** the usual multi-agent flow, where agents write notes to each other. We used it to measure how the cost grows as you add agents (2 to 8), and it can also run that flow live for website visitors ([`baseline_tf.py`](telepathy/baseline_tf.py)).
-- **Spending limits:** before each request our code estimates the cost and refuses anything over a set limit per question or in total, so nothing can run up a bill ([`llm.py`](telepathy/llm.py)).
-- **Why Telepathy does not run here:** an online service only takes text in and gives text out. Telepathy has to pass the model's internal working memory from one agent to the next, which such a service does not expose. So Telepathy runs on a GPU we control instead.
-</details>
-
-<details>
-<summary><b>The website</b> · <code>dashboard/</code></summary>
-
-- **How it works:** a live animation of one real recorded run, both flows on one shared clock.
-- **Try it:** featured questions (maths, coding, research, science), each a real recording you can replay side by side.
-- **Results:** tokens per question for each way, with accuracy and time on hover, plus every question's time and tokens.
-- Runs from saved recordings, so it needs no GPU and no keys.
-</details>
-
-## 5. Project layout
-
-```
-telepathy/
-├── telepathy/              the engine
-│   ├── engine.py             teams, modes and the run loop
-│   ├── latent.py             silent thinking steps
-│   ├── roles.py              agent roles, task wording, team sizes
-│   ├── trust.py  scan.py     the safety layer
-│   ├── cache_utils.py        cache binding and copying
-│   ├── llm.py                Nebius Token Factory client with budgets
-│   ├── baseline_tf.py        the usual flow on Token Factory
-│   └── tools/tavily.py       web search for research questions
-├── bench/                  benchmarks, recordings, website data builders
-│   └── results/              raw results (one JSON row per question)
-├── server/                 FastAPI server: replays, live Nebius lane, limits
-├── dashboard/              the website
-├── tests/                  112 tests (run on CPU with a tiny model)
-├── docs/                   architecture diagram, Devpost text, feedback
-└── policy.yaml             safety policy, read at start-up
-```
-
-## 6. Run it yourself
+## 5. Run it yourself
 
 Pick the path you need. Each one is independent.
 
 | I want to… | Needs | Section |
 |---|---|---|
-| See the website | Node.js | [6.1](#61-the-website-no-gpu-no-keys) |
-| Run the tests | Python | [6.2](#62-python-and-the-tests) |
-| Use the live Nebius lane | Python, a Nebius key | [6.3](#63-the-api-server-and-the-live-nebius-lane) |
-| Reproduce the Telepathy results | a GPU (a free Kaggle T4 works) | [6.4](#64-reproduce-the-results-on-a-gpu) |
-| Reproduce the team-size results | Python, a Nebius key | [6.5](#65-the-usual-flow-on-nebius-token-factory) |
+| See the website | Node.js | [5.1](#51-the-website-no-gpu-no-keys) |
+| Run the tests | Python | [5.2](#52-python-and-the-tests) |
+| Use the live Nebius lane | Python, a Nebius key | [5.3](#53-the-api-server-and-the-live-nebius-lane) |
+| Reproduce the Telepathy results | a GPU (a free Kaggle T4 works) | [5.4](#54-reproduce-the-results-on-a-gpu) |
+| Reproduce the team-size results | Python, a Nebius key | [5.5](#55-the-usual-flow-on-nebius-token-factory) |
 
-**Prerequisites:** Python 3.11 or newer, Node.js 20 or newer. A GPU is only needed for 6.4.
+**Prerequisites:** Python 3.11 or newer, Node.js 20 or newer. A GPU is only needed for 5.4.
 
-### 6.1 The website (no GPU, no keys)
+### 5.1 The website (no GPU, no keys)
 
 ```bash
 cd dashboard
@@ -216,7 +170,7 @@ Open the address it prints (usually http://localhost:5173). Everything on the si
 
 To build a static copy for hosting: `npm run build`, then serve `dashboard/dist/`.
 
-### 6.2 Python and the tests
+### 5.2 Python and the tests
 
 ```bash
 python -m venv .venv
@@ -227,18 +181,18 @@ python -m pytest -q
 
 The tests run on a CPU with a tiny model (SmolLM2-135M, about 270 MB, downloaded once), so they need no GPU and no keys.
 
-### 6.3 The API server and the live Nebius lane
+### 5.3 The API server and the live Nebius lane
 
 ```bash
 cp .env.example .env               # then put your NEBIUS_API_KEY in .env (never commit it)
 TF_LIVE=1 uvicorn server.app:app --port 8000
 ```
 
-In another terminal, run the website (6.1). It forwards `/api` to port 8000. Each "Try it" question now shows **Also run the usual flow live on Nebius**. Without `TF_LIVE=1` the server only replays recordings and spends nothing.
+In another terminal, run the website (5.1). It forwards `/api` to port 8000. Each "Try it" question now shows **Also run the usual flow live on Nebius**. Without `TF_LIVE=1` the server only replays recordings and spends nothing.
 
-Live runs are capped by default at $0.03 per run, 6 per visitor per hour, 3 at once, and $3 in total. See [Configuration](#7-configuration).
+Live runs are capped by default at $0.03 per run, 6 per visitor per hour, 3 at once, and $3 in total. See [Configuration](#6-configuration).
 
-### 6.4 Reproduce the results on a GPU
+### 5.4 Reproduce the results on a GPU
 
 The Telepathy engine needs direct access to the model, so it runs on a GPU. A free **Kaggle** notebook with **GPU T4 x2** works.
 
@@ -284,7 +238,7 @@ python -m bench.build_site_results
 python -m bench.build_gallery_index
 ```
 
-### 6.5 The usual flow on Nebius Token Factory
+### 5.5 The usual flow on Nebius Token Factory
 
 ```bash
 python -m telepathy.baseline_tf --n 150 --estimate                 # cost estimate only, spends nothing
@@ -295,7 +249,7 @@ python -m bench.teamsize                                           # the team-si
 
 Nothing is spent without both `--run` and `--yes`, and every call is capped by `MAX_USD_PER_CHECK` and `TOTAL_BUDGET_USD`.
 
-## 7. Configuration
+## 6. Configuration
 
 <details open>
 <summary><b>Environment variables</b> (put them in <code>.env</code>)</summary>
@@ -322,7 +276,7 @@ Nothing is spent without both `--run` and `--yes`, and every call is capped by `
 Read once at start-up and never changed by model output. The two core rules (`tainted_handoff: text` and `agent_tools: none`) are mandatory: any other value is rejected when the policy loads. Other settings control the instruction scan (`untrusted_scan`, `scan_action`) and whether hand-offs that cross roles share only the silent steps (`share_default`).
 </details>
 
-## 8. Troubleshooting
+## 7. Troubleshooting
 
 <details>
 <summary><b>"bfloat16 is not supported" on a T4 or P100</b></summary>
@@ -336,7 +290,7 @@ Older GPUs cannot use bfloat16. Add `--dtype float16`, which all our recorded re
 Interactive sessions stop when idle, and a reset wipes `/kaggle/working`. Use **Save & Run All (Commit)** for anything longer than a few minutes; it runs on Kaggle's servers with the tab closed and keeps the output. Every benchmark resumes from where it stopped, so re-running only does the missing questions.
 </details>
 
-## 9. Credits
+## 8. Credits
 
 - **LatentMAS** for the latent collaboration method ([paper](https://arxiv.org/abs/2511.20639), [code](https://github.com/Gen-Verse/LatentMAS), Apache-2.0).
 - **NVIDIA Nemotron** models: Nemotron Nano 4B (Telepathy) and Nemotron 3 Super (Nebius Token Factory).
