@@ -182,7 +182,7 @@ npm install
 npm run dev
 ```
 
-`npm install` takes a minute the first time. Then open the address it prints, usually **http://localhost:5173**. You will see the same site as the online demo: the hand-off animation, the example questions and the results. Everything is replayed from real recordings saved in the repo, so it needs no GPU and no keys. Press `Ctrl+C` in the terminal to stop it.
+`npm install` takes a minute the first time. Then open the address it prints, usually **http://localhost:5173**.
 
 ### 5.3 Run the tests
 
