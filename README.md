@@ -76,7 +76,7 @@ Everything below uses **one model** (NVIDIA Nemotron Nano 4B) on **one GPU** (NV
 - **Readable "subtitles" of the silent thinking.** We tried to show a readable summary of what each silent agent passes on and check it was faithful. Our check could not tell real subtitles from fake ones, so we do not claim them.
 </details>
 
-### Raw data
+### Raw Results Data
 
 These are the raw numbers from everything we tested. For each question, the files record the answer, whether it was right, the time taken and the tokens used, so anyone can check our results.
 
@@ -84,9 +84,9 @@ These are the raw numbers from everything we tested. For each question, the file
 
 | What | Files |
 |---|---|
-| Maths, coding and medical exam: all three ways | [`test_rerun/`](bench/results/kaggle_run/saved/test_rerun), [`teams/`](bench/results/kaggle_teams/saved/teams) |
+| Maths, coding and medical exam questions: all three ways (single agent, multi-agent and Telepathy) | [`test_rerun/`](bench/results/kaggle_run/saved/test_rerun), [`teams/`](bench/results/kaggle_teams/saved/teams) |
 | Web research: 3 real questions | [`kaggle_research/`](bench/results/kaggle_research/saved/gallery) |
-| Team size: 2 to 8 agents on Nebius | [`test/`](bench/results/test) |
+| Varied team size for the multi-agent system: 2 to 8 agents on Nebius | [`test/`](bench/results/test) |
 
 **Other experiments we ran**
 
@@ -119,6 +119,8 @@ telepathy/
 ├── docs/                   architecture diagram, Devpost text, feedback
 └── policy.yaml             safety policy, read at start-up
 ```
+
+![Inside the model: how one agent hands its memory to the next](docs/inside_the_model.svg)
 
 <details open>
 <summary><b>The Telepathy engine</b> · <code>telepathy/engine.py</code>, <code>telepathy/latent.py</code></summary>
@@ -277,13 +279,8 @@ Each example question on the site then shows a button to run the usual flow live
 |---|---|---|
 | `NEBIUS_API_KEY` | – | Your Nebius Token Factory key. Needed only for Nebius runs. |
 | `TAVILY_API_KEY` | – | Web search for new research questions. Not needed to replay. |
-| `MAX_USD_PER_CHECK` | 0.50 | The most one benchmark question may cost. |
-| `TOTAL_BUDGET_USD` | 20 | Lifetime spending cap, saved in `.spend.json`. |
 | `LLM_PROVIDER` | nebius | `nebius`, `nvidia`, `ollama` or `openrouter` (all OpenAI-compatible). |
 | `TF_LIVE` | 0 | `1` lets the website run questions live on Nebius. |
-| `DEMO_BUDGET_USD` | 3.0 | The most the live website may spend in total. |
-| `LIVE_USD_PER_RUN` | 0.03 | The most one live question may cost. |
-| `LIVE_PER_IP_PER_HOUR` | 6 | Live questions per visitor per hour. |
 | `LIVE_MAX_CONCURRENT` | 3 | Live questions running at once. |
 | `REPLAY` | 1 | `1` replays recordings; `0` runs the local GPU engine. |
 | `REPLAY_SPEED` | 1 | Speed-up for replayed runs. |
