@@ -129,7 +129,7 @@ telepathy/
 - **Thinking silently:** instead of writing a word, the model takes its last internal state, scales it to the size of a normal word and feeds it straight back in as its next input, a few times over. No words come out, but the working memory grows ([`latent.py`](telepathy/latent.py)).
 - **Handing over:** the next agent starts from that same working memory, so it knows everything the earlier agents read and thought without reading any notes ([`engine.py`](telepathy/engine.py)).
 - **Answering:** only the last agent, the Solver, writes, and what it writes is the answer.
-- **A fair comparison:** the same code can also run one agent alone or the usual multi-agent flow where every agent writes notes, so all three ways are tested on identical code.
+- **A fair comparison:** the same program also runs one agent alone and the usual multi-agent flow, with the same model, prompts and GPU. Only the hand-off changes, so any difference in speed or accuracy comes from the hand-off itself.
 </details>
 
 <details>
