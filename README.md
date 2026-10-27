@@ -65,42 +65,12 @@ Everything below uses **one model** (NVIDIA Nemotron Nano 4B) on **one GPU** (NV
 | **Medical exam** ([MedQA](https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options))<br>60 questions | 33.3%<br>17.3 s · 316 tokens | 33.3%<br>96.5 s · 1,427 tokens | **41.7%**<br>28.1 s · 377 tokens | **3.4× faster, 74% fewer tokens** |
 | **Web research** ([our questions](server/gallery.json))<br>3 questions | – | 2 of 3<br>230.7 s · 3,045 tokens | **2 of 3**<br>80.5 s · 1,228 tokens | **2.9× faster, 60% fewer tokens** |
 
-<sub>Each cell shows accuracy, then seconds and tokens as averages per question. "Tokens" are tokens written. Coding answers are graded by running the official hidden tests; maths and medical answers against the known answer; research answers against a known number. Maths allowed up to 384 tokens per agent; the other tests up to 1,024.</sub>
-
 **What this shows**
 
 - **Speed and cost:** against the usual multi-agent system, Telepathy was faster and wrote far fewer tokens on **every** test.
 - **Accuracy:** Telepathy was at least as accurate as the usual multi-agent system on every test.
 - **Where it clearly won:** on coding, Telepathy solved 7 problems the single agent missed and missed none the single agent solved (sign test, p = 0.016).
 - **Where it did not:** on simple school maths, **a single agent beat both teams** (79% against 73% and 69%). A team does not always pay off. Telepathy makes a team about as cheap as one agent; it does not make the model smarter.
-
-<details>
-<summary><b>Is the accuracy difference real? The statistics</b></summary>
-
-We compare two ways question by question and count the questions only one of them got right. p is the chance a gap that size happens by luck (two-sided sign test).
-
-| Test | Telepathy vs multi-agent | Telepathy vs single agent |
-|---|---|---|
-| School maths | 24 vs 19, p = 0.54 | 8 vs 18, p = 0.08 |
-| Coding | 11 vs 4, p = 0.12 | **7 vs 0, p = 0.016** |
-| Medical exam | 13 vs 8, p = 0.38 | 15 vs 10, p = 0.42 |
-
-We ran several comparisons, so a single small p is strong evidence, not certainty. The honest summary is: much faster and cheaper at the same or better accuracy, with one clear accuracy win on coding.
-</details>
-
-<details>
-<summary><b>A test we ran on ourselves: does the silent thinking carry information?</b></summary>
-
-Speed alone does not prove the agents pass useful thoughts. So on 50 maths questions we ran three versions of Telepathy:
-
-| Version | Right |
-|---|---:|
-| Normal (10 silent steps per agent) | 35 / 50 |
-| No thinking (0 silent steps) | 37 / 50 |
-| Wrong notebook (the silent agents think about a different question) | 32 / 50 |
-
-The differences are within luck at this size. So we do **not** claim the silent thinking itself improves answers. The saving comes from not writing and re-reading notes. Files: [`bench/mismatch_bench.py`](bench/mismatch_bench.py).
-</details>
 
 <details>
 <summary><b>Things that did not work</b></summary>
@@ -121,7 +91,7 @@ Every number in this README comes from a file in the repo, saved one row per que
 | **The same 150 maths questions on a big model**: usual 4-agent flow, NVIDIA Nemotron 3 Super on Nebius | 91.3% right (137 of 150), 8.3 s, 1,279 tokens written | [`test/gsm8k_tokenfactory_text.jsonl`](bench/results/test/gsm8k_tokenfactory_text.jsonl) |
 | **Team size**: usual flow with 2, 4, 6 and 8 agents on Nebius, 50 maths questions | reading grows from 416 to 12,019 tokens; accuracy 92–96% (section 1) | [`team_size_summary.md`](bench/results/team_size_summary.md), [`test/`](bench/results/test) |
 | **Choosing the silent-step count**: 50 practice maths questions (questions 0–49, never used for the reported results) | 5 steps 74% · 10 steps 70% · 20 steps 68% · multi-agent 70%; differences within noise | [`gate_summary.md`](bench/results/gate_summary.md) |
-| **Self-test**: does the silent thinking carry information? | 35 / 37 / 32 of 50 (see above) | [`mismatch/`](bench/results/mismatch) |
+| **Self-test**: does the silent thinking carry information? | normal 35, no thinking 37, wrong question 32 (of 50): within luck, so the silent thinking alone does not raise accuracy | [`mismatch/`](bench/results/mismatch) |
 | **Research test**: 20 generated read-then-calculate questions, 5 versions | strict grading: 1–2 of 20 right in every version; inconclusive | [`kaggle_run/saved/research/`](bench/results/kaggle_run/saved/research) |
 | **Recorded examples behind the website**: 18 questions in maths, logic, coding, science and research | usual flow 12 of 18 right, Telepathy 14 of 18; typically 6.3× faster | [`gallery/`](bench/results/gallery), [`dashboard/public/gallery/index.json`](dashboard/public/gallery/index.json) |
 | **Retired examples**: our first 3 research demos used made-up pages | usual flow 3 of 3, Telepathy 0 of 3; replaced with real web research | [`retired_gallery/`](bench/results/retired_gallery) |
