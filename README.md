@@ -17,7 +17,7 @@ Multi-agent systems spend much of their time writing to each other. Telepathy le
 1. [The problem](#1-the-problem)
 2. [The idea](#2-the-idea)
 3. [Results](#3-results)
-4. [Where it is in the code](#4-where-it-is-in-the-code)
+4. [How it is built](#4-how-it-is-built)
 5. [Run it yourself](#5-run-it-yourself)
 6. [Configuration](#6-configuration)
 7. [Troubleshooting](#7-troubleshooting)
@@ -98,7 +98,7 @@ These are the raw numbers from everything we tested. For each question, the file
 | The 18 example questions behind the website | Usual flow 12 right, Telepathy 14 right, typically 6× faster | [`gallery/`](bench/results/gallery) |
 | Our first research demos used made-up web pages | The usual flow got all 3 right and Telepathy none, so we replaced them with real web research | [`retired_gallery/`](bench/results/retired_gallery) |
 
-## 4. Where it is in the code
+## 4. How it is built
 
 ```
 telepathy/
@@ -116,7 +116,6 @@ telepathy/
 ├── server/                 FastAPI server: replays, live Nebius lane, limits
 ├── dashboard/              the website
 ├── tests/                  112 tests (run on CPU with a tiny model)
-├── docs/                   architecture diagram, Devpost text, feedback
 └── policy.yaml             safety policy, read at start-up
 ```
 
@@ -125,12 +124,12 @@ telepathy/
 <details open>
 <summary><b>The Telepathy engine</b> · <code>telepathy/engine.py</code>, <code>telepathy/latent.py</code></summary>
 
-- **Loading:** one NVIDIA Nemotron Nano 4B model is loaded once and shared by all four roles ([`config.py`](telepathy/config.py)).
-- **Silent steps:** an agent reads its prompt, then for each silent step the model's last hidden state is rescaled to the size of a normal word embedding and fed back in as the next input ([`latent.py`](telepathy/latent.py)). No words are produced, and the KV cache grows.
-- **Hand-off:** the next agent starts from that same KV cache, so it "remembers" everything the earlier agents read and thought, without reading any notes.
-- **Answer:** only the final agent decodes text.
-- **Modes:** `single` (one agent), `text` (usual flow: every agent writes), `latent` (Telepathy) and `auto` (Telepathy with optional checks), so all ways run on identical code paths.
-- **Roles:** wording for each role and task (maths, logic, coding, science, research) lives in [`roles.py`](telepathy/roles.py). Team sizes `team2`…`team8` are defined there too.
+- **One model for every agent:** NVIDIA Nemotron Nano 4B is loaded once on the GPU. Each agent is the same model given a different job, such as "You are the Critic". The job wording for each agent, and the teams of 2 to 8 agents, are in [`roles.py`](telepathy/roles.py).
+- **Reading:** an agent reads its job and the question. As it reads, the model keeps a working memory of what it has read (the KV cache).
+- **Thinking silently:** instead of writing a word, the model takes its last internal state, scales it to the size of a normal word and feeds it straight back in as its next input, a few times over. No words come out, but the working memory grows ([`latent.py`](telepathy/latent.py)).
+- **Handing over:** the next agent starts from that same working memory, so it knows everything the earlier agents read and thought without reading any notes ([`engine.py`](telepathy/engine.py)).
+- **Answering:** only the last agent, the Solver, writes, and what it writes is the answer.
+- **A fair comparison:** the same code can also run one agent alone or the usual multi-agent flow where every agent writes notes, so all three ways are tested on identical code.
 </details>
 
 <details>
