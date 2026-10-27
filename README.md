@@ -226,14 +226,7 @@ You should see `/kaggle/working/telepathy` printed. That means the project is do
 !python -m bench.metrics bench/results/quick_try
 ```
 
-This answers 5 maths questions twice: once with the usual multi-agent flow and once with Telepathy. The first time, it also downloads the model (NVIDIA Nemotron Nano 4B, about 8 GB), which takes a few minutes. At the end you should see two lines like these, one for each way:
-
-```
-gsm8k_test_latent_s10.jsonl {'n': 5, 'accuracy': 0.8, 'sec_avg': 16.4, 'tokens_written': 283, ...}
-gsm8k_test_text.jsonl {'n': 5, 'accuracy': 0.8, 'sec_avg': 70.2, 'tokens_written': 1267, ...}
-```
-
-`latent` is Telepathy and `text` is the usual multi-agent flow. `accuracy` is the share of answers that were right, `sec_avg` the average seconds per question and `tokens_written` the average tokens written per question. Your exact numbers will depend on the 5 questions.
+This answers 5 maths questions twice: once with the usual multi-agent flow and once with Telepathy. The first time, it also downloads the model (NVIDIA Nemotron Nano 4B, about 8 GB), which takes a few minutes. At the end it prints two lines: the one starting `gsm8k_test_latent` is **Telepathy**, and the one starting `gsm8k_test_text` is **the usual multi-agent flow**. Compare the two: Telepathy should take far fewer seconds (`sec_avg`) and write far fewer tokens (`tokens_written`).
 
 **Step 3. Run a full test (cell 3, hours).** Add another cell with **+ Code**, paste **one** of these commands and run it. Each one reproduces a row of our results table:
 
