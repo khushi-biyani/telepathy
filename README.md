@@ -270,7 +270,15 @@ When it finishes, add one more cell to see the summary, for example `!python -m 
 <details>
 <summary><b>The safety policy</b> · <code>policy.yaml</code></summary>
 
-Read once at start-up and never changed by model output. The two core rules (`tainted_handoff: text` and `agent_tools: none`) are mandatory: any other value is rejected when the policy loads. Other settings control the instruction scan (`untrusted_scan`, `scan_action`) and whether hand-offs that cross roles share only the silent steps (`share_default`).
+`policy.yaml` holds the safety rules. The program reads it once at start-up, and nothing the AI or a web page says can change it.
+
+| Setting | Default | What it does |
+|---|---|---|
+| `tainted_handoff` | text | An agent that read a web page passes on what it found in plain text, not through the hidden memory. **Can't be turned off.** |
+| `agent_tools` | none | Agents can only write text; they can't take actions like browsing or running code. **Can't be turned off.** |
+| `untrusted_scan` | demo_only | When to check web-page text for hidden instructions: `off`, only in our research demos, or `always`. |
+| `scan_action` | warn | What the check does if it finds something: `warn` or `block`. |
+| `share_default` | thoughts_only | When an agent hands over memory: everything it read (`full`) or only its silent thoughts. |
 </details>
 
 ## 7. Troubleshooting
