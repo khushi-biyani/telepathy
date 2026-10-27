@@ -208,7 +208,9 @@ Telepathy has to run the AI model itself, which needs a GPU. Kaggle gives you on
 2. Click **Create → New Notebook**.
 3. In the notebook's right-hand panel, open **Session options**: set **Accelerator** to **GPU T4 x2** and switch **Internet** on.
 
-**Download the project in the notebook.** Paste this into the first cell and run it:
+**How a Kaggle notebook works:** a notebook is a page of boxes called **cells**. You type or paste commands into a cell, then click the **▶ Run** button on its left (or press **Shift + Enter**) to run it. To add a new, empty cell below, click **+ Code**. A cell has finished when the spinner next to it stops.
+
+**Step 1. Download the project (cell 1, about 1 minute).** The new notebook already has one empty cell. Click into it, delete anything inside, paste this and run it:
 
 ```python
 !git clone https://github.com/khushi-biyani/telepathy.git
@@ -216,28 +218,39 @@ Telepathy has to run the AI model itself, which needs a GPU. Kaggle gives you on
 !pip install -q transformers==5.19.0 datasets==5.1.0 openai python-dotenv httpx
 ```
 
-**Try a quick run first (about 15 minutes).** This answers 5 maths questions with the usual multi-agent flow and with Telepathy, then prints a summary. The first run also downloads the model (NVIDIA Nemotron Nano 4B, about 8 GB).
+You should see `/kaggle/working/telepathy` printed. That means the project is downloaded and the notebook is now inside its folder. (If you see "Could not resolve host", Internet is off: turn it on in **Session options** and run the cell again.)
+
+**Step 2. Try a quick run (cell 2, about 15 minutes).** Click **+ Code** to add a second cell, paste this and run it:
 
 ```python
 !python -m bench.run_bench --task gsm8k --split test --n 5 --modes text,latent --steps 10 --dtype float16 --device cuda --out bench/results/quick_try
 !python -m bench.metrics bench/results/quick_try
 ```
 
-In these commands, `--modes` chooses who answers: `single` is one agent alone, `text` is the usual multi-agent flow, and `latent` is Telepathy. `--n` is how many questions.
+This answers 5 maths questions twice: once with the usual multi-agent flow and once with Telepathy. The first time, it also downloads the model (NVIDIA Nemotron Nano 4B, about 8 GB), which takes a few minutes. At the end you should see two lines like these, one for each way:
 
-**Run the full tests.** Each command below reproduces one row of our results table:
+```
+gsm8k_test_latent_s10.jsonl {'n': 5, 'accuracy': 0.8, 'sec_avg': 16.4, 'tokens_written': 283, ...}
+gsm8k_test_text.jsonl {'n': 5, 'accuracy': 0.8, 'sec_avg': 70.2, 'tokens_written': 1267, ...}
+```
 
-| Test | Command | Time on a T4 |
+`latent` is Telepathy and `text` is the usual multi-agent flow. `accuracy` is the share of answers that were right, `sec_avg` the average seconds per question and `tokens_written` the average tokens written per question. Your exact numbers will depend on the 5 questions.
+
+**Step 3. Run a full test (cell 3, hours).** Add another cell with **+ Code**, paste **one** of these commands and run it. Each one reproduces a row of our results table:
+
+| Test | Paste this into the cell | Time on a T4 |
 |---|---|---|
 | School maths, 150 questions | `!python -m bench.run_bench --task gsm8k --split test --modes single,text,latent --steps 10 --dtype float16 --device cuda --out bench/results/maths` | about 4 hours |
 | Coding, 60 questions | `!python -m bench.run_bench --task mbppplus --split test --n 60 --modes single,text,latent --steps 10 --max-new-tokens 1024 --dtype float16 --device cuda --out bench/results/coding` | about 3 hours |
 | Medical exam, 60 questions | `!python -m bench.run_bench --task medqa --split test --n 60 --modes single,text,latent --steps 10 --max-new-tokens 1024 --dtype float16 --device cuda --out bench/results/medical` | 2 to 3 hours |
 
-Then print the summary for any of them, for example `!python -m bench.metrics bench/results/maths`.
+In these commands, `--modes single,text,latent` means "answer every question three ways": `single` is one agent alone, `text` is the usual multi-agent flow and `latent` is Telepathy. `--n` is the number of questions.
 
-**For runs longer than a few minutes**, don't keep the tab open: click **Save Version → Save & Run All (Commit)**. Kaggle then runs the notebook on its own servers, even with your browser closed, and keeps the results. When it finishes, download them from the notebook's **Output** tab. If a run stops halfway, run the same command again; it continues from where it stopped.
+When it finishes, add one more cell to see the summary, for example `!python -m bench.metrics bench/results/maths`. You will get three lines, one per way.
 
-**What you get:** each run saves one file per way of answering (for example `gsm8k_test_latent_s10.jsonl`), with one line per question: the answer, whether it was right, the time taken and the tokens used. Our own files are in [`bench/results/`](bench/results) for comparison.
+**Step 4. Keep long runs going with the browser closed.** A full test takes hours, and Kaggle stops a notebook that sits idle. So instead of running cell 3 by hand, click **Save Version** (top right), choose **Save & Run All (Commit)** and click **Save**. Kaggle then runs every cell from top to bottom on its own servers, even with your browser closed. When it finishes, open the notebook's **Output** tab and download the `telepathy/bench/results/` folder. If a run ever stops halfway, run the same command again; it continues from where it stopped.
+
+**What you get:** one file per way of answering (for example `gsm8k_test_latent_s10.jsonl`), with one line per question: the answer, whether it was right, the time taken and the tokens used. Our own files are in [`bench/results/`](bench/results) for comparison.
 
 ### 5.5 Optional: run the usual flow on Nebius
 
