@@ -231,8 +231,7 @@ telepathy/
 ├── dashboard/              the website
 ├── tests/                  112 tests (run on CPU with a tiny model)
 ├── docs/                   architecture diagram, Devpost text, feedback
-├── policy.yaml             safety policy, read at start-up
-└── telepathy_spike.py      the original one-file feasibility test
+└── policy.yaml             safety policy, read at start-up
 ```
 
 ## 6. Run it yourself
