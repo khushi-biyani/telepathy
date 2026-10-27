@@ -29,14 +29,14 @@ Multi-agent systems spend much of their time writing to each other. Telepathy le
 
 ## 1. The problem
 
-A multi-agent system splits a job between specialist agents. In our demo team a **Planner** makes a plan, a **Critic** checks it, a **Refiner** improves it and a **Solver** writes the answer.
+A multi-agent system splits a job between specialist agents. In our demo team a **Planner Agent** makes a plan, a **Critic Agent** checks it, a **Refiner Agent** improves it and a **Solver Agent** writes the answer.
 
 Today those agents hand work to each other by **writing everything out**. Each agent writes its full reasoning, and the next agent has to read all of it before it can start. Add an agent and there is more to write and far more to read, so every agent you add costs time and money.
 
 We measured it on Nebius Token Factory with NVIDIA Nemotron 3 Super (the same 50 maths questions at every team size):
 
 | Agents in the team | Tokens read per question | Tokens written | Seconds per question | Right answers |
-|---:|---:|---:|---:|---:|
+|:---:|:---:|:---:|:---:|:---:|
 | 2 | 416 | 358 | 2.8 | 92% |
 | 4 | 2,661 | 1,319 | 8.8 | 92% |
 | 6 | 6,723 | 2,136 | 13.1 | 96% |
@@ -52,20 +52,18 @@ When a language model reads text, it builds a working memory of what it has unde
 
 Each of the first three agents **thinks silently**: instead of writing a word, the model feeds its own last internal state back in as the next input. Their thinking accumulates in the shared memory, and only the Solver writes, which is the answer.
 
-> The silent hand-off follows the published **LatentMAS** method ([paper](https://arxiv.org/abs/2511.20639), [code](https://github.com/Gen-Verse/LatentMAS), Apache-2.0). We implemented it for NVIDIA Nemotron and built the measurement, the safety layer and the website around it.
-
 ![How Telepathy works: the usual multi-agent flow, the Telepathy flow, how the memory is passed, and what we measured](docs/architecture.svg)
 
 ## 3. Results
 
-Everything below uses **one model** (NVIDIA Nemotron Nano 4B) on **one GPU** (NVIDIA Tesla T4 on Kaggle), answering the **same questions three ways**: a single agent, a usual multi-agent system (4 agents writing notes), and Telepathy (the same 4 agents sharing memory). Decoding is greedy, so every run is repeatable.
+Everything below uses **one model** (NVIDIA Nemotron Nano 4B) on **one GPU** (NVIDIA Tesla T4 on Kaggle), answering the **same questions three ways**: a single agent, a usual multi-agent system (4 agents writing notes), and Telepathy (the same 4 agents sharing memory).
 
 | Test | Single agent | Multi-agent | **Telepathy** | Telepathy vs multi-agent |
 |---|:---:|:---:|:---:|---|
-| **School maths** (GSM8K)<br>150 questions | 79.3%<br>13.6 s · 291 tokens | 69.3%<br>70.2 s · 1,267 tokens | **72.7%**<br>16.4 s · 283 tokens | **4.3× faster, 78% fewer tokens** |
-| **Coding** (MBPP+)<br>60 questions | 43.3%<br>3.8 s · 77 tokens | 43.3%<br>188.4 s · 2,723 tokens | **55.0%**<br>4.7 s · 55 tokens | **40× faster, 98% fewer tokens** |
-| **Medical exam** (MedQA)<br>60 questions | 33.3%<br>17.3 s · 316 tokens | 33.3%<br>96.5 s · 1,427 tokens | **41.7%**<br>28.1 s · 377 tokens | **3.4× faster, 74% fewer tokens** |
-| **Web research**<br>3 questions | – | 2 of 3<br>230.7 s · 3,045 tokens | **2 of 3**<br>80.5 s · 1,228 tokens | **2.9× faster, 60% fewer tokens** |
+| **School maths** ([GSM8K](https://huggingface.co/datasets/openai/gsm8k))<br>150 questions | 79.3%<br>13.6 s · 291 tokens | 69.3%<br>70.2 s · 1,267 tokens | **72.7%**<br>16.4 s · 283 tokens | **4.3× faster, 78% fewer tokens** |
+| **Coding** ([MBPP+](https://huggingface.co/datasets/evalplus/mbppplus))<br>60 questions | 43.3%<br>3.8 s · 77 tokens | 43.3%<br>188.4 s · 2,723 tokens | **55.0%**<br>4.7 s · 55 tokens | **40× faster, 98% fewer tokens** |
+| **Medical exam** ([MedQA](https://huggingface.co/datasets/GBaker/MedQA-USMLE-4-options))<br>60 questions | 33.3%<br>17.3 s · 316 tokens | 33.3%<br>96.5 s · 1,427 tokens | **41.7%**<br>28.1 s · 377 tokens | **3.4× faster, 74% fewer tokens** |
+| **Web research** ([our questions](server/gallery.json))<br>3 questions | – | 2 of 3<br>230.7 s · 3,045 tokens | **2 of 3**<br>80.5 s · 1,228 tokens | **2.9× faster, 60% fewer tokens** |
 
 <sub>Each cell shows accuracy, then seconds and tokens as averages per question. "Tokens" are tokens written. Coding answers are graded by running the official hidden tests; maths and medical answers against the known answer; research answers against a known number. Maths allowed up to 384 tokens per agent; the other tests up to 1,024.</sub>
 
