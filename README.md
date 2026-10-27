@@ -146,19 +146,35 @@ Passing hidden memory between agents creates a new risk: a planted instruction i
 
 ## 5. Run it yourself
 
-Pick the path you need. Each one is independent.
+You do **not** need a GPU or any paid keys to see the website or run the tests. Pick what you want to do:
 
-| I want to… | Needs | Section |
-|---|---|---|
-| See the website | Node.js | [5.1](#51-the-website-no-gpu-no-keys) |
-| Run the tests | Python | [5.2](#52-python-and-the-tests) |
-| Use the live Nebius lane | Python, a Nebius key | [5.3](#53-the-api-server-and-the-live-nebius-lane) |
-| Reproduce the Telepathy results | a GPU (a free Kaggle T4 works) | [5.4](#54-reproduce-the-results-on-a-gpu) |
-| Reproduce the team-size results | Python, a Nebius key | [5.5](#55-the-usual-flow-on-nebius-token-factory) |
+| I want to… | What you need | Time | Cost |
+|---|---|---|---|
+| [See the website on my computer](#52-see-the-website) | Node.js | 5 minutes | free |
+| [Check that the code works](#53-run-the-tests) | Python | 10 minutes | free |
+| [Re-run our experiments](#54-re-run-our-experiments-on-a-free-gpu) | a free Kaggle account | 30 minutes to try, hours for the full tests | free |
+| [Run the usual multi-agent flow on Nebius](#55-optional-run-the-usual-flow-on-nebius) | a Nebius Token Factory key | 10 minutes | a few cents to a few dollars |
 
-**Prerequisites:** Python 3.11 or newer, Node.js 20 or newer. A GPU is only needed for 5.4.
+### 5.1 Get the code
 
-### 5.1 The website (no GPU, no keys)
+You need **Git**, **Python 3.11 or newer** ([download](https://www.python.org/downloads/)) and, for the website, **Node.js 20.19 or newer** ([download](https://nodejs.org)). Check what you have:
+
+```bash
+git --version
+python3 --version
+node --version
+```
+
+Then download the project and go into its folder:
+
+```bash
+git clone https://github.com/khushi-biyani/telepathy.git
+cd telepathy
+```
+
+All the commands below start from this `telepathy` folder.
+
+### 5.2 See the website
 
 ```bash
 cd dashboard
@@ -166,88 +182,91 @@ npm install
 npm run dev
 ```
 
-Open the address it prints (usually http://localhost:5173). Everything on the site is replayed from recordings in `dashboard/public/` and `dashboard/src/data/`.
+`npm install` takes a minute the first time. Then open the address it prints, usually **http://localhost:5173**. You will see the same site as the online demo: the hand-off animation, the example questions and the results. Everything is replayed from real recordings saved in the repo, so it needs no GPU and no keys. Press `Ctrl+C` in the terminal to stop it.
 
-To build a static copy for hosting: `npm run build`, then serve `dashboard/dist/`.
+### 5.3 Run the tests
 
-### 5.2 Python and the tests
+This checks that the code works on your computer. From the `telepathy` folder:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate          # Windows: .venv\Scripts\activate
+python3 -m venv .venv
+source .venv/bin/activate          # on Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python -m pytest -q
 ```
 
-The tests run on a CPU with a tiny model (SmolLM2-135M, about 270 MB, downloaded once), so they need no GPU and no keys.
+The first run downloads a tiny test model (about 270 MB). At the end you should see **112 passed**. The tests use the tiny model on your CPU, so they need no GPU and no keys.
 
-### 5.3 The API server and the live Nebius lane
+### 5.4 Re-run our experiments on a free GPU
+
+Telepathy has to run the AI model itself, which needs a GPU. Kaggle gives you one for free.
+
+**Set up Kaggle (once)**
+
+1. Create a free account at [kaggle.com](https://www.kaggle.com) and verify your phone number (Kaggle needs this before it lets you use a GPU or the internet).
+2. Click **Create → New Notebook**.
+3. In the notebook's right-hand panel, open **Session options**: set **Accelerator** to **GPU T4 x2** and switch **Internet** on.
+
+**Download the project in the notebook.** Paste this into the first cell and run it:
+
+```python
+!git clone https://github.com/khushi-biyani/telepathy.git
+%cd telepathy
+!pip install -q transformers==5.19.0 datasets==5.1.0 openai python-dotenv httpx
+```
+
+**Try a quick run first (about 15 minutes).** This answers 5 maths questions with the usual multi-agent flow and with Telepathy, then prints a summary. The first run also downloads the model (NVIDIA Nemotron Nano 4B, about 8 GB).
+
+```python
+!python -m bench.run_bench --task gsm8k --split test --n 5 --modes text,latent --steps 10 --dtype float16 --device cuda --out bench/results/quick_try
+!python -m bench.metrics bench/results/quick_try
+```
+
+In these commands, `--modes` chooses who answers: `single` is one agent alone, `text` is the usual multi-agent flow, and `latent` is Telepathy. `--n` is how many questions.
+
+**Run the full tests.** Each command below reproduces one row of our results table:
+
+| Test | Command | Time on a T4 |
+|---|---|---|
+| School maths, 150 questions | `!python -m bench.run_bench --task gsm8k --split test --modes single,text,latent --steps 10 --dtype float16 --device cuda --out bench/results/maths` | about 4 hours |
+| Coding, 60 questions | `!python -m bench.run_bench --task mbppplus --split test --n 60 --modes single,text,latent --steps 10 --max-new-tokens 1024 --dtype float16 --device cuda --out bench/results/coding` | about 3 hours |
+| Medical exam, 60 questions | `!python -m bench.run_bench --task medqa --split test --n 60 --modes single,text,latent --steps 10 --max-new-tokens 1024 --dtype float16 --device cuda --out bench/results/medical` | 2 to 3 hours |
+
+Then print the summary for any of them, for example `!python -m bench.metrics bench/results/maths`.
+
+**For runs longer than a few minutes**, don't keep the tab open: click **Save Version → Save & Run All (Commit)**. Kaggle then runs the notebook on its own servers, even with your browser closed, and keeps the results. When it finishes, download them from the notebook's **Output** tab. If a run stops halfway, run the same command again; it continues from where it stopped.
+
+**What you get:** each run saves one file per way of answering (for example `gsm8k_test_latent_s10.jsonl`), with one line per question: the answer, whether it was right, the time taken and the tokens used. Our own files are in [`bench/results/`](bench/results) for comparison.
+
+### 5.5 Optional: run the usual flow on Nebius
+
+This runs the usual multi-agent flow, where agents write notes to each other, on the much bigger NVIDIA Nemotron 3 Super through Nebius Token Factory. It costs real money, so the code always lets you check the price before spending anything.
+
+1. Create an account at [Nebius Token Factory](https://tokenfactory.nebius.com) and create an API key.
+2. In the `telepathy` folder, copy the example settings file and put your key in it:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   Open `.env` in any text editor and paste your key after `NEBIUS_API_KEY=`. Never share or upload this file.
+3. With the Python setup from 5.3 active, check the price, then run:
+
+   ```bash
+   python -m telepathy.baseline_tf --n 150 --estimate        # shows the expected cost; spends nothing
+   python -m telepathy.baseline_tf --n 150 --run --yes       # the 4-agent team on 150 maths questions
+   python -m telepathy.baseline_tf --n 50 --topology team8 --run --yes    # an 8-agent team on 50 questions
+   ```
+
+Nothing is spent unless you add both `--run` and `--yes`, and the code stops at the limits in `.env` (by default $0.50 per question and $20 in total).
+
+**To let website visitors run questions live on Nebius**, start the server in one terminal and the website (5.2) in another:
 
 ```bash
-cp .env.example .env               # then put your NEBIUS_API_KEY in .env (never commit it)
 TF_LIVE=1 uvicorn server.app:app --port 8000
 ```
 
-In another terminal, run the website (5.1). It forwards `/api` to port 8000. Each "Try it" question now shows **Also run the usual flow live on Nebius**. Without `TF_LIVE=1` the server only replays recordings and spends nothing.
-
-Live runs are capped by default at $0.03 per run, 6 per visitor per hour, 3 at once, and $3 in total. See [Configuration](#6-configuration).
-
-### 5.4 Reproduce the results on a GPU
-
-The Telepathy engine needs direct access to the model, so it runs on a GPU. A free **Kaggle** notebook with **GPU T4 x2** works.
-
-1. Zip the project (without `.env`) and upload it as a private Kaggle dataset.
-2. In a notebook with GPU and Internet on, add the dataset, then run:
-
-```python
-!pip install -q transformers==5.19.0 datasets==5.1.0 openai python-dotenv httpx
-import glob, os, shutil, zipfile
-os.makedirs('/kaggle/working/repo', exist_ok=True)
-hits = glob.glob('/kaggle/input/**/bench/run_bench.py', recursive=True)
-if hits:
-    shutil.copytree(os.path.dirname(os.path.dirname(hits[0])), '/kaggle/working/repo', dirs_exist_ok=True)
-else:
-    code = [z for z in glob.glob('/kaggle/input/**/*.zip', recursive=True) if 'bench/run_bench.py' in zipfile.ZipFile(z).namelist()]
-    zipfile.ZipFile(code[0]).extractall('/kaggle/working/repo')
-%cd /kaggle/working/repo
-```
-
-3. Run any of these (each saves one row per question and resumes if stopped):
-
-```bash
-# school maths, all three ways (about 4 hours on a T4)
-python -m bench.run_bench --task gsm8k --split test --modes single,text,latent --steps 10 --dtype float16 --device cuda --out bench/results/test_rerun
-
-# coding and medical, 60 questions each
-python -m bench.run_bench --task mbppplus --split test --n 60 --modes single,text,latent --steps 10 --max-new-tokens 1024 --dtype float16 --device cuda --out bench/results/teams
-python -m bench.run_bench --task medqa    --split test --n 60 --modes single,text,latent --steps 10 --max-new-tokens 1024 --dtype float16 --device cuda --out bench/results/teams
-
-# the self-test, and the website recordings
-python -m bench.mismatch_bench --split dev --n 50 --dtype float16 --device cuda
-python -m bench.record_gallery --dtype float16 --device cuda
-
-# summary of any results folder
-python -m bench.metrics bench/results/teams
-```
-
-4. For long runs use **Save Version → Save & Run All (Commit)** so the run continues with the tab closed, then download the results from the notebook's **Output**.
-5. Back on your machine, refresh the website data from the result files:
-
-```bash
-python -m bench.build_site_results
-python -m bench.build_gallery_index
-```
-
-### 5.5 The usual flow on Nebius Token Factory
-
-```bash
-python -m telepathy.baseline_tf --n 150 --estimate                 # cost estimate only, spends nothing
-python -m telepathy.baseline_tf --n 150 --run --yes                # the 4-agent team on 150 maths questions
-python -m telepathy.baseline_tf --n 50 --topology team8 --run --yes   # an 8-agent team
-python -m bench.teamsize                                           # the team-size table
-```
-
-Nothing is spent without both `--run` and `--yes`, and every call is capped by `MAX_USD_PER_CHECK` and `TOTAL_BUDGET_USD`.
+Each example question on the site then shows a button to run the usual flow live. Live runs are limited by default to $0.03 each, 6 per visitor per hour and $3 in total; see [Configuration](#6-configuration).
 
 ## 6. Configuration
 
