@@ -381,65 +381,9 @@ Older GPUs cannot use bfloat16. Add `--dtype float16`, which all our recorded re
 </details>
 
 <details>
-<summary><b>Kaggle: <code>IndexError: list index out of range</code> in the setup cell</b></summary>
-
-The notebook cannot see your code. Open **Add Input → Datasets**, add your dataset, and check with `!find /kaggle/input -maxdepth 6 | head -30`. If the folder is empty, the dataset upload failed or is still processing: upload the zip again as a new dataset.
-</details>
-
-<details>
-<summary><b>Kaggle: <code>No module named bench</code></b></summary>
-
-The notebook is not in the project folder. Run `%cd /kaggle/working/repo` first. If that folder does not exist, the session was reset: run the setup cell again.
-</details>
-
-<details>
 <summary><b>Kaggle: the run stops halfway or the results vanished</b></summary>
 
 Interactive sessions stop when idle, and a reset wipes `/kaggle/working`. Use **Save & Run All (Commit)** for anything longer than a few minutes; it runs on Kaggle's servers with the tab closed and keeps the output. Every benchmark resumes from where it stopped, so re-running only does the missing questions.
-</details>
-
-<details>
-<summary><b>Coding answers are all marked wrong</b></summary>
-
-The grader runs each answer together with the official test script, which imports `numpy`. Make sure `numpy` is installed in the same Python. You can check the grader on its own: the official reference solutions should all pass (see `tests/test_new_tasks.py`).
-</details>
-
-<details>
-<summary><b>Results look free, or show 0 tokens</b></summary>
-
-An answer came from the saved-answer cache. Benchmarks and live runs always bypass it; for a clean start delete `.cache/llm/`. Files named `*.INVALID-cached-answers` are the old, wrong results we kept on purpose.
-</details>
-
-<details>
-<summary><b><code>BudgetExceeded</code> from Token Factory</b></summary>
-
-A call would pass `MAX_USD_PER_CHECK` or `TOTAL_BUDGET_USD`. Raise them in `.env` if you mean to spend more. The lifetime total is in `.spend.json`.
-</details>
-
-<details>
-<summary><b>The website has no "run live on Nebius" button</b></summary>
-
-The button only appears when the API server is running with `TF_LIVE=1` and the website can reach it (6.3). Check http://localhost:8000/health shows `"tf_live": true`.
-</details>
-
-<details>
-<summary><b>A live run says "spending limit reached" or "questions for this hour"</b></summary>
-
-The live limits did their job. Raise `DEMO_BUDGET_USD` or `LIVE_PER_IP_PER_HOUR`, or restart the server to reset the hourly count.
-</details>
-
-<details>
-<summary><b>The website says it could not load the recordings</b></summary>
-
-Run the website from the `dashboard/` folder so it can find `public/gallery/`. If you changed result files, rebuild the website data with `python -m bench.build_site_results` and `python -m bench.build_gallery_index`.
-</details>
-
-<details>
-<summary><b>Harmless messages you can ignore</b></summary>
-
-- Kaggle: `bigframes … requires google-cloud-bigquery-storage` during `pip install`.
-- Hugging Face: "You are sending unauthenticated requests". Setting `HF_TOKEN` only makes downloads faster.
-- Transformers: "Ignoring clean_up_tokenization_spaces=True for BPE tokenizer".
 </details>
 
 ## 9. What we do not claim
