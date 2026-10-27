@@ -154,7 +154,6 @@ You do **not** need a GPU or any paid keys to see the website or run the tests. 
 | [See the website on my computer](#52-see-the-website) | Node.js | 5 minutes | free |
 | [Check that the code works](#53-run-the-tests) | Python | 10 minutes | free |
 | [Re-run our experiments](#54-re-run-our-experiments-on-a-free-gpu) | a free Kaggle account | 30 minutes to try, hours for the full tests | free |
-| [Run the usual multi-agent flow on Nebius](#55-optional-run-the-usual-flow-on-nebius) | a Nebius Token Factory key | 10 minutes | a few cents to a few dollars |
 
 ### 5.1 Get the code
 
@@ -251,36 +250,6 @@ When it finishes, add one more cell to see the summary, for example `!python -m 
 **Step 4. Keep long runs going with the browser closed.** A full test takes hours, and Kaggle stops a notebook that sits idle. So instead of running cell 3 by hand, click **Save Version** (top right), choose **Save & Run All (Commit)** and click **Save**. Kaggle then runs every cell from top to bottom on its own servers, even with your browser closed. When it finishes, open the notebook's **Output** tab and download the `telepathy/bench/results/` folder. If a run ever stops halfway, run the same command again; it continues from where it stopped.
 
 **What you get:** one file per way of answering (for example `gsm8k_test_latent_s10.jsonl`), with one line per question: the answer, whether it was right, the time taken and the tokens used. Our own files are in [`bench/results/`](bench/results) for comparison.
-
-### 5.5 Optional: run the usual flow on Nebius
-
-This runs the usual multi-agent flow, where agents write notes to each other, on the much bigger NVIDIA Nemotron 3 Super through Nebius Token Factory. It costs real money, so the code always lets you check the price before spending anything.
-
-1. Create an account at [Nebius Token Factory](https://tokenfactory.nebius.com) and create an API key.
-2. In the `telepathy` folder, copy the example settings file and put your key in it:
-
-   ```bash
-   cp .env.example .env
-   ```
-
-   Open `.env` in any text editor and paste your key after `NEBIUS_API_KEY=`. Never share or upload this file.
-3. With the Python setup from 5.3 active, check the price, then run:
-
-   ```bash
-   python -m telepathy.baseline_tf --n 150 --estimate        # shows the expected cost; spends nothing
-   python -m telepathy.baseline_tf --n 150 --run --yes       # the 4-agent team on 150 maths questions
-   python -m telepathy.baseline_tf --n 50 --topology team8 --run --yes    # an 8-agent team on 50 questions
-   ```
-
-Nothing is spent unless you add both `--run` and `--yes`, and the code stops at the limits in `.env` (by default $0.50 per question and $20 in total).
-
-**To let website visitors run questions live on Nebius**, start the server in one terminal and the website (5.2) in another:
-
-```bash
-TF_LIVE=1 uvicorn server.app:app --port 8000
-```
-
-Each example question on the site then shows a button to run the usual flow live. Live runs are limited by default to $0.03 each, 6 per visitor per hour and $3 in total; see [Configuration](#6-configuration).
 
 ## 6. Configuration
 
