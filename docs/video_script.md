@@ -1,6 +1,6 @@
 # Telepathy: demo video script (target 2:55, limit 3:00)
 
-About 400 spoken words: a steady pace (about 150 words a minute) fits just under 3:00. Time a read-through; if it runs long, shorten the "Try it" shot first. **VO** = voice-over. **SCREEN** = what is recorded. Record the real website and say so. No music with lyrics or copyrighted tracks.
+About 370 spoken words: at a steady pace (about 150 words a minute) that is roughly 2:30, which leaves room for pauses while the animation plays and the charts load. Time a read-through; if it runs long, shorten the "Try it" shot first. **VO** = voice-over. **SCREEN** = what is recorded. Record the real website and say so. No music with lyrics or copyrighted tracks.
 
 Four beats: **the hook** (the cost of agents writing notes, then what we built) → **how it works** (one real question, both ways, on one clock) → **proof** (the results, including where Telepathy did not win) → **how it is built** (the small model, the GPU, Nebius, Tavily), then a one-line close. Judging criteria in brackets.
 
