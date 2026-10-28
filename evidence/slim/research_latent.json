@@ -1,0 +1,1 @@
+[{"id": "eiffel_burj", "gold": "121", "pred": "121", "ok": true, "seconds": 109.3, "tokens": 1558}, {"id": "burj_shanghai", "gold": "196", "pred": "196", "ok": true, "seconds": 36.3, "tokens": 611}, {"id": "moon_curiosity", "gold": "43", "pred": "39", "ok": false, "seconds": 95.9, "tokens": 1515}]
