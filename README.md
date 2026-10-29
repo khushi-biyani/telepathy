@@ -100,6 +100,13 @@ These are the raw numbers from everything we tested. For each question, the file
 
 ## 4. How it is built
 
+### How we used NVIDIA Nemotron
+
+We used two Nemotron models, both as released, with no fine-tuning. Each agent gets a short job prompt (planner, critic, refiner, solver) and decoding is greedy.
+
+- **Nemotron Nano 4B** (`nvidia/Llama-3.1-Nemotron-Nano-4B-v1.1`) runs Telepathy and every row of the results table. We chose it because it fits a free 16 GB NVIDIA Tesla T4 in float16, and because Telepathy needs the model's weights and internal memory, which only an open model run on our own GPU gives us.
+- **Nemotron 3 Super** (`nvidia/nemotron-3-super-120b-a12b`) runs the usual multi-agent flow on Nebius Token Factory. We chose it to measure how the cost of a multi-agent team grows at a realistic model size.
+
 ### Built with Nebius Token Factory and Tavily
 
 **Nebius Token Factory** made it practical to measure the problem at full scale:
